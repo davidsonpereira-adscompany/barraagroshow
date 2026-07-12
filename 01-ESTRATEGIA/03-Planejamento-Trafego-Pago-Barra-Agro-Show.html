@@ -1,0 +1,2126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planejamento de Tráfego Pago — Barra Agro Show</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --laranja: #FF5C00;
+            --preto: #0A0A0A;
+            --cinza-escuro: #141414;
+            --cinza-medio: #1A1A1A;
+            --cinza-borda: #2A2A2A;
+            --cinza-texto: #999;
+            --branco: #F5F5F5;
+            --branco-puro: #FFFFFF;
+            --verde: #2ECC71;
+            --verde-bg: rgba(46, 204, 113, 0.08);
+            --vermelho: #E74C3C;
+            --vermelho-bg: rgba(231, 76, 60, 0.08);
+            --amarelo: #F39C12;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--preto);
+            color: var(--branco);
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 24px 80px;
+        }
+
+        /* Back link */
+        .back-link {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            color: var(--cinza-texto);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.3s ease;
+            background: rgba(10, 10, 10, 0.9);
+            padding: 8px 14px;
+            border-radius: 6px;
+            border: 1px solid var(--cinza-borda);
+        }
+
+        .back-link:hover {
+            color: var(--laranja);
+        }
+
+        .back-link::before {
+            content: "\2190";
+            font-size: 16px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 60px 0 50px;
+            border-bottom: 1px solid var(--cinza-borda);
+            margin-bottom: 50px;
+        }
+
+        .header-tag {
+            display: inline-block;
+            background: rgba(255, 92, 0, 0.1);
+            border: 1px solid rgba(255, 92, 0, 0.3);
+            color: var(--laranja);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 20px;
+            margin-bottom: 24px;
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--branco-puro);
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .header p {
+            font-size: 16px;
+            color: var(--cinza-texto);
+            max-width: 680px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Action buttons */
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-primary {
+            background: var(--laranja);
+            color: var(--branco-puro);
+        }
+
+        .btn-primary:hover {
+            background: #E65200;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: var(--cinza-medio);
+            color: var(--branco);
+            border: 1px solid var(--cinza-borda);
+        }
+
+        .btn-secondary:hover {
+            background: var(--cinza-escuro);
+            border-color: var(--laranja);
+            transform: translateY(-1px);
+        }
+
+        .btn-feedback {
+            color: var(--verde);
+            font-size: 13px;
+            font-weight: 500;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            margin-left: 8px;
+        }
+
+        .btn-feedback.show {
+            opacity: 1;
+        }
+
+        /* Sections */
+        .section {
+            margin-bottom: 60px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            color: var(--laranja);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--branco-puro);
+            margin-bottom: 20px;
+        }
+
+        .section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--branco-puro);
+            margin-top: 30px;
+            margin-bottom: 14px;
+        }
+
+        .section p {
+            color: var(--cinza-texto);
+            margin-bottom: 16px;
+            line-height: 1.8;
+        }
+
+        .section-intro {
+            font-size: 15px;
+            color: #bbb;
+            margin-bottom: 24px;
+            line-height: 1.8;
+        }
+
+        .note {
+            background: rgba(255, 92, 0, 0.05);
+            border-left: 3px solid var(--laranja);
+            padding: 16px 20px;
+            margin: 20px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .note p {
+            color: #ccc;
+            margin-bottom: 0;
+            font-size: 14px;
+        }
+
+        /* Campaign info block */
+        .campaign-info {
+            background: var(--cinza-escuro);
+            border: 1px solid var(--cinza-borda);
+            border-radius: 8px;
+            padding: 20px 24px;
+            margin: 20px 0;
+        }
+
+        .campaign-info ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .campaign-info li {
+            font-size: 14px;
+            color: #ccc;
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+
+        .campaign-info li::before {
+            content: "";
+            width: 4px;
+            height: 4px;
+            background: var(--laranja);
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 8px;
+        }
+
+        .campaign-info li strong {
+            color: var(--branco-puro);
+            font-weight: 600;
+        }
+
+        /* Tables */
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid var(--cinza-borda);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        thead th {
+            background: var(--cinza-medio);
+            color: var(--laranja);
+            font-weight: 600;
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 14px 16px;
+            text-align: left;
+            white-space: nowrap;
+            border-bottom: 1px solid var(--cinza-borda);
+        }
+
+        tbody td {
+            padding: 12px 16px;
+            border-bottom: 1px solid rgba(42, 42, 42, 0.5);
+            color: #ccc;
+            vertical-align: top;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        tbody tr:hover {
+            background: rgba(255, 92, 0, 0.03);
+        }
+
+        tbody tr.total-row {
+            background: rgba(255, 92, 0, 0.06);
+        }
+
+        tbody tr.total-row td {
+            font-weight: 700;
+            color: var(--branco-puro);
+            border-top: 1px solid var(--cinza-borda);
+        }
+
+        .status-ativo {
+            color: var(--verde);
+            background: var(--verde-bg);
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .status-desativado {
+            color: var(--vermelho);
+            background: var(--vermelho-bg);
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            display: inline-block;
+            opacity: 0.7;
+        }
+
+        /* Funnel visualization */
+        .funnel {
+            margin: 30px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+        }
+
+        .funnel-level {
+            width: 100%;
+            max-width: 700px;
+            background: var(--cinza-escuro);
+            border: 1px solid var(--cinza-borda);
+            border-radius: 10px;
+            padding: 24px 28px;
+            text-align: center;
+            position: relative;
+        }
+
+        .funnel-level-num {
+            position: absolute;
+            top: 12px;
+            left: 16px;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--laranja);
+            letter-spacing: 1px;
+        }
+
+        .funnel-level h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--branco-puro);
+            margin-bottom: 8px;
+        }
+
+        .funnel-level p {
+            font-size: 13px;
+            color: var(--cinza-texto);
+            margin-bottom: 0;
+        }
+
+        .funnel-level .funnel-output {
+            margin-top: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .funnel-output span {
+            background: rgba(255, 92, 0, 0.1);
+            border: 1px solid rgba(255, 92, 0, 0.25);
+            color: var(--laranja);
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 14px;
+        }
+
+        .funnel-arrow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 8px 0;
+            color: var(--cinza-borda);
+        }
+
+        .funnel-arrow-line {
+            width: 2px;
+            height: 20px;
+            background: var(--cinza-borda);
+        }
+
+        .funnel-arrow-head {
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 8px solid var(--cinza-borda);
+        }
+
+        .funnel-arrow-label {
+            font-size: 11px;
+            color: var(--cinza-texto);
+            margin-top: 4px;
+            margin-bottom: 4px;
+            font-weight: 500;
+        }
+
+        /* Subsection */
+        .subsection {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(42, 42, 42, 0.5);
+        }
+
+        .subsection-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--branco-puro);
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .subsection-title::before {
+            content: "";
+            width: 3px;
+            height: 16px;
+            background: var(--laranja);
+            border-radius: 2px;
+        }
+
+        /* Creative list */
+        .creative-list {
+            list-style: none;
+            margin: 12px 0;
+        }
+
+        .creative-list li {
+            padding: 8px 0;
+            color: #ccc;
+            font-size: 14px;
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+        }
+
+        .creative-list li::before {
+            content: "";
+            width: 5px;
+            height: 5px;
+            background: var(--laranja);
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 7px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid var(--cinza-borda);
+            margin-top: 60px;
+        }
+
+        .footer p {
+            color: var(--cinza-texto);
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+        .footer p:first-child {
+            font-weight: 600;
+            color: var(--branco);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 16px 60px;
+            }
+
+            .header {
+                padding: 50px 0 40px;
+            }
+
+            .header h1 {
+                font-size: 30px;
+            }
+
+            .header p {
+                font-size: 14px;
+            }
+
+            .section h2 {
+                font-size: 24px;
+            }
+
+            .section h3 {
+                font-size: 18px;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .campaign-info ul {
+                grid-template-columns: 1fr;
+            }
+
+            .funnel-level {
+                padding: 20px 16px;
+            }
+
+            .funnel-level h4 {
+                font-size: 16px;
+            }
+
+            table {
+                font-size: 12px;
+            }
+
+            thead th,
+            tbody td {
+                padding: 10px 12px;
+            }
+
+            .back-link {
+                position: relative;
+                top: 0;
+                left: 0;
+                display: inline-flex;
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 26px;
+            }
+
+            .section h2 {
+                font-size: 22px;
+            }
+
+            thead th,
+            tbody td {
+                padding: 8px 10px;
+                font-size: 11px;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            body {
+                background: #fff;
+                color: #1a1a1a;
+                font-size: 11pt;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            .back-link,
+            .action-buttons {
+                display: none !important;
+            }
+
+            .header {
+                border-bottom: 2px solid #1a1a1a;
+                padding: 20px 0;
+            }
+
+            .header-tag {
+                border: 1px solid #1a1a1a;
+                color: #1a1a1a;
+                background: transparent;
+            }
+
+            .header h1 {
+                color: #1a1a1a;
+                font-size: 28pt;
+            }
+
+            .header p {
+                color: #444;
+            }
+
+            .section-tag {
+                color: #1a1a1a;
+            }
+
+            .section h2 {
+                color: #1a1a1a;
+                font-size: 18pt;
+            }
+
+            .section h3 {
+                color: #1a1a1a;
+            }
+
+            .section p,
+            .section-intro,
+            .note p {
+                color: #333;
+            }
+
+            .note {
+                border-left-color: #1a1a1a;
+                background: #f9f9f9;
+            }
+
+            .campaign-info {
+                background: #f5f5f5;
+                border-color: #ddd;
+            }
+
+            .campaign-info li {
+                color: #333;
+            }
+
+            .campaign-info li strong {
+                color: #1a1a1a;
+            }
+
+            .table-wrapper {
+                border-color: #ddd;
+            }
+
+            thead th {
+                background: #f0f0f0;
+                color: #1a1a1a;
+                border-bottom-color: #ddd;
+            }
+
+            tbody td {
+                color: #333;
+                border-bottom-color: #eee;
+            }
+
+            tbody tr.total-row {
+                background: #f5f5f5;
+            }
+
+            tbody tr.total-row td {
+                color: #1a1a1a;
+                border-top-color: #999;
+            }
+
+            .status-ativo {
+                color: #27ae60;
+                background: transparent;
+                border: 1px solid #27ae60;
+            }
+
+            .status-desativado {
+                color: #999;
+                background: transparent;
+                border: 1px solid #ccc;
+            }
+
+            .funnel-level {
+                background: #f9f9f9;
+                border-color: #ddd;
+            }
+
+            .funnel-level h4 {
+                color: #1a1a1a;
+            }
+
+            .funnel-level p {
+                color: #555;
+            }
+
+            .funnel-output span {
+                background: transparent;
+                border-color: #1a1a1a;
+                color: #1a1a1a;
+            }
+
+            .funnel-arrow-line {
+                background: #999;
+            }
+
+            .funnel-arrow-head {
+                border-top-color: #999;
+            }
+
+            .footer {
+                border-top-color: #1a1a1a;
+            }
+
+            .footer p {
+                color: #333;
+            }
+
+            .footer p:first-child {
+                color: #1a1a1a;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .table-wrapper {
+                overflow-x: visible;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html" class="back-link">Voltar</a>
+
+    <div class="container">
+        <!-- HEADER -->
+        <header class="header">
+            <span class="header-tag">Planejamento de Tr&aacute;fego Pago</span>
+            <h1>Campanha Meta Ads &mdash; Barra Agro Show</h1>
+            <p>Estrutura completa de campanhas, segmenta&ccedil;&atilde;o, distribui&ccedil;&atilde;o de verba e remarketing para a feira e o Semin&aacute;rio de Fruticultura Irrigada.</p>
+            <div class="action-buttons">
+                <button class="btn btn-primary" onclick="salvarPDF()">Salvar como PDF</button>
+                <button class="btn btn-secondary" id="btnCopiar" onclick="copiarTexto()">Copiar como Texto</button>
+                <span class="btn-feedback" id="feedbackCopiar">Copiado!</span>
+            </div>
+        </header>
+
+        <!-- SEÇÃO 01 — Visão Geral -->
+        <section class="section">
+            <span class="section-tag">Se&ccedil;&atilde;o 01</span>
+            <h2>Dados do planejamento</h2>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Detalhe</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Verba total</strong></td>
+                            <td>R$ 7.000,00</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Per&iacute;odo</strong></td>
+                            <td>10/07 a 31/07/2026 (22 dias)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Di&aacute;ria total</strong></td>
+                            <td>~R$ 318/dia</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Plataforma</strong></td>
+                            <td>Meta Ads (Facebook + Instagram)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Destino feira</strong></td>
+                            <td>barraagroshow.com.br</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Destino semin&aacute;rio</strong></td>
+                            <td>P&aacute;gina de compra de ingressos</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Meta de ingressos (semin&aacute;rio)</strong></td>
+                            <td>300 ingressos</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Evento</strong></td>
+                            <td>19 a 22 de agosto de 2026</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Semin&aacute;rio</strong></td>
+                            <td>21 de agosto de 2026</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 02 — Estrutura de Campanhas -->
+        <section class="section">
+            <span class="section-tag">Se&ccedil;&atilde;o 02</span>
+            <h2>Tr&ecirc;s campanhas, um funil</h2>
+
+            <p class="section-intro">A estrat&eacute;gia se apoia em tr&ecirc;s campanhas com fun&ccedil;&otilde;es distintas e complementares. A Campanha 1 (Video Views) alimenta as audi&ecirc;ncias de remarketing que ser&atilde;o usadas nas Campanhas 2 e 3. Cada campanha tem um papel no funil: aquecer, atrair e converter.</p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Campanha</th>
+                            <th>Objetivo Meta</th>
+                            <th>Verba</th>
+                            <th>%</th>
+                            <th>Fun&ccedil;&atilde;o</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1. Feira &mdash; Video Views</strong></td>
+                            <td>Visualiza&ccedil;&atilde;o de v&iacute;deo (ThruPlay)</td>
+                            <td>R$ 1.200</td>
+                            <td>17%</td>
+                            <td>Aquecer p&uacute;blico e construir audi&ecirc;ncias de remarketing</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2. Feira &mdash; Tr&aacute;fego</strong></td>
+                            <td>Tr&aacute;fego &rarr; site da feira</td>
+                            <td>R$ 2.800</td>
+                            <td>40%</td>
+                            <td>Levar p&uacute;blico qualificado para o site</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3. Semin&aacute;rio &mdash; Tr&aacute;fego</strong></td>
+                            <td>Tr&aacute;fego &rarr; p&aacute;gina de compra</td>
+                            <td>R$ 3.000</td>
+                            <td>43%</td>
+                            <td>Vender ingressos do Semin&aacute;rio de Fruticultura</td>
+                        </tr>
+                        <tr class="total-row">
+                            <td>TOTAL</td>
+                            <td></td>
+                            <td>R$ 7.000</td>
+                            <td>100%</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 03 — Campanha 1: Feira | Video Views -->
+        <section class="section">
+            <span class="section-tag">Se&ccedil;&atilde;o 03</span>
+            <h2>Distribuir v&iacute;deos, comprar dados</h2>
+
+            <p class="section-intro">Cinco v&iacute;deos de alta qualidade &mdash; tr&ecirc;s depoimentos de produtores da regi&atilde;o e dois v&iacute;deos institucionais da feira 2025 com chamada para 2026 &mdash; s&atilde;o distribu&iacute;dos para o p&uacute;blico-alvo com custo por visualiza&ccedil;&atilde;o baixo. O objetivo n&atilde;o &eacute; clique: &eacute; construir audi&ecirc;ncias personalizadas de quem assistiu 25%, 50% e 75% dos v&iacute;deos, para usar como remarketing nas campanhas seguintes.</p>
+
+            <div class="campaign-info">
+                <ul>
+                    <li><strong>Objetivo Meta:</strong> Visualiza&ccedil;&atilde;o de v&iacute;deo (ThruPlay)</li>
+                    <li><strong>Verba:</strong> R$ 1.200 | 22 dias | ~R$ 55/dia</li>
+                    <li><strong>Criativos:</strong> 5 v&iacute;deos em rota&ccedil;&atilde;o (o Meta otimiza automaticamente)</li>
+                </ul>
+            </div>
+
+            <h3>Conjuntos de an&uacute;ncios</h3>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Conjunto</th>
+                            <th>Localiza&ccedil;&atilde;o</th>
+                            <th>Verba</th>
+                            <th>Di&aacute;ria</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1.1</td>
+                            <td><strong>Raio Pr&oacute;ximo</strong></td>
+                            <td>Barra, Xique-Xique, Irec&ecirc; (+40km raio)</td>
+                            <td>R$ 300</td>
+                            <td>~R$ 14</td>
+                        </tr>
+                        <tr>
+                            <td>1.2</td>
+                            <td><strong>Juazeiro + Petrolina</strong></td>
+                            <td>Somente essas 2 cidades (+30km raio)</td>
+                            <td>R$ 250</td>
+                            <td>~R$ 11</td>
+                        </tr>
+                        <tr>
+                            <td>1.3</td>
+                            <td><strong>Oeste Baiano</strong></td>
+                            <td>Barreiras, LEM, Formosa do Rio Preto, S&atilde;o Desid&eacute;rio, Ibotirama, Bom Jesus da Lapa, Santa Maria, Santa Rita de C&aacute;ssia</td>
+                            <td>R$ 225</td>
+                            <td>~R$ 10</td>
+                        </tr>
+                        <tr>
+                            <td>1.4</td>
+                            <td><strong>Bahia + Nacional</strong></td>
+                            <td>Estado da Bahia + Brasil (consolidado, excluir cidades 1.1 a 1.3)</td>
+                            <td>R$ 425</td>
+                            <td>~R$ 19</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="note">
+                <p>O conjunto Bahia + Nacional &eacute; consolidado de prop&oacute;sito: Video Views tem CPM muito baixo. Com R$19/dia num p&uacute;blico amplo, o alcance &eacute; de milhares de pessoas. A ideia &eacute; pescar investidores e empres&aacute;rios do agro no Brasil inteiro com os v&iacute;deos de prova social.</p>
+            </div>
+
+            <div class="subsection">
+                <div class="subsection-title">Segmenta&ccedil;&atilde;o</div>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Par&acirc;metro</th>
+                                <th>Configura&ccedil;&atilde;o</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Idade</strong></td>
+                                <td>28&ndash;65 anos</td>
+                            </tr>
+                            <tr>
+                                <td><strong>G&ecirc;nero</strong></td>
+                                <td>Todos</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Interesses</strong></td>
+                                <td>Agricultura, Agroneg&oacute;cio, Pecu&aacute;ria, Produtor rural, Fazenda, Soja, Milho, Algod&atilde;o, Gado de corte, Fruticultura, Irriga&ccedil;&atilde;o, Feira agropecu&aacute;ria</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Exclus&atilde;o</strong></td>
+                                <td>Nenhuma (p&uacute;blico frio, alcance m&aacute;ximo)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <div class="subsection-title">Posicionamento</div>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Posicionamento</th>
+                                <th>Status</th>
+                                <th>Motivo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Feed do Facebook</td>
+                                <td><span class="status-ativo">ATIVO</span></td>
+                                <td>P&uacute;blico agro 35-60 &eacute; heavy user de Facebook</td>
+                            </tr>
+                            <tr>
+                                <td>Feed do Instagram</td>
+                                <td><span class="status-ativo">ATIVO</span></td>
+                                <td>Complementa, alcan&ccedil;a p&uacute;blico mais jovem</td>
+                            </tr>
+                            <tr>
+                                <td>Reels do Instagram</td>
+                                <td><span class="status-ativo">ATIVO</span></td>
+                                <td>Formato de v&iacute;deo nativo, &oacute;tima entrega</td>
+                            </tr>
+                            <tr>
+                                <td>Reels do Facebook</td>
+                                <td><span class="status-ativo">ATIVO</span></td>
+                                <td>Mesma l&oacute;gica</td>
+                            </tr>
+                            <tr>
+                                <td>Stories do Instagram</td>
+                                <td><span class="status-ativo">ATIVO</span></td>
+                                <td>Bom para v&iacute;deo</td>
+                            </tr>
+                            <tr>
+                                <td>Stories do Facebook</td>
+                                <td><span class="status-ativo">ATIVO</span></td>
+                                <td>Complementa</td>
+                            </tr>
+                            <tr>
+                                <td>In-stream do Facebook</td>
+                                <td><span class="status-ativo">ATIVO</span></td>
+                                <td>Bom para v&iacute;deos mais longos, custo baixo</td>
+                            </tr>
+                            <tr>
+                                <td>Audience Network</td>
+                                <td><span class="status-desativado">DESATIVADO</span></td>
+                                <td>Visualiza&ccedil;&otilde;es de baixa qualidade</td>
+                            </tr>
+                            <tr>
+                                <td>Messenger</td>
+                                <td><span class="status-desativado">DESATIVADO</span></td>
+                                <td>N&atilde;o faz sentido para v&iacute;deo</td>
+                            </tr>
+                            <tr>
+                                <td>Facebook Marketplace</td>
+                                <td><span class="status-desativado">DESATIVADO</span></td>
+                                <td>Irrelevante</td>
+                            </tr>
+                            <tr>
+                                <td>Coluna direita</td>
+                                <td><span class="status-desativado">DESATIVADO</span></td>
+                                <td>Sem suporte a v&iacute;deo relevante</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <div class="subsection-title">Audi&ecirc;ncias geradas para remarketing</div>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Audi&ecirc;ncia</th>
+                                <th>Defini&ccedil;&atilde;o</th>
+                                <th>Uso</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>VV_25%</strong></td>
+                                <td>Quem assistiu 25%+ de qualquer v&iacute;deo</td>
+                                <td>P&uacute;blico morno &mdash; usar na campanha de Tr&aacute;fego</td>
+                            </tr>
+                            <tr>
+                                <td><strong>VV_50%</strong></td>
+                                <td>Quem assistiu 50%+ de qualquer v&iacute;deo</td>
+                                <td>P&uacute;blico quente &mdash; usar na campanha do Semin&aacute;rio</td>
+                            </tr>
+                            <tr>
+                                <td><strong>VV_75%</strong></td>
+                                <td>Quem assistiu 75%+ de qualquer v&iacute;deo</td>
+                                <td>P&uacute;blico muito quente &mdash; prioridade no Semin&aacute;rio</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 04 — Campanha 2: Feira | Tráfego -->
+        <section class="section">
+            <span class="section-tag">Se&ccedil;&atilde;o 04</span>
+            <h2>Levar o p&uacute;blico para o site</h2>
+
+            <p class="section-intro">Campanha principal de atra&ccedil;&atilde;o para a feira. Sete conjuntos frios segmentados por prioridade geogr&aacute;fica, mais um conjunto de remarketing alimentado pelas audi&ecirc;ncias da Campanha 1. Os criativos est&aacute;ticos Save the Date s&atilde;o usados nos conjuntos frios, e os criativos de Expositor e Patrocinador nos conjuntos de remarketing.</p>
+
+            <div class="campaign-info">
+                <ul>
+                    <li><strong>Objetivo Meta:</strong> Tr&aacute;fego &rarr; barraagroshow.com.br</li>
+                    <li><strong>Verba:</strong> R$ 2.800 | 22 dias | ~R$ 127/dia</li>
+                </ul>
+            </div>
+
+            <h3>Conjuntos frios</h3>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Conjunto</th>
+                            <th>Localiza&ccedil;&atilde;o</th>
+                            <th>Verba</th>
+                            <th>Di&aacute;ria</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2.1</td>
+                            <td><strong>Raio Pr&oacute;ximo</strong></td>
+                            <td>Barra, Xique-Xique, Irec&ecirc; (+40km)</td>
+                            <td>R$ 630</td>
+                            <td>~R$ 29</td>
+                        </tr>
+                        <tr>
+                            <td>2.2</td>
+                            <td><strong>Juazeiro + Petrolina</strong></td>
+                            <td>S&oacute; essas 2 (+30km)</td>
+                            <td>R$ 475</td>
+                            <td>~R$ 22</td>
+                        </tr>
+                        <tr>
+                            <td>2.3</td>
+                            <td><strong>Oeste Baiano</strong></td>
+                            <td>Barreiras, LEM, Formosa, S&atilde;o Desid&eacute;rio, Ibotirama, Bom Jesus da Lapa, Santa Maria, Santa Rita de C&aacute;ssia</td>
+                            <td>R$ 420</td>
+                            <td>~R$ 19</td>
+                        </tr>
+                        <tr>
+                            <td>2.4</td>
+                            <td><strong>Bahia</strong></td>
+                            <td>Estado inteiro (excluir cidades 2.1-2.3)</td>
+                            <td>R$ 310</td>
+                            <td>~R$ 14</td>
+                        </tr>
+                        <tr>
+                            <td>2.5</td>
+                            <td><strong>MATOPIBA</strong></td>
+                            <td>Maranh&atilde;o, Piau&iacute;, Tocantins</td>
+                            <td>R$ 250</td>
+                            <td>~R$ 11</td>
+                        </tr>
+                        <tr>
+                            <td>2.6</td>
+                            <td><strong>Nordeste</strong></td>
+                            <td>Regi&atilde;o Nordeste (excluir Bahia)</td>
+                            <td>R$ 225</td>
+                            <td>~R$ 10</td>
+                        </tr>
+                        <tr>
+                            <td>2.7</td>
+                            <td><strong>Brasil</strong></td>
+                            <td>Nacional (excluir Nordeste)</td>
+                            <td>R$ 190</td>
+                            <td>~R$ 9</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Conjunto de remarketing</h3>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Conjunto</th>
+                            <th>P&uacute;blico</th>
+                            <th>Verba</th>
+                            <th>Di&aacute;ria</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2.8</td>
+                            <td><strong>Remarketing Feira</strong></td>
+                            <td>VV_25% (assistiu 25%+ dos v&iacute;deos) + Engajaram com a p&aacute;gina do Instagram/Facebook do Barra Agro Show (&uacute;ltimos 30 dias)</td>
+                            <td>R$ 300</td>
+                            <td>~R$ 14</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="note">
+                <p>Sem restri&ccedil;&atilde;o geogr&aacute;fica no remarketing &mdash; quem j&aacute; assistiu o v&iacute;deo ou engajou com a p&aacute;gina j&aacute; demonstrou interesse. N&atilde;o faz sentido restringir por cidade.</p>
+            </div>
+
+            <div class="subsection">
+                <div class="subsection-title">Segmenta&ccedil;&atilde;o &mdash; Conjuntos frios</div>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Par&acirc;metro</th>
+                                <th>Conjuntos 2.1 a 2.3 (regionais)</th>
+                                <th>Conjuntos 2.4 a 2.7 (amplos)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Idade</strong></td>
+                                <td>25&ndash;65 anos</td>
+                                <td>30&ndash;60 anos</td>
+                            </tr>
+                            <tr>
+                                <td><strong>G&ecirc;nero</strong></td>
+                                <td>Todos</td>
+                                <td>Todos</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Interesses</strong></td>
+                                <td>Agricultura, Agroneg&oacute;cio, Pecu&aacute;ria, Produtor rural, Fazenda, Fruticultura, Irriga&ccedil;&atilde;o, Gado de corte, Feira agropecu&aacute;ria</td>
+                                <td>Mesmos + filtro adicional: Empres&aacute;rio, Investidor, CEO, Diretor, Tecnologia agr&iacute;cola, Agtech</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Exclus&atilde;o</strong></td>
+                                <td>Excluir p&uacute;blico do remarketing (2.8)</td>
+                                <td>Excluir p&uacute;blico do remarketing (2.8)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="note">
+                    <p>Nos conjuntos regionais (2.1-2.3), o p&uacute;blico agro &eacute; denso &mdash; qualquer produtor tem chance de ir &agrave; feira. Nos conjuntos amplos (2.4-2.7), filtramos mais porque estamos falando de gente que viajaria para Barra &mdash; mais prov&aacute;vel que sejam empres&aacute;rios, investidores ou profissionais do agro com poder de decis&atilde;o.</p>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <div class="subsection-title">Segmenta&ccedil;&atilde;o &mdash; Remarketing</div>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Par&acirc;metro</th>
+                                <th>Configura&ccedil;&atilde;o</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Idade</strong></td>
+                                <td>18&ndash;65 (sem restri&ccedil;&atilde;o &mdash; j&aacute; &eacute; p&uacute;blico qualificado)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>G&ecirc;nero</strong></td>
+                                <td>Todos</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Interesses</strong></td>
+                                <td>Nenhum (audi&ecirc;ncia personalizada j&aacute; &eacute; filtrada)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>P&uacute;blico</strong></td>
+                                <td>Audi&ecirc;ncia personalizada: VV_25% + Engajamento p&aacute;gina IG/FB</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Geo</strong></td>
+                                <td>Brasil inteiro (sem restri&ccedil;&atilde;o)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <div class="subsection-title">Posicionamento</div>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Posicionamento</th>
+                                <th>Status</th>
+                                <th>Motivo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Feed do Facebook</td>
+                                <td><span class="status-ativo">ATIVO</span></td>
+                                <td>Principal para p&uacute;blico agro</td>
+                            </tr>
+                            <tr>
+                                <td>Feed do Instagram</td>
+                                <td><span class="status-ativo">ATIVO</span></td>
+                                <td>Complemento forte</td>
+                            </tr>
+                            <tr>
+                                <td>Stories do Instagram</td>
+                                <td><span class="status-ativo">ATIVO</span></td>
+                                <td>Bom CTR para tr&aacute;fego</td>
+                            </tr>
+                            <tr>
+                                <td>Stories do Facebook</td>
+                                <td><span class="status-ativo">ATIVO</span></td>
+                                <td>Complementa</td>
+                            </tr>
+                            <tr>
+                                <td>Reels do Instagram</td>
+                                <td><span class="status-desativado">DESATIVADO</span></td>
+                                <td>Reels &eacute; melhor para v&iacute;deo, n&atilde;o tr&aacute;fego</td>
+                            </tr>
+                            <tr>
+                                <td>Reels do Facebook</td>
+                                <td><span class="status-desativado">DESATIVADO</span></td>
+                                <td>Mesma l&oacute;gica</td>
+                            </tr>
+                            <tr>
+                                <td>Audience Network</td>
+                                <td><span class="status-desativado">DESATIVADO</span></td>
+                                <td>Cliques de baixa qualidade</td>
+                            </tr>
+                            <tr>
+                                <td>Messenger</td>
+                                <td><span class="status-desativado">DESATIVADO</span></td>
+                                <td>Irrelevante</td>
+                            </tr>
+                            <tr>
+                                <td>Facebook Marketplace</td>
+                                <td><span class="status-desativado">DESATIVADO</span></td>
+                                <td>Irrelevante</td>
+                            </tr>
+                            <tr>
+                                <td>Resultados de pesquisa</td>
+                                <td><span class="status-ativo">ATIVO</span></td>
+                                <td>Pode capturar buscas relacionadas</td>
+                            </tr>
+                            <tr>
+                                <td>Coluna direita</td>
+                                <td><span class="status-desativado">DESATIVADO</span></td>
+                                <td>CTR muito baixo</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <div class="subsection-title">Criativos &mdash; Conjuntos frios (2.1-2.7)</div>
+                <ul class="creative-list">
+                    <li>5 est&aacute;ticas Save the Date em rota&ccedil;&atilde;o (produtores, pecu&aacute;ria, gr&atilde;os, mulher, agricultura familiar)</li>
+                    <li>Copy variando por conjunto: regionais com tom &ldquo;pertinho de voc&ecirc;&rdquo;, amplos com tom &ldquo;investidores, o Oeste Baiano tem nome agora&rdquo;</li>
+                </ul>
+            </div>
+
+            <div class="subsection">
+                <div class="subsection-title">Criativos &mdash; Conjunto remarketing (2.8)</div>
+                <ul class="creative-list">
+                    <li>Est&aacute;ticas de Expositor + Patrocinador (quem j&aacute; viu v&iacute;deo est&aacute; mais avan&ccedil;ado no funil)</li>
+                    <li>Copy com urg&ecirc;ncia: &ldquo;19 a 22 de agosto &mdash; faltam X dias&rdquo;</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 05 — Campanha 3: Seminário | Tráfego -->
+        <section class="section">
+            <span class="section-tag">Se&ccedil;&atilde;o 05</span>
+            <h2>Vender ingressos do Semin&aacute;rio</h2>
+
+            <p class="section-intro">Campanha focada na venda de ingressos do Semin&aacute;rio de Fruticultura Irrigada (21 de agosto). Cinco conjuntos frios com segmenta&ccedil;&atilde;o espec&iacute;fica para o p&uacute;blico fruticultor, mais dois conjuntos de remarketing em camadas &mdash; um quente (quem assistiu v&iacute;deos e visitou o site) e um morno (quem engajou com posts e an&uacute;ncios). A dupla camada de remarketing &eacute; necess&aacute;ria porque o ingresso a R$300 exige m&uacute;ltiplos pontos de contato antes da decis&atilde;o de compra.</p>
+
+            <div class="campaign-info">
+                <ul>
+                    <li><strong>Objetivo Meta:</strong> Tr&aacute;fego &rarr; p&aacute;gina de compra do ingresso</li>
+                    <li><strong>Verba:</strong> R$ 3.000 | 22 dias | ~R$ 136/dia</li>
+                    <li><strong>Meta:</strong> 300 ingressos vendidos</li>
+                </ul>
+            </div>
+
+            <h3>Conjuntos frios</h3>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Conjunto</th>
+                            <th>Localiza&ccedil;&atilde;o</th>
+                            <th>Verba</th>
+                            <th>Di&aacute;ria</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>3.1</td>
+                            <td><strong>Raio Pr&oacute;ximo</strong></td>
+                            <td>Barra, Xique-Xique, Irec&ecirc; (+40km)</td>
+                            <td>R$ 660</td>
+                            <td>~R$ 30</td>
+                        </tr>
+                        <tr>
+                            <td>3.2</td>
+                            <td><strong>Juazeiro + Petrolina</strong></td>
+                            <td>S&oacute; essas 2 (+30km)</td>
+                            <td>R$ 540</td>
+                            <td>~R$ 25</td>
+                        </tr>
+                        <tr>
+                            <td>3.3</td>
+                            <td><strong>Oeste Baiano</strong></td>
+                            <td>Barreiras, LEM, Formosa, S&atilde;o Desid&eacute;rio, Ibotirama, Bom Jesus da Lapa</td>
+                            <td>R$ 420</td>
+                            <td>~R$ 19</td>
+                        </tr>
+                        <tr>
+                            <td>3.4</td>
+                            <td><strong>Bahia</strong></td>
+                            <td>Estado inteiro (excluir acima)</td>
+                            <td>R$ 330</td>
+                            <td>~R$ 15</td>
+                        </tr>
+                        <tr>
+                            <td>3.5</td>
+                            <td><strong>Nacional</strong></td>
+                            <td>MATOPIBA + Nordeste + Brasil (consolidado)</td>
+                            <td>R$ 250</td>
+                            <td>~R$ 11</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Conjuntos de remarketing</h3>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Conjunto</th>
+                            <th>P&uacute;blico</th>
+                            <th>Verba</th>
+                            <th>Di&aacute;ria</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>3.6</td>
+                            <td><strong>Retargeting Quente</strong></td>
+                            <td>VV_50% + VV_75% (assistiu 50%+ dos v&iacute;deos) + Visitantes do site barraagroshow.com.br (&uacute;ltimos 30 dias)</td>
+                            <td>R$ 500</td>
+                            <td>~R$ 23</td>
+                        </tr>
+                        <tr>
+                            <td>3.7</td>
+                            <td><strong>Retargeting Engajamento</strong></td>
+                            <td>Engajaram com posts/an&uacute;ncios do semin&aacute;rio + Engajaram com a p&aacute;gina IG/FB (&uacute;ltimos 15 dias) &mdash; excluir quem j&aacute; est&aacute; no 3.6</td>
+                            <td>R$ 300</td>
+                            <td>~R$ 14</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="note">
+                <p>Ingresso a R$300 &eacute; decis&atilde;o de alto envolvimento. Precisamos de camadas de remarketing: o conjunto 3.6 (quente) atinge quem j&aacute; assistiu v&iacute;deo longo e visitou o site &mdash; copy direta de venda. O conjunto 3.7 (morno) atinge quem engajou mas n&atilde;o foi t&atilde;o fundo &mdash; copy de benef&iacute;cio e urg&ecirc;ncia para empurrar a decis&atilde;o.</p>
+            </div>
+
+            <div class="subsection">
+                <div class="subsection-title">Segmenta&ccedil;&atilde;o &mdash; Conjuntos frios</div>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Par&acirc;metro</th>
+                                <th>Conjuntos 3.1 a 3.3 (regionais)</th>
+                                <th>Conjuntos 3.4 a 3.5 (amplos)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Idade</strong></td>
+                                <td>25&ndash;60 anos</td>
+                                <td>28&ndash;55 anos</td>
+                            </tr>
+                            <tr>
+                                <td><strong>G&ecirc;nero</strong></td>
+                                <td>Todos</td>
+                                <td>Todos</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Interesses</strong></td>
+                                <td>Fruticultura, Irriga&ccedil;&atilde;o, Fruticultura irrigada, Agronomia, Engenharia agron&ocirc;mica, Frutas tropicais, Manga, Uva, Banana, Melancia, Cacau, Embrapa, Pesquisa agr&iacute;cola, Extens&atilde;o rural, Produtor rural</td>
+                                <td>Mesmos + filtro adicional: Universidade de Agronomia, Pesquisador, Consultor agr&iacute;cola, Engenheiro agr&ocirc;nomo</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Exclus&atilde;o</strong></td>
+                                <td>Excluir p&uacute;blicos 3.6 e 3.7</td>
+                                <td>Excluir p&uacute;blicos 3.6 e 3.7</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="note">
+                    <p>Os interesses aqui s&atilde;o espec&iacute;ficos de fruticultura e irriga&ccedil;&atilde;o, n&atilde;o agro geral. Isso filtra o p&uacute;blico para quem realmente tem interesse no tema do semin&aacute;rio.</p>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <div class="subsection-title">Segmenta&ccedil;&atilde;o &mdash; Remarketing</div>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Par&acirc;metro</th>
+                                <th>3.6 (Quente)</th>
+                                <th>3.7 (Morno)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Idade</strong></td>
+                                <td>18&ndash;65</td>
+                                <td>18&ndash;65</td>
+                            </tr>
+                            <tr>
+                                <td><strong>G&ecirc;nero</strong></td>
+                                <td>Todos</td>
+                                <td>Todos</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Interesses</strong></td>
+                                <td>Nenhum</td>
+                                <td>Nenhum</td>
+                            </tr>
+                            <tr>
+                                <td><strong>P&uacute;blico</strong></td>
+                                <td>VV_50% + VV_75% + Visitantes do site</td>
+                                <td>Engajamento IG/FB + engajamento com an&uacute;ncios &mdash; excluir 3.6</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Geo</strong></td>
+                                <td>Brasil (sem restri&ccedil;&atilde;o)</td>
+                                <td>Brasil (sem restri&ccedil;&atilde;o)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <div class="subsection-title">Posicionamento</div>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Posicionamento</th>
+                                <th>Status</th>
+                                <th>Motivo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Feed do Facebook</td>
+                                <td><span class="status-ativo">ATIVO</span></td>
+                                <td>Principal &mdash; p&uacute;blico fruticultor &eacute; forte no Facebook</td>
+                            </tr>
+                            <tr>
+                                <td>Feed do Instagram</td>
+                                <td><span class="status-ativo">ATIVO</span></td>
+                                <td>Bom complemento</td>
+                            </tr>
+                            <tr>
+                                <td>Stories do Instagram</td>
+                                <td><span class="status-ativo">ATIVO</span></td>
+                                <td>Bom para urg&ecirc;ncia e CTA direto</td>
+                            </tr>
+                            <tr>
+                                <td>Stories do Facebook</td>
+                                <td><span class="status-ativo">ATIVO</span></td>
+                                <td>Complementa</td>
+                            </tr>
+                            <tr>
+                                <td>Reels do Instagram</td>
+                                <td><span class="status-desativado">DESATIVADO</span></td>
+                                <td>Objetivo &eacute; clique, n&atilde;o visualiza&ccedil;&atilde;o</td>
+                            </tr>
+                            <tr>
+                                <td>Audience Network</td>
+                                <td><span class="status-desativado">DESATIVADO</span></td>
+                                <td>Cliques de baixa qualidade</td>
+                            </tr>
+                            <tr>
+                                <td>Messenger (s&oacute; remarketing)</td>
+                                <td><span class="status-ativo">ATIVO</span></td>
+                                <td>Para remarketing, funciona como lembrete</td>
+                            </tr>
+                            <tr>
+                                <td>Resultados de pesquisa</td>
+                                <td><span class="status-ativo">ATIVO</span></td>
+                                <td>Captura inten&ccedil;&atilde;o de busca</td>
+                            </tr>
+                            <tr>
+                                <td>Reels do Facebook</td>
+                                <td><span class="status-desativado">DESATIVADO</span></td>
+                                <td>Objetivo &eacute; clique</td>
+                            </tr>
+                            <tr>
+                                <td>Facebook Marketplace</td>
+                                <td><span class="status-desativado">DESATIVADO</span></td>
+                                <td>Irrelevante</td>
+                            </tr>
+                            <tr>
+                                <td>Coluna direita</td>
+                                <td><span class="status-desativado">DESATIVADO</span></td>
+                                <td>CTR muito baixo</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <div class="subsection-title">Criativos &mdash; Conjuntos frios (3.1-3.5)</div>
+                <ul class="creative-list">
+                    <li>Est&aacute;tica do Semin&aacute;rio (Save the Date)</li>
+                    <li>Carrossel (4 slides: capa, programa&ccedil;&atilde;o, pre&ccedil;os, data)</li>
+                    <li>Novos criativos gerados (urg&ecirc;ncia, benef&iacute;cio, programa&ccedil;&atilde;o, prova social)</li>
+                </ul>
+            </div>
+
+            <div class="subsection">
+                <div class="subsection-title">Criativos &mdash; Remarketing 3.6 (quente)</div>
+                <ul class="creative-list">
+                    <li>Criativo de urg&ecirc;ncia: &ldquo;VAGAS LIMITADAS &mdash; R$300 inteira / R$150 meia&rdquo;</li>
+                    <li>Criativo de prova social: n&uacute;meros da feira 2025 (R$32 milh&otilde;es, 12 mil visitantes)</li>
+                    <li>Copy direta: &ldquo;Voc&ecirc; j&aacute; conhece o Barra Agro Show. Agora garanta sua vaga no Semin&aacute;rio.&rdquo;</li>
+                </ul>
+            </div>
+
+            <div class="subsection">
+                <div class="subsection-title">Criativos &mdash; Remarketing 3.7 (morno)</div>
+                <ul class="creative-list">
+                    <li>Criativo de benef&iacute;cio: &ldquo;O conhecimento que vai mudar sua pr&oacute;xima colheita&rdquo;</li>
+                    <li>Criativo de programa&ccedil;&atilde;o: manh&atilde; no campo + tarde com especialistas</li>
+                    <li>Copy de valor: &ldquo;R$300 por um dia inteiro de conhecimento t&eacute;cnico que se paga na primeira safra.&rdquo;</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 06 — Funil de Remarketing -->
+        <section class="section">
+            <span class="section-tag">Se&ccedil;&atilde;o 06</span>
+            <h2>Como os dados fluem entre campanhas</h2>
+
+            <p class="section-intro">O funil se retroalimenta: a campanha de Video Views aquece o p&uacute;blico, a campanha de Tr&aacute;fego da Feira gera visitas ao site, e a campanha do Semin&aacute;rio faz remarketing com quem j&aacute; interagiu nas duas campanhas anteriores. Cada campanha alimenta a seguinte.</p>
+
+            <div class="funnel">
+                <div class="funnel-level">
+                    <span class="funnel-level-num">N&Iacute;VEL 1</span>
+                    <h4>Campanha 1 &mdash; Video Views</h4>
+                    <p>Distribui v&iacute;deos para p&uacute;blico frio e coleta dados de visualiza&ccedil;&atilde;o</p>
+                    <div class="funnel-output">
+                        <span>VV_25%</span>
+                        <span>VV_50%</span>
+                        <span>VV_75%</span>
+                    </div>
+                </div>
+
+                <div class="funnel-arrow">
+                    <div class="funnel-arrow-line"></div>
+                    <span class="funnel-arrow-label">Alimenta audi&ecirc;ncias</span>
+                    <div class="funnel-arrow-head"></div>
+                </div>
+
+                <div class="funnel-level">
+                    <span class="funnel-level-num">N&Iacute;VEL 2</span>
+                    <h4>Campanha 2 &mdash; Tr&aacute;fego Feira</h4>
+                    <p>Usa VV_25% + engajamento da p&aacute;gina para remarketing. Gera visitantes do site.</p>
+                    <div class="funnel-output">
+                        <span>Visitantes do site</span>
+                        <span>Engajamento com an&uacute;ncios</span>
+                    </div>
+                </div>
+
+                <div class="funnel-arrow">
+                    <div class="funnel-arrow-line"></div>
+                    <span class="funnel-arrow-label">Alimenta remarketing</span>
+                    <div class="funnel-arrow-head"></div>
+                </div>
+
+                <div class="funnel-level">
+                    <span class="funnel-level-num">N&Iacute;VEL 3</span>
+                    <h4>Campanha 3 &mdash; Semin&aacute;rio</h4>
+                    <p>Usa VV_50% + VV_75% + visitantes do site + engajamento para converter</p>
+                    <div class="funnel-output">
+                        <span>Venda do ingresso</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 07 — Resumo Consolidado -->
+        <section class="section">
+            <span class="section-tag">Se&ccedil;&atilde;o 07</span>
+            <h2>Vis&atilde;o geral de todos os conjuntos</h2>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Campanha</th>
+                            <th>#</th>
+                            <th>Conjunto</th>
+                            <th>Regi&atilde;o</th>
+                            <th>Verba</th>
+                            <th>Di&aacute;ria</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Video Views</td>
+                            <td>1.1</td>
+                            <td>Raio Pr&oacute;ximo</td>
+                            <td>Barra, Xique-Xique, Irec&ecirc;</td>
+                            <td>R$ 300</td>
+                            <td>R$ 14</td>
+                        </tr>
+                        <tr>
+                            <td>Video Views</td>
+                            <td>1.2</td>
+                            <td>Juazeiro + Petrolina</td>
+                            <td>2 cidades</td>
+                            <td>R$ 250</td>
+                            <td>R$ 11</td>
+                        </tr>
+                        <tr>
+                            <td>Video Views</td>
+                            <td>1.3</td>
+                            <td>Oeste Baiano</td>
+                            <td>Barreiras, LEM e regi&atilde;o</td>
+                            <td>R$ 225</td>
+                            <td>R$ 10</td>
+                        </tr>
+                        <tr>
+                            <td>Video Views</td>
+                            <td>1.4</td>
+                            <td>Bahia + Nacional</td>
+                            <td>Consolidado</td>
+                            <td>R$ 425</td>
+                            <td>R$ 19</td>
+                        </tr>
+                        <tr>
+                            <td>Tr&aacute;fego Feira</td>
+                            <td>2.1</td>
+                            <td>Raio Pr&oacute;ximo</td>
+                            <td>Barra, Xique-Xique, Irec&ecirc;</td>
+                            <td>R$ 630</td>
+                            <td>R$ 29</td>
+                        </tr>
+                        <tr>
+                            <td>Tr&aacute;fego Feira</td>
+                            <td>2.2</td>
+                            <td>Juazeiro + Petrolina</td>
+                            <td>2 cidades</td>
+                            <td>R$ 475</td>
+                            <td>R$ 22</td>
+                        </tr>
+                        <tr>
+                            <td>Tr&aacute;fego Feira</td>
+                            <td>2.3</td>
+                            <td>Oeste Baiano</td>
+                            <td>Barreiras, LEM e regi&atilde;o</td>
+                            <td>R$ 420</td>
+                            <td>R$ 19</td>
+                        </tr>
+                        <tr>
+                            <td>Tr&aacute;fego Feira</td>
+                            <td>2.4</td>
+                            <td>Bahia</td>
+                            <td>Estado (excluir 2.1-2.3)</td>
+                            <td>R$ 310</td>
+                            <td>R$ 14</td>
+                        </tr>
+                        <tr>
+                            <td>Tr&aacute;fego Feira</td>
+                            <td>2.5</td>
+                            <td>MATOPIBA</td>
+                            <td>MA, PI, TO</td>
+                            <td>R$ 250</td>
+                            <td>R$ 11</td>
+                        </tr>
+                        <tr>
+                            <td>Tr&aacute;fego Feira</td>
+                            <td>2.6</td>
+                            <td>Nordeste</td>
+                            <td>Regi&atilde;o NE (excluir BA)</td>
+                            <td>R$ 225</td>
+                            <td>R$ 10</td>
+                        </tr>
+                        <tr>
+                            <td>Tr&aacute;fego Feira</td>
+                            <td>2.7</td>
+                            <td>Brasil</td>
+                            <td>Nacional (excluir NE)</td>
+                            <td>R$ 190</td>
+                            <td>R$ 9</td>
+                        </tr>
+                        <tr>
+                            <td>Tr&aacute;fego Feira</td>
+                            <td>2.8</td>
+                            <td>Remarketing Feira</td>
+                            <td>VV_25% + Engajamento</td>
+                            <td>R$ 300</td>
+                            <td>R$ 14</td>
+                        </tr>
+                        <tr>
+                            <td>Semin&aacute;rio</td>
+                            <td>3.1</td>
+                            <td>Raio Pr&oacute;ximo</td>
+                            <td>Barra, Xique-Xique, Irec&ecirc;</td>
+                            <td>R$ 660</td>
+                            <td>R$ 30</td>
+                        </tr>
+                        <tr>
+                            <td>Semin&aacute;rio</td>
+                            <td>3.2</td>
+                            <td>Juazeiro + Petrolina</td>
+                            <td>2 cidades</td>
+                            <td>R$ 540</td>
+                            <td>R$ 25</td>
+                        </tr>
+                        <tr>
+                            <td>Semin&aacute;rio</td>
+                            <td>3.3</td>
+                            <td>Oeste Baiano</td>
+                            <td>Barreiras, LEM e regi&atilde;o</td>
+                            <td>R$ 420</td>
+                            <td>R$ 19</td>
+                        </tr>
+                        <tr>
+                            <td>Semin&aacute;rio</td>
+                            <td>3.4</td>
+                            <td>Bahia</td>
+                            <td>Estado</td>
+                            <td>R$ 330</td>
+                            <td>R$ 15</td>
+                        </tr>
+                        <tr>
+                            <td>Semin&aacute;rio</td>
+                            <td>3.5</td>
+                            <td>Nacional</td>
+                            <td>MATOPIBA + NE + Brasil</td>
+                            <td>R$ 250</td>
+                            <td>R$ 11</td>
+                        </tr>
+                        <tr>
+                            <td>Semin&aacute;rio</td>
+                            <td>3.6</td>
+                            <td>Retargeting Quente</td>
+                            <td>VV_50%+ / Visitantes site</td>
+                            <td>R$ 500</td>
+                            <td>R$ 23</td>
+                        </tr>
+                        <tr>
+                            <td>Semin&aacute;rio</td>
+                            <td>3.7</td>
+                            <td>Retargeting Engajamento</td>
+                            <td>Engajamento IG/FB</td>
+                            <td>R$ 300</td>
+                            <td>R$ 14</td>
+                        </tr>
+                        <tr class="total-row">
+                            <td><strong>TOTAL</strong></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><strong>R$ 7.000</strong></td>
+                            <td><strong>R$ 318</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 08 — Inventário de Criativos -->
+        <section class="section">
+            <span class="section-tag">Se&ccedil;&atilde;o 08</span>
+            <h2>Material dispon&iacute;vel por campanha</h2>
+
+            <h3>Criativos da Feira</h3>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Tipo</th>
+                            <th>Descri&ccedil;&atilde;o</th>
+                            <th>Formato</th>
+                            <th>Campanha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Est&aacute;tica</td>
+                            <td>Save the Date &mdash; 4 produtores com frutas, vinhedos</td>
+                            <td>Vertical</td>
+                            <td>Tr&aacute;fego (frio)</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Est&aacute;tica</td>
+                            <td>Save the Date &mdash; Pecu&aacute;ria, 2 homens com ovelhas</td>
+                            <td>Vertical</td>
+                            <td>Tr&aacute;fego (frio)</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Est&aacute;tica</td>
+                            <td>Save the Date &mdash; 2 produtores, campo de soja</td>
+                            <td>Vertical</td>
+                            <td>Tr&aacute;fego (frio)</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Est&aacute;tica</td>
+                            <td>Save the Date &mdash; Mulher produtora + caminh&atilde;o</td>
+                            <td>Vertical</td>
+                            <td>Tr&aacute;fego (frio)</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Est&aacute;tica</td>
+                            <td>Save the Date &mdash; 3 pessoas, agricultura familiar</td>
+                            <td>Vertical</td>
+                            <td>Tr&aacute;fego (frio)</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>Est&aacute;tica</td>
+                            <td>&ldquo;Seja um Expositor&rdquo; &mdash; WhatsApp 77 99912-8057</td>
+                            <td>Vertical</td>
+                            <td>Tr&aacute;fego (remarketing)</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>Est&aacute;tica</td>
+                            <td>&ldquo;Seja um Patrocinador&rdquo;</td>
+                            <td>Vertical</td>
+                            <td>Tr&aacute;fego (remarketing)</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>V&iacute;deo</td>
+                            <td>Depoimento Produtor 1</td>
+                            <td>Paisagem (16:9)</td>
+                            <td>Video Views</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>V&iacute;deo</td>
+                            <td>Depoimento Produtor 2</td>
+                            <td>Paisagem (16:9)</td>
+                            <td>Video Views</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>V&iacute;deo</td>
+                            <td>Depoimento Produtor 3</td>
+                            <td>Paisagem (16:9)</td>
+                            <td>Video Views</td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td>V&iacute;deo</td>
+                            <td>Institucional Feira 2025 + chamada 2026 (v&iacute;deo 1)</td>
+                            <td>Paisagem (16:9)</td>
+                            <td>Video Views</td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td>V&iacute;deo</td>
+                            <td>Institucional Feira 2025 + chamada 2026 (v&iacute;deo 2)</td>
+                            <td>Paisagem (16:9)</td>
+                            <td>Video Views</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Criativos do Semin&aacute;rio</h3>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Tipo</th>
+                            <th>Descri&ccedil;&atilde;o</th>
+                            <th>Formato</th>
+                            <th>Campanha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Est&aacute;tica</td>
+                            <td>Semin&aacute;rio da Fruticultura Irrigada &mdash; Save the Date</td>
+                            <td>Vertical</td>
+                            <td>Semin&aacute;rio (frio)</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Carrossel</td>
+                            <td>4 slides: capa, programa&ccedil;&atilde;o, pre&ccedil;os, data/local</td>
+                            <td>Vertical</td>
+                            <td>Semin&aacute;rio (frio)</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>A produzir</td>
+                            <td>Criativo de urg&ecirc;ncia (VAGAS LIMITADAS + pre&ccedil;os)</td>
+                            <td>1080&times;1080</td>
+                            <td>Semin&aacute;rio (frio + remarketing)</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>A produzir</td>
+                            <td>Criativo de benef&iacute;cio (conhecimento que rende)</td>
+                            <td>1080&times;1350</td>
+                            <td>Semin&aacute;rio (frio)</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>A produzir</td>
+                            <td>Criativo de programa&ccedil;&atilde;o (manh&atilde; + tarde)</td>
+                            <td>1080&times;1080</td>
+                            <td>Semin&aacute;rio (remarketing morno)</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>A produzir</td>
+                            <td>Criativo de prova social (n&uacute;meros feira 2025)</td>
+                            <td>1080&times;1080</td>
+                            <td>Semin&aacute;rio (remarketing quente)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>ADS Company &mdash; Assessoria de Marketing e Performance</p>
+            <p>Planejamento de Tr&aacute;fego Pago &mdash; Barra Agro Show &mdash; Julho 2026</p>
+        </footer>
+    </div>
+
+    <script>
+        function salvarPDF() {
+            window.print();
+        }
+
+        function copiarTexto() {
+            var container = document.querySelector('.container');
+            var sections = container.querySelectorAll('.section');
+            var textoCompleto = '';
+
+            textoCompleto += 'PLANEJAMENTO DE TRAFEGO PAGO - BARRA AGRO SHOW\n';
+            textoCompleto += 'Campanha Meta Ads\n';
+            textoCompleto += '================================================\n\n';
+
+            sections.forEach(function(section) {
+                var tag = section.querySelector('.section-tag');
+                var titulo = section.querySelector('h2');
+
+                if (tag) textoCompleto += tag.textContent.toUpperCase() + '\n';
+                if (titulo) textoCompleto += titulo.textContent + '\n';
+                textoCompleto += '---\n\n';
+
+                var intros = section.querySelectorAll('.section-intro');
+                intros.forEach(function(intro) {
+                    textoCompleto += intro.textContent + '\n\n';
+                });
+
+                var tabelas = section.querySelectorAll('table');
+                tabelas.forEach(function(tabela) {
+                    var linhas = tabela.querySelectorAll('tr');
+                    linhas.forEach(function(linha) {
+                        var celulas = linha.querySelectorAll('th, td');
+                        var valores = [];
+                        celulas.forEach(function(celula) {
+                            valores.push(celula.textContent.trim());
+                        });
+                        textoCompleto += valores.join(' | ') + '\n';
+                    });
+                    textoCompleto += '\n';
+                });
+
+                var notas = section.querySelectorAll('.note p');
+                notas.forEach(function(nota) {
+                    textoCompleto += 'NOTA: ' + nota.textContent + '\n\n';
+                });
+
+                var listas = section.querySelectorAll('.creative-list');
+                listas.forEach(function(lista) {
+                    var items = lista.querySelectorAll('li');
+                    items.forEach(function(item) {
+                        textoCompleto += '- ' + item.textContent + '\n';
+                    });
+                    textoCompleto += '\n';
+                });
+
+                textoCompleto += '\n';
+            });
+
+            textoCompleto += '================================================\n';
+            textoCompleto += 'ADS Company - Assessoria de Marketing e Performance\n';
+            textoCompleto += 'Planejamento de Trafego Pago - Barra Agro Show - Julho 2026\n';
+
+            navigator.clipboard.writeText(textoCompleto).then(function() {
+                var feedback = document.getElementById('feedbackCopiar');
+                feedback.classList.add('show');
+                setTimeout(function() {
+                    feedback.classList.remove('show');
+                }, 2500);
+            }).catch(function() {
+                var textarea = document.createElement('textarea');
+                textarea.value = textoCompleto;
+                textarea.style.position = 'fixed';
+                textarea.style.opacity = '0';
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+
+                var feedback = document.getElementById('feedbackCopiar');
+                feedback.classList.add('show');
+                setTimeout(function() {
+                    feedback.classList.remove('show');
+                }, 2500);
+            });
+        }
+    </script>
+</body>
+</html>

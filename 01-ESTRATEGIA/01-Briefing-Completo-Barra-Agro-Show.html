@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Briefing Completo &mdash; Barra Agro Show</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --laranja: #FF5C00;
+    --preto: #0A0A0A;
+    --cinza-escuro: #141414;
+    --cinza-medio: #1A1A1A;
+    --cinza-claro: #a8a8a8;
+    --cinza-border: rgba(255,92,0,0.15);
+    --branco: #FFFFFF;
+    --serif: 'Playfair Display', serif;
+    --sans: 'Inter', sans-serif;
+  }
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: var(--preto);
+    color: var(--branco);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.6;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 48px 32px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Print styles */
+  @media print {
+    @page { margin: 15mm 14mm; }
+    body {
+      background: #fff !important;
+      color: #111 !important;
+      padding: 0 !important;
+      font-size: 12px !important;
+      max-width: 100% !important;
+    }
+    .no-print { display: none !important; }
+    .header { border-bottom-color: #ddd !important; }
+    .header-tag { color: #FF5C00 !important; }
+    .header h1  { color: #111 !important; }
+    .header h1 em { color: #FF5C00 !important; }
+    .header p   { color: #555 !important; }
+    .header-line { background: #FF5C00 !important; }
+    .header > div[style*="font-family"] { color: #111 !important; }
+    .header > div[style*="font-family"] em { color: #FF5C00 !important; }
+    .section-tag { color: #FF5C00 !important; }
+    .section h2  { color: #111 !important; }
+    .section h2 em { color: #FF5C00 !important; }
+    .field-label { color: #555 !important; }
+    .field-input,
+    .field-textarea {
+      background: #f5f5f5 !important;
+      color: #111 !important;
+      border-color: #ccc !important;
+    }
+    .divider { background: linear-gradient(90deg, #FF5C00, rgba(255,92,0,0.1)) !important; }
+    .obj-table th    { background: #eee !important; color: #333 !important; }
+    .obj-table td    { color: #111 !important; border-bottom-color: #ddd !important; }
+    .obj-table input { background: #f5f5f5 !important; color: #111 !important; border-color: transparent !important; }
+    .obj-table td:first-child { color: #FF5C00 !important; }
+    .scale-label { color: #333 !important; }
+    .scale-track { background: #e0e0e0 !important; }
+    .scale-fill  { background: #FF5C00 !important; }
+    .scale-input { background: #f5f5f5 !important; color: #111 !important; border-color: #ccc !important; }
+    .level-option          { background: #f9f9f9 !important; border-color: #ddd !important; }
+    .level-option .lo-label { color: #111 !important; }
+    .level-option .lo-desc  { color: #666 !important; }
+    .level-option.selected { border-color: #FF5C00 !important; background: #fff5f0 !important; }
+    div[style*="border-top"] p,
+    div[style*="border-top"] em { color: #333 !important; }
+    div[style*="border-top"] em { color: #FF5C00 !important; }
+  }
+
+  /* Header */
+  .header { margin-bottom: 48px; padding-bottom: 32px; border-bottom: 1px solid var(--cinza-border); text-align: center; }
+  .header img { height: 80px; margin-bottom: 16px; }
+  .header-tag { font-size: 10px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--laranja); margin-bottom: 12px; }
+  .header h1 { font-family: var(--serif); font-size: 2rem; font-weight: 400; line-height: 1.2; margin-bottom: 8px; }
+  .header h1 em { font-style: italic; color: var(--laranja); }
+  .header-line { width: 60px; height: 2px; background: var(--laranja); margin: 16px auto; }
+  .header p { font-size: 0.88rem; color: var(--cinza-claro); font-weight: 300; max-width: 560px; margin: 0 auto; }
+
+  /* Section */
+  .section { margin-bottom: 40px; }
+  .section-tag { font-size: 10px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--laranja); margin-bottom: 10px; }
+  .section h2 { font-family: var(--serif); font-size: 1.3rem; font-weight: 400; margin-bottom: 20px; }
+  .section h2 em { font-style: italic; color: var(--laranja); }
+
+  /* Fields */
+  .field { margin-bottom: 16px; }
+  .field-label { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cinza-claro); margin-bottom: 6px; }
+  .field-input {
+    width: 100%;
+    background: var(--cinza-escuro);
+    border: 1px solid var(--cinza-border);
+    padding: 14px 16px;
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    color: var(--branco);
+    font-weight: 300;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .field-input:focus { border-color: var(--laranja); }
+  .field-input::placeholder { color: rgba(255,255,255,0.25); font-style: italic; }
+  .field-textarea {
+    width: 100%;
+    background: var(--cinza-escuro);
+    border: 1px solid var(--cinza-border);
+    padding: 14px 16px;
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    color: var(--branco);
+    font-weight: 300;
+    outline: none;
+    resize: vertical;
+    min-height: 80px;
+    transition: border-color 0.2s;
+  }
+  .field-textarea:focus { border-color: var(--laranja); }
+
+  /* Grid */
+  .field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 600px) { .field-grid { grid-template-columns: 1fr; } }
+
+  /* Table */
+  .obj-table { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+  .obj-table th { background: var(--cinza-medio); padding: 10px 14px; text-align: left; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--cinza-claro); }
+  .obj-table td { padding: 4px; border-bottom: 1px solid var(--cinza-border); vertical-align: top; }
+  .obj-table td:first-child { width: 36px; text-align: center; color: var(--laranja); font-weight: 600; padding: 14px 10px; font-size: 0.85rem; }
+  .obj-table input {
+    width: 100%;
+    background: transparent;
+    border: 1px solid transparent;
+    padding: 10px;
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    color: var(--branco);
+    font-weight: 300;
+    outline: none;
+  }
+  .obj-table input:focus { border-color: var(--laranja); background: var(--cinza-escuro); }
+
+  /* Scale */
+  .scale-row { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .scale-label { width: 180px; font-size: 0.85rem; color: rgba(255,255,255,0.7); flex-shrink: 0; }
+  .scale-track { flex: 1; height: 6px; background: var(--cinza-medio); position: relative; cursor: pointer; }
+  .scale-fill { height: 100%; background: var(--laranja); transition: width 0.1s; }
+  .scale-input {
+    width: 56px;
+    background: var(--cinza-escuro);
+    border: 1px solid var(--cinza-border);
+    padding: 6px 8px;
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    color: var(--branco);
+    text-align: center;
+    outline: none;
+  }
+  .scale-input:focus { border-color: var(--laranja); }
+
+  /* Divider */
+  .divider { width: 100%; height: 1px; background: linear-gradient(90deg, var(--laranja), rgba(255,92,0,0.05)); margin: 40px 0; }
+
+  /* Buttons */
+  .btn-bar { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 24px; }
+  .btn {
+    display: inline-block; padding: 14px 36px;
+    font-family: var(--sans); font-size: 0.82rem; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    border: none; cursor: pointer; transition: opacity 0.2s;
+    text-decoration: none;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn-primary { background: var(--laranja); color: var(--preto); }
+  .btn-outline { background: transparent; color: var(--laranja); border: 1px solid var(--laranja); }
+
+  /* Radio level */
+  .level-options { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+  .level-option {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 16px; background: var(--cinza-escuro);
+    border: 1px solid var(--cinza-border); cursor: pointer;
+    transition: border-color 0.2s;
+  }
+  .level-option:hover { border-color: rgba(255,92,0,0.3); }
+  .level-option.selected { border-color: var(--laranja); }
+  .level-option input[type="radio"] { accent-color: var(--laranja); width: 16px; height: 16px; }
+  .level-option .lo-label { font-size: 0.85rem; font-weight: 500; color: var(--branco); }
+  .level-option .lo-desc { font-size: 0.8rem; color: var(--cinza-claro); font-weight: 300; margin-left: auto; }
+
+  /* ══════════════════════════════════════════════════
+     RESPONSIVO  v2
+     Breakpoints: 1024px - 768px - 480px
+  ══════════════════════════════════════════════════ */
+
+  @media (max-width: 1024px) {
+    div[style*="repeat(3,1fr)"],
+    div[style*="repeat(3, 1fr)"],
+    div[style*="repeat(4,1fr)"],
+    div[style*="repeat(4, 1fr)"] {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+  }
+
+  @media (max-width: 768px) {
+    body   { overflow-x: hidden !important; font-size: 15px !important; }
+    img    { max-width: 100% !important; height: auto !important; }
+    h1     { font-size: 26px !important; line-height: 1.2 !important; }
+    h2     { font-size: 21px !important; line-height: 1.25 !important; }
+    h3     { font-size: 17px !important; }
+    table  { display: block !important; overflow-x: auto !important; width: 100% !important; -webkit-overflow-scrolling: touch; }
+    div[style*="repeat(3,1fr)"],
+    div[style*="repeat(3, 1fr)"],
+    div[style*="repeat(4,1fr)"],
+    div[style*="repeat(4, 1fr)"],
+    div[style*="repeat(2,1fr)"],
+    div[style*="repeat(2, 1fr)"],
+    div[style*="1fr 1fr"]   { grid-template-columns: 1fr !important; }
+    div[style*="max-width:1100px"],
+    div[style*="max-width: 1100px"],
+    div[style*="max-width:900px"],
+    div[style*="max-width: 900px"],
+    div[style*="max-width:800px"] {
+      padding-left: 18px !important;
+      padding-right: 18px !important;
+    }
+    div[style*="padding:80px"],
+    div[style*="padding: 80px"] { padding: 40px 18px !important; }
+    div[style*="padding:64px"],
+    div[style*="padding: 64px"] { padding: 32px 18px !important; }
+    div[style*="padding:48px"],
+    div[style*="padding: 48px"] { padding: 28px 16px !important; }
+  }
+
+  @media (max-width: 480px) {
+    body  { font-size: 14px !important; }
+    h1    { font-size: 22px !important; }
+    h2    { font-size: 18px !important; }
+    h3    { font-size: 15px !important; }
+    div[style*="display:grid"],
+    div[style*="display: grid"] { grid-template-columns: 1fr !important; }
+    div[style*="display:flex"][style*="gap"],
+    div[style*="display: flex"][style*="gap"] {
+      flex-wrap: wrap !important;
+    }
+    #back-fixed a { font-size: 9px !important; padding: 8px 12px !important; }
+  }
+</style>
+
+</head>
+<body>
+
+<div id="back-fixed" class="no-print" style="position:fixed;top:20px;left:20px;z-index:99999;font-family:var(--sans);">
+  <a href="../index.html"
+     style="display:flex;align-items:center;gap:8px;background:rgba(10,10,10,0.95);border:1px solid rgba(255,92,0,0.5);color:#FF5C00;text-decoration:none;font-size:10px;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;padding:10px 16px;border-radius:6px;box-shadow:0 4px 20px rgba(0,0,0,0.5);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:all 0.2s;"
+     onmouseover="this.style.borderColor='rgba(255,92,0,0.9)';this.style.boxShadow='0 4px 24px rgba(255,92,0,0.3)'"
+     onmouseout="this.style.borderColor='rgba(255,92,0,0.5)';this.style.boxShadow='0 4px 20px rgba(0,0,0,0.5)'">
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="flex-shrink:0"><path d="M8 2L4 6L8 10" stroke="#FF5C00" stroke-width="1.5" stroke-linecap="round"/></svg>
+    Voltar
+  </a>
+</div>
+
+
+<div class="header">
+  <div style="font-family:var(--serif); font-size:1.1rem; font-weight:400; letter-spacing:0.18em; text-transform:uppercase; color:var(--branco); margin-bottom:4px;">ADS <em style="font-style:italic; color:var(--laranja);">Company</em></div>
+  <div class="header-tag">Briefing de Projeto</div>
+  <h1>Briefing <em>Completo</em></h1>
+  <div class="header-line"></div>
+  <p>Documento estrat&eacute;gico do projeto Barra Agro Show &mdash; feira de agroneg&oacute;cio em Barra do Rio Grande, Bahia. 19 a 22 de agosto de 2026.</p>
+</div>
+
+<!-- 1. VISAO GERAL -->
+<div class="section">
+  <div class="section-tag">01 &mdash; Vis&atilde;o Geral</div>
+  <h2>Sobre o <em>projeto</em></h2>
+  <div class="field">
+    <div class="field-label">Nome do projeto</div>
+    <input class="field-input" type="text" value="Barra Agro Show">
+  </div>
+  <div class="field">
+    <div class="field-label">O que &eacute;</div>
+    <input class="field-input" type="text" value="Feira de agroneg&oacute;cio realizada em Barra do Rio Grande, Bahia, reunindo expositores, produtores rurais, investidores e especialistas do setor agropecu&aacute;rio">
+  </div>
+  <div class="field">
+    <div class="field-label">Resultado que entrega</div>
+    <input class="field-input" type="text" value="Conexão direta entre produtores, fornecedores, investidores e especialistas do agro — gerando negócios, conhecimento técnico e parcerias que aumentam a produtividade e a rentabilidade da região">
+  </div>
+  <div class="field">
+    <div class="field-label">Formato</div>
+    <input class="field-input" type="text" value="Feira presencial de agronegócio (19 a 22 de agosto de 2026) + Seminário de Fruticultura Irrigada (21 de agosto)">
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- 2. PUBLICO -->
+<div class="section">
+  <div class="section-tag">02 &mdash; P&uacute;blico-Alvo</div>
+  <h2>Quem &eacute; o <em>cliente ideal</em></h2>
+  <div class="field-grid">
+    <div class="field">
+      <div class="field-label">Cliente ideal</div>
+      <input class="field-input" type="text" value="Produtores rurais, pecuaristas, fruticultores, investidores, empresários, pesquisadores e consultores da cadeia produtiva do agronegócio">
+    </div>
+    <div class="field">
+      <div class="field-label">Faixa et&aacute;ria e regi&atilde;o</div>
+      <input class="field-input" type="text" value="30 a 60 anos — Bahia, com foco no Oeste Baiano e Vale do São Francisco. Também alcança produtores de estados vizinhos (Goiás, Minas Gerais, Tocantins, Piauí)">
+    </div>
+  </div>
+  <div class="field">
+    <div class="field-label">Dor principal</div>
+    <textarea class="field-textarea" style="min-height:100px;">Falta de eventos de qualidade na região que conectem negócios, conhecimento e oportunidades do agro. O produtor do Oeste Baiano e do Vale do São Francisco precisa viajar horas até feiras em outras cidades ou estados para encontrar fornecedores, tecnologias e parcerias — perdendo tempo produtivo e dinheiro com deslocamento. Quando participa de feiras grandes e distantes, o conteúdo raramente é adaptado à realidade local.</textarea>
+  </div>
+  <div class="field">
+    <div class="field-label">Desejo mais forte</div>
+    <textarea class="field-textarea" style="min-height:100px;">Encontrar soluções, tecnologias e parcerias que aumentem a produtividade e a rentabilidade — sem precisar sair da região. Ter acesso a fornecedores, investidores e conhecimento técnico de ponta em um evento próximo, pensado para os desafios reais do Oeste Baiano e do Vale do São Francisco.</textarea>
+  </div>
+  <div class="field-grid">
+    <div class="field">
+      <div class="field-label">Situa&ccedil;&atilde;o atual</div>
+      <textarea class="field-textarea">O produtor viaja até Luis Eduardo Magalhães, Juazeiro ou Brasília para participar de feiras do agro. Gasta com hospedagem, combustível e dias fora da propriedade. Muitas vezes volta sem fechar negócios relevantes porque o foco da feira não era a sua realidade regional.</textarea>
+    </div>
+    <div class="field">
+      <div class="field-label">Situa&ccedil;&atilde;o desejada</div>
+      <textarea class="field-textarea">Participar de uma feira completa, com expositores relevantes, conteúdo técnico de qualidade e oportunidades reais de negócio — tudo na sua região, a poucas horas da propriedade, com foco nos desafios e oportunidades do Oeste Baiano.</textarea>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- 3. OFERTA -->
+<div class="section">
+  <div class="section-tag">03 &mdash; Oferta</div>
+  <h2>O que voc&ecirc; <em>oferece</em></h2>
+  <div class="field">
+    <div class="field-label">Nome da oferta</div>
+    <input class="field-input" type="text" value="Barra Agro Show — Feira de Agronegócio + Seminário de Fruticultura Irrigada">
+  </div>
+  <div class="field-grid">
+    <div class="field">
+      <div class="field-label">Pre&ccedil;o &mdash; Feira</div>
+      <input class="field-input" type="text" value="Entrada gratuita para o público geral (19 a 22/08). Cotas de expositor e patrocinador com valores sob consulta.">
+    </div>
+    <div class="field">
+      <div class="field-label">Pre&ccedil;o &mdash; Semin&aacute;rio</div>
+      <input class="field-input" type="text" value="R$300,00 (inteira) | R$150,00 (meia-entrada para estudantes) — 21 de agosto de 2026">
+    </div>
+  </div>
+  <div class="field">
+    <div class="field-label">O que est&aacute; incluso no Semin&aacute;rio</div>
+    <textarea class="field-textarea" style="min-height:140px;">&bull; Palestrantes especializados em fruticultura irrigada com atua&ccedil;&atilde;o reconhecida na regi&atilde;o
+&bull; Networking direto com produtores, pesquisadores e consultores do Vale do S&atilde;o Francisco
+&bull; Certificado de participa&ccedil;&atilde;o
+&bull; Material t&eacute;cnico exclusivo sobre fruticultura irrigada
+&bull; Acesso completo &agrave; feira durante os 4 dias do evento</textarea>
+  </div>
+  <div class="field">
+    <div class="field-label">Cotas de expositor / patrocinador</div>
+    <input class="field-input" type="text" value="Cotas disponíveis para empresas do setor agro, máquinas, insumos, tecnologia, serviços financeiros e logística. Valores e benefícios sob consulta com a organização.">
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- 4. OBJECOES -->
+<div class="section">
+  <div class="section-tag">04 &mdash; Obje&ccedil;&otilde;es</div>
+  <h2>Por que <em>n&atilde;o</em> participariam</h2>
+  <table class="obj-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Obje&ccedil;&atilde;o</th>
+        <th>Resposta</th>
+        <th>Prova</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td><input type="text" value="É muito longe, Barra é difícil de chegar"></td>
+        <td><input type="text" value="Barra do Rio Grande é polo estratégico no Oeste Baiano, com acesso rodoviário consolidado. Está no coração de uma das regiões mais produtivas do país, conectando o Oeste Baiano ao Vale do São Francisco."></td>
+        <td><input type="text" value="Mapa de acesso com principais rotas e distâncias das cidades polo da região (Barreiras, LEM, Juazeiro, Irecê)"></td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><input type="text" value="Não tenho tempo de sair da fazenda nessa época"></td>
+        <td><input type="text" value="São apenas 4 dias compactos, com programação objetiva e direta ao ponto. O conteúdo e os negócios que você fecha em um único dia podem economizar meses de trabalho e milhares de reais em decisões erradas."></td>
+        <td><input type="text" value="Programação detalhada mostrando a organização por blocos temáticos — o produtor escolhe o dia mais relevante para ele"></td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td><input type="text" value="R$300 é caro para um seminário de um dia"></td>
+        <td><input type="text" value="Uma única técnica de irrigação aprendida no seminário pode aumentar a produtividade da safra em 15% a 30%. O retorno sobre o investimento de R$300 se paga na primeira colheita. Estudantes pagam meia-entrada (R$150)."></td>
+        <td><input type="text" value="Dados de produtividade da fruticultura irrigada no Vale do São Francisco + cases de produtores que adotaram técnicas aprendidas em eventos similares"></td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td><input type="text" value="Já fui em feira e não serviu pra nada, só perdi tempo"></td>
+        <td><input type="text" value="O Barra Agro Show tem curadoria e foco regional. Não é uma feira genérica — cada expositor, cada palestra e cada atividade foi pensada para os desafios reais do produtor do Oeste Baiano e do Vale do São Francisco."></td>
+        <td><input type="text" value="Lista de expositores confirmados com relevância direta para a região + depoimentos de participantes de edições anteriores ou eventos similares"></td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td><input type="text" value="Não conheço os palestrantes do seminário"></td>
+        <td><input type="text" value="Os palestrantes são especialistas reconhecidos na fruticultura irrigada, com atuação prática no Vale do São Francisco e publicações técnicas na área. Nomes e currículos serão divulgados com antecedência."></td>
+        <td><input type="text" value="Currículo resumido dos palestrantes + instituições parceiras (universidades, Embrapa, Codevasf) + publicações e projetos na região"></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="divider"></div>
+
+<!-- 5. CONCORRENTES -->
+<div class="section">
+  <div class="section-tag">05 &mdash; Concorrentes</div>
+  <h2>Quem mais <em>atende</em> esse p&uacute;blico</h2>
+  <table class="obj-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Concorrente</th>
+        <th>O que faz bem</th>
+        <th>O que falta</th>
+        <th>Nosso diferencial</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td><input type="text" value="Bahia Farm Show (Luis Eduardo Magalhães)"></td>
+        <td><input type="text" value="Feira consolidada, grande volume de expositores, reconhecimento nacional, infraestrutura robusta"></td>
+        <td><input type="text" value="Distante do Vale do São Francisco, foco predominante em grãos e pecuária extensiva, menos acessível para pequenos e médios produtores da região de Barra"></td>
+        <td><input type="text" value="Proximidade geográfica com o Vale do São Francisco, foco regional nos desafios do Oeste Baiano, acessível para produtores que não conseguem ir até LEM"></td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><input type="text" value="Fenagri (Juazeiro)"></td>
+        <td><input type="text" value="Foco em irrigação e fruticultura, localização estratégica no Vale do São Francisco, boa tradição regional"></td>
+        <td><input type="text" value="Abrangência menor, menos diversidade de expositores fora do nicho de irrigação, programação limitada em pecuária e outras cadeias do agro"></td>
+        <td><input type="text" value="Abrangência completa do agronegócio regional — pecuária, fruticultura, grãos, tecnologia e serviços — com seminário especializado em fruticultura irrigada"></td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td><input type="text" value="AgroBrasília (Brasília)"></td>
+        <td><input type="text" value="Referência nacional, grandes marcas presentes, conteúdo técnico de alto nível, visibilidade para o cerrado brasileiro"></td>
+        <td><input type="text" value="Inacessível para pequenos e médios produtores baianos — distância, custo de deslocamento e hospedagem, conteúdo genérico que não atende as especificidades do Oeste Baiano"></td>
+        <td><input type="text" value="Evento na porta do produtor, sem custo de viagem, conteúdo pensado para a realidade local, entrada gratuita na feira"></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="divider"></div>
+
+<!-- 6. ANGULOS -->
+<div class="section">
+  <div class="section-tag">06 &mdash; &Acirc;ngulos de Campanha</div>
+  <h2>Formas de <em>abordar</em> o p&uacute;blico</h2>
+  <div class="field">
+    <div class="field-label">&Acirc;ngulo de Dor</div>
+    <input class="field-input" type="text" value="O Oeste Baiano produz bilhões, mas o produtor ainda viaja horas para encontrar soluções. Enquanto outras regiões têm feiras de referência na porta de casa, quem produz em Barra e região precisa cruzar o estado para acessar tecnologia, conhecimento e parceiros de negócio.">
+  </div>
+  <div class="field">
+    <div class="field-label">&Acirc;ngulo de Desejo</div>
+    <input class="field-input" type="text" value="Imagine ter à sua porta as melhores tecnologias, os melhores negócios e o melhor conhecimento do agro. Tudo em um só lugar, pensado para quem produz no Oeste Baiano e no Vale do São Francisco.">
+  </div>
+  <div class="field">
+    <div class="field-label">&Acirc;ngulo de Prova</div>
+    <input class="field-input" type="text" value="Barra do Rio Grande está no coração de uma das regiões mais produtivas do país. O Oeste Baiano responde por mais de 5% da produção nacional de grãos e o Vale do São Francisco é o maior polo de fruticultura irrigada do Brasil.">
+  </div>
+  <div class="field">
+    <div class="field-label">&Acirc;ngulo de Urg&ecirc;ncia</div>
+    <input class="field-input" type="text" value="19 a 22 de agosto. 4 dias que podem definir a próxima safra. Vagas no Seminário de Fruticultura Irrigada são limitadas — garanta a sua antes que esgotem.">
+  </div>
+  <div class="field">
+    <div class="field-label">&Acirc;ngulo de Curiosidade</div>
+    <input class="field-input" type="text" value="O que acontece quando o agro de Barra se encontra em um só lugar? Produtores, investidores, fornecedores e especialistas reunidos durante 4 dias — os negócios que nascem nesse encontro transformam safras inteiras.">
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- 7. PROMESSAS -->
+<div class="section">
+  <div class="section-tag">07 &mdash; Promessas</div>
+  <h2>O que voc&ecirc; <em>promete</em></h2>
+  <div class="field">
+    <div class="field-label">Promessa central</div>
+    <textarea class="field-textarea" style="min-height:100px;">A feira que conecta quem produz com quem transforma o agro do Oeste Baiano. Quatro dias de negócios, conhecimento técnico e networking com os principais players do agronegócio da região — tudo em Barra do Rio Grande, sem precisar viajar para longe.</textarea>
+  </div>
+  <div class="field">
+    <div class="field-label">Sub-promessa 1</div>
+    <input class="field-input" type="text" value="Networking direto com fornecedores, investidores e especialistas — sem intermediários, sem formalidades excessivas, com foco em fechar negócios reais">
+  </div>
+  <div class="field">
+    <div class="field-label">Sub-promessa 2</div>
+    <input class="field-input" type="text" value="Conhecimento técnico aplicável à realidade da região — palestrantes que conhecem o solo, o clima e os desafios do Oeste Baiano e do Vale do São Francisco">
+  </div>
+  <div class="field">
+    <div class="field-label">Sub-promessa 3</div>
+    <input class="field-input" type="text" value="Oportunidades de negócio que não existem fora do evento — condições especiais de fornecedores, lançamentos de tecnologia e parcerias exclusivas para participantes">
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- 8. PROVAS -->
+<div class="section">
+  <div class="section-tag">08 &mdash; Provas</div>
+  <h2>Por que devem <em>acreditar</em></h2>
+  <div class="field">
+    <div class="field-label">Relev&acirc;ncia regional</div>
+    <textarea class="field-textarea" style="min-height:120px;">&bull; Barra do Rio Grande &eacute; polo agropecu&aacute;rio estrat&eacute;gico, localizado entre o Oeste Baiano (regi&atilde;o de gr&atilde;os) e o Vale do S&atilde;o Francisco (maior polo de fruticultura irrigada do Brasil)
+&bull; O Oeste Baiano &eacute; respons&aacute;vel por mais de 5% da produ&ccedil;&atilde;o nacional de gr&atilde;os (soja, milho, algod&atilde;o)
+&bull; O Vale do S&atilde;o Francisco exporta frutas para mais de 30 pa&iacute;ses e movimenta bilh&otilde;es anualmente
+&bull; A Bahia &eacute; o 5&ordm; maior estado produtor do agro brasileiro, com crescimento acima da m&eacute;dia nacional nos &uacute;ltimos 5 anos
+&bull; A regi&atilde;o concentra uma cadeia produtiva diversificada: pecu&aacute;ria, fruticultura, gr&atilde;os, aquicultura e energia renov&aacute;vel</textarea>
+  </div>
+  <div class="field">
+    <div class="field-label">Dados do agroneg&oacute;cio baiano</div>
+    <input class="field-input" type="text" value="PIB do agronegócio baiano ultrapassa R$90 bilhões anuais | Bahia é o maior produtor de frutas do Brasil | Oeste Baiano é a fronteira agrícola mais dinâmica do Nordeste | Crescimento de 12% no valor bruto da produção agropecuária baiana nos últimos 3 anos">
+  </div>
+  <div class="field">
+    <div class="field-label">Credenciais dos organizadores</div>
+    <input class="field-input" type="text" value="A preencher pelo cliente — informar histórico dos organizadores, parcerias institucionais (prefeitura, sindicatos rurais, associações, Sebrae, Embrapa, Codevasf) e apoios confirmados">
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- 9. MECANISMO -->
+<div class="section">
+  <div class="section-tag">09 &mdash; Mecanismo &Uacute;nico</div>
+  <h2>O que torna o evento <em>diferente</em></h2>
+  <div class="field">
+    <div class="field-label">Nome do mecanismo</div>
+    <input class="field-input" type="text" value="Conexão Agro Regional">
+  </div>
+  <div class="field">
+    <div class="field-label">Por que funciona</div>
+    <textarea class="field-textarea" style="min-height:110px;">Diferente de feiras genéricas que tentam atender todo o Brasil com um formato padronizado, o Barra Agro Show tem foco exclusivo nos desafios e oportunidades do Oeste Baiano e do Vale do São Francisco. Cada expositor foi selecionado pela relevância para a região. Cada palestra aborda problemas que o produtor local enfrenta no dia a dia. Isso cria um ambiente onde o produtor encontra soluções pensadas para a SUA realidade — e não precisa adaptar o que viu em uma feira de outra região para funcionar aqui.</textarea>
+  </div>
+  <div class="field">
+    <div class="field-label">Diferencial frente aos concorrentes</div>
+    <input class="field-input" type="text" value="Curadoria regional — não é uma feira genérica nacional transplantada para o interior da Bahia. É um evento nascido da região, para a região, com quem entende o campo do Oeste Baiano. Combina feira aberta (gratuita) com seminário técnico especializado em fruticultura irrigada.">
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- 10. NIVEL CONSCIENCIA -->
+<div class="section">
+  <div class="section-tag">10 &mdash; N&iacute;vel de Consci&ecirc;ncia (Schwartz)</div>
+  <h2>Onde o p&uacute;blico <em>est&aacute;</em></h2>
+  <p style="font-size:0.88rem; color:var(--cinza-claro); font-weight:300; margin-bottom:16px;">N&iacute;vel predominante do p&uacute;blico-alvo do Barra Agro Show:</p>
+  <div class="level-options">
+    <label class="level-option">
+      <input type="radio" name="nivel" value="inconsciente">
+      <span class="lo-label">Inconsciente</span>
+      <span class="lo-desc">N&atilde;o sabe que tem o problema</span>
+    </label>
+    <label class="level-option selected">
+      <input type="radio" name="nivel" value="problema" checked>
+      <span class="lo-label">Consciente do Problema &#10003;</span>
+      <span class="lo-desc">Sabe que precisa de mais tecnologia, conex&otilde;es e conhecimento, mas n&atilde;o conhece o Barra Agro Show</span>
+    </label>
+    <label class="level-option">
+      <input type="radio" name="nivel" value="solucao">
+      <span class="lo-label">Consciente da Solu&ccedil;&atilde;o</span>
+      <span class="lo-desc">Sabe que feiras resolvem, n&atilde;o conhece esta</span>
+    </label>
+    <label class="level-option">
+      <input type="radio" name="nivel" value="produto">
+      <span class="lo-label">Consciente do Produto</span>
+      <span class="lo-desc">Conhece o evento, n&atilde;o se inscreveu</span>
+    </label>
+    <label class="level-option">
+      <input type="radio" name="nivel" value="mais">
+      <span class="lo-label">Mais Consciente</span>
+      <span class="lo-desc">Pronto para participar</span>
+    </label>
+  </div>
+  <p style="font-size:0.82rem; color:var(--cinza-claro); font-weight:300; margin-top:12px; padding:12px 16px; background:var(--cinza-escuro); border-left:2px solid var(--laranja);">
+    <strong style="color:var(--branco);">Nota estrat&eacute;gica:</strong> O produtor do Oeste Baiano sabe que precisa de mais tecnologia, mais conex&otilde;es e mais conhecimento t&eacute;cnico para aumentar a produtividade. Ele j&aacute; participa de feiras em outras regi&otilde;es quando consegue. O desafio da comunica&ccedil;&atilde;o &eacute; apresentar o Barra Agro Show como a solu&ccedil;&atilde;o que ele procurava &mdash; um evento de qualidade, na regi&atilde;o dele, pensado para os desafios que ele enfrenta. A campanha deve tornar o evento conhecido e gerar confian&ccedil;a de que vale a pena participar.
+  </p>
+</div>
+
+<div class="divider"></div>
+
+<!-- 11. TOM -->
+<div class="section">
+  <div class="section-tag">11 &mdash; Tom de Comunica&ccedil;&atilde;o</div>
+  <h2>Como a marca <em>fala</em></h2>
+
+  <div class="scale-row">
+    <span class="scale-label">Formal &harr; Casual</span>
+    <div class="scale-track" data-scale="1"><div class="scale-fill" style="width:40%"></div></div>
+    <input class="scale-input" type="number" min="0" max="100" value="40" data-scale-input="1">
+  </div>
+  <div class="scale-row">
+    <span class="scale-label">S&eacute;rio &harr; Divertido</span>
+    <div class="scale-track" data-scale="2"><div class="scale-fill" style="width:30%"></div></div>
+    <input class="scale-input" type="number" min="0" max="100" value="30" data-scale-input="2">
+  </div>
+  <div class="scale-row">
+    <span class="scale-label">T&eacute;cnico &harr; Acess&iacute;vel</span>
+    <div class="scale-track" data-scale="3"><div class="scale-fill" style="width:55%"></div></div>
+    <input class="scale-input" type="number" min="0" max="100" value="55" data-scale-input="3">
+  </div>
+  <div class="scale-row">
+    <span class="scale-label">Autorit&aacute;rio &harr; Amig&aacute;vel</span>
+    <div class="scale-track" data-scale="4"><div class="scale-fill" style="width:60%"></div></div>
+    <input class="scale-input" type="number" min="0" max="100" value="60" data-scale-input="4">
+  </div>
+
+  <div class="field" style="margin-top:16px;">
+    <div class="field-label">Persona da marca</div>
+    <input class="field-input" type="text" value="Parceiro de negócios — quem entende o campo e quer ver o agro da região crescer. Fala a língua do produtor, usa termos do agro sem ser acadêmico, transmite credibilidade sem ser distante. É sério quando precisa, mas acolhedor e próximo.">
+  </div>
+
+  <p style="font-size:0.82rem; color:var(--cinza-claro); font-weight:300; margin-top:16px; padding:12px 16px; background:var(--cinza-escuro); border-left:2px solid var(--laranja);">
+    <strong style="color:var(--branco);">Exemplos de linguagem aprovada:</strong> &ldquo;produtor, essa feira &eacute; pra voc&ecirc;&rdquo;, &ldquo;tecnologia que funciona no campo de verdade&rdquo;, &ldquo;neg&oacute;cios que fazem a safra valer mais&rdquo;, &ldquo;quem produz no Oeste Baiano merece um evento &agrave; altura&rdquo;. Evitar: tom urbano/corporativo excessivo, jarg&atilde;o de startup, linguagem acad&ecirc;mica distante, informalidade exagerada.
+  </p>
+</div>
+
+<div class="divider"></div>
+
+<!-- 12. RESTRICOES -->
+<div class="section">
+  <div class="section-tag">12 &mdash; Restri&ccedil;&otilde;es e Contexto</div>
+  <h2>Limites e <em>prazos</em></h2>
+  <div class="field-grid">
+    <div class="field">
+      <div class="field-label">Prazo</div>
+      <input class="field-input" type="text" value="Evento: 19 a 22 de agosto de 2026. Campanhas de tráfego pago iniciam em julho/2026. Captação de expositores e patrocinadores já em andamento.">
+    </div>
+    <div class="field">
+      <div class="field-label">Or&ccedil;amento</div>
+      <input class="field-input" type="text" value="R$7.000 para Meta Ads em julho/2026 — foco em atração de público, venda de ingressos do seminário e captação de expositores">
+    </div>
+  </div>
+  <div class="field">
+    <div class="field-label">Canais priorit&aacute;rios</div>
+    <input class="field-input" type="text" value="Instagram (alcance e engajamento com produtores), Facebook (público agro 35-60 anos, grupos de produtores), WhatsApp (comunicação direta, grupos de produtores da região, envio de convites e programação)">
+  </div>
+  <div class="field">
+    <div class="field-label">Restri&ccedil;&otilde;es do nicho</div>
+    <input class="field-input" type="text" value="Linguagem próxima do produtor rural — evitar tom urbano/corporativo excessivo. Respeitar a identidade visual existente do cliente. Comunicação deve transmitir credibilidade institucional sem perder a proximidade com o homem do campo. Não prometer palestrantes ou expositores que ainda não estejam confirmados.">
+  </div>
+  <div class="field">
+    <div class="field-label">Identidade visual</div>
+    <input class="field-input" type="text" value="Já existe — manter a identidade visual definida pelo cliente. Toda a comunicação deve seguir as cores, tipografia e elementos visuais já aprovados.">
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ACTIONS -->
+<div style="text-align:center; padding:32px 0;" class="no-print">
+  <p style="font-size:0.95rem; color:rgba(255,255,255,0.7); font-weight:400; margin-bottom:20px;">Briefing completo. Salve como PDF para compartilhar.</p>
+  <div class="btn-bar">
+    <button class="btn btn-primary" onclick="window.print()">Salvar como PDF</button>
+    <button class="btn btn-outline" onclick="copyAsText()">Copiar como Texto</button>
+  </div>
+  <p style="font-size:0.75rem; color:var(--cinza-claro); margin-top:16px; font-weight:300;">No di&aacute;logo de impress&atilde;o, selecione &ldquo;Salvar como PDF&rdquo; como destino.</p>
+</div>
+
+<div style="text-align:center; padding:24px 0; border-top:1px solid var(--cinza-border);">
+  <p style="font-family:var(--serif); font-size:0.95rem;">ADS Company &mdash; <em style="font-style:italic; color:var(--laranja);">Assessoria de Marketing e Performance</em></p>
+  <p style="font-size:0.75rem; color:var(--cinza-claro); margin-top:4px;">Briefing Completo &mdash; Barra Agro Show &mdash; Julho 2026</p>
+</div>
+
+<script>
+  // Scale sliders
+  document.querySelectorAll('.scale-track').forEach(track => {
+    const id = track.dataset.scale;
+    const input = document.querySelector(`[data-scale-input="${id}"]`);
+    const fill = track.querySelector('.scale-fill');
+
+    track.addEventListener('click', e => {
+      const rect = track.getBoundingClientRect();
+      const pct = Math.round(((e.clientX - rect.left) / rect.width) * 100);
+      const val = Math.max(0, Math.min(100, pct));
+      fill.style.width = val + '%';
+      input.value = val;
+    });
+
+    input.addEventListener('input', () => {
+      const val = Math.max(0, Math.min(100, parseInt(input.value) || 0));
+      fill.style.width = val + '%';
+    });
+  });
+
+  // Radio level options
+  document.querySelectorAll('.level-option').forEach(opt => {
+    opt.addEventListener('click', () => {
+      document.querySelectorAll('.level-option').forEach(o => o.classList.remove('selected'));
+      opt.classList.add('selected');
+    });
+  });
+
+  // Copy as text
+  function copyAsText() {
+    let text = 'BRIEFING COMPLETO — BARRA AGRO SHOW\n';
+    text += '=====================================\n\n';
+
+    document.querySelectorAll('.section').forEach(section => {
+      const tag = section.querySelector('.section-tag');
+      if (tag) text += tag.textContent.toUpperCase() + '\n';
+
+      section.querySelectorAll('.field').forEach(field => {
+        const label = field.querySelector('.field-label');
+        const input = field.querySelector('.field-input, .field-textarea');
+        if (label && input) {
+          text += label.textContent + ': ' + (input.value || '[a preencher]') + '\n';
+        }
+      });
+
+      section.querySelectorAll('.obj-table tbody tr').forEach(row => {
+        const cells = row.querySelectorAll('input');
+        if (cells.length > 0) {
+          const num = row.querySelector('td:first-child');
+          const vals = Array.from(cells).map(c => c.value || '').filter(v => v);
+          if (vals.length > 0) text += (num ? num.textContent + '. ' : '') + vals.join(' | ') + '\n';
+        }
+      });
+
+      const checked = section.querySelector('input[type="radio"]:checked');
+      if (checked) {
+        const lbl = checked.closest('.level-option').querySelector('.lo-label');
+        if (lbl) text += 'Nível predominante: ' + lbl.textContent + '\n';
+      }
+
+      const scales = section.querySelectorAll('.scale-input');
+      if (scales.length > 0) {
+        scales.forEach(s => {
+          const row = s.closest('.scale-row');
+          const label = row.querySelector('.scale-label');
+          if (label) text += label.textContent + ': ' + s.value + '/100\n';
+        });
+      }
+
+      text += '\n';
+    });
+
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.querySelector('.btn-outline');
+      const orig = btn.textContent;
+      btn.textContent = 'Copiado!';
+      btn.style.borderColor = '#22C55E';
+      btn.style.color = '#22C55E';
+      setTimeout(() => { btn.textContent = orig; btn.style.borderColor = ''; btn.style.color = ''; }, 2000);
+    });
+  }
+</script>
+</body>
+</html>
