@@ -112,62 +112,6 @@
             line-height: 1.7;
         }
 
-        /* Action buttons */
-        .action-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-top: 30px;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            border-radius: 6px;
-            font-size: 13px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: none;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .btn-primary {
-            background: var(--laranja);
-            color: var(--branco-puro);
-        }
-
-        .btn-primary:hover {
-            background: #E65200;
-            transform: translateY(-1px);
-        }
-
-        .btn-secondary {
-            background: var(--cinza-medio);
-            color: var(--branco);
-            border: 1px solid var(--cinza-borda);
-        }
-
-        .btn-secondary:hover {
-            background: var(--cinza-escuro);
-            border-color: var(--laranja);
-            transform: translateY(-1px);
-        }
-
-        .btn-feedback {
-            color: var(--verde);
-            font-size: 13px;
-            font-weight: 500;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            margin-left: 8px;
-        }
-
-        .btn-feedback.show {
-            opacity: 1;
-        }
 
         /* Sections */
         .section {
@@ -527,10 +471,6 @@
                 font-size: 18px;
             }
 
-            .action-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
 
             .campaign-info ul {
                 grid-template-columns: 1fr;
@@ -591,8 +531,7 @@
                 padding: 0;
             }
 
-            .back-link,
-            .action-buttons {
+            .back-link {
                 display: none !important;
             }
 
@@ -747,11 +686,6 @@
             <span class="header-tag">Planejamento de Tr&aacute;fego Pago</span>
             <h1>Campanha Meta Ads &mdash; Barra Agro Show</h1>
             <p>Estrutura completa de campanhas, segmenta&ccedil;&atilde;o, distribui&ccedil;&atilde;o de verba e remarketing para a feira e o Semin&aacute;rio de Fruticultura Irrigada.</p>
-            <div class="action-buttons">
-                <button class="btn btn-primary" onclick="salvarPDF()">Salvar como PDF</button>
-                <button class="btn btn-secondary" id="btnCopiar" onclick="copiarTexto()">Copiar como Texto</button>
-                <span class="btn-feedback" id="feedbackCopiar">Copiado!</span>
-            </div>
         </header>
 
         <!-- SEÇÃO 01 — Visão Geral -->
@@ -2036,91 +1970,5 @@
         </footer>
     </div>
 
-    <script>
-        function salvarPDF() {
-            window.print();
-        }
-
-        function copiarTexto() {
-            var container = document.querySelector('.container');
-            var sections = container.querySelectorAll('.section');
-            var textoCompleto = '';
-
-            textoCompleto += 'PLANEJAMENTO DE TRAFEGO PAGO - BARRA AGRO SHOW\n';
-            textoCompleto += 'Campanha Meta Ads\n';
-            textoCompleto += '================================================\n\n';
-
-            sections.forEach(function(section) {
-                var tag = section.querySelector('.section-tag');
-                var titulo = section.querySelector('h2');
-
-                if (tag) textoCompleto += tag.textContent.toUpperCase() + '\n';
-                if (titulo) textoCompleto += titulo.textContent + '\n';
-                textoCompleto += '---\n\n';
-
-                var intros = section.querySelectorAll('.section-intro');
-                intros.forEach(function(intro) {
-                    textoCompleto += intro.textContent + '\n\n';
-                });
-
-                var tabelas = section.querySelectorAll('table');
-                tabelas.forEach(function(tabela) {
-                    var linhas = tabela.querySelectorAll('tr');
-                    linhas.forEach(function(linha) {
-                        var celulas = linha.querySelectorAll('th, td');
-                        var valores = [];
-                        celulas.forEach(function(celula) {
-                            valores.push(celula.textContent.trim());
-                        });
-                        textoCompleto += valores.join(' | ') + '\n';
-                    });
-                    textoCompleto += '\n';
-                });
-
-                var notas = section.querySelectorAll('.note p');
-                notas.forEach(function(nota) {
-                    textoCompleto += 'NOTA: ' + nota.textContent + '\n\n';
-                });
-
-                var listas = section.querySelectorAll('.creative-list');
-                listas.forEach(function(lista) {
-                    var items = lista.querySelectorAll('li');
-                    items.forEach(function(item) {
-                        textoCompleto += '- ' + item.textContent + '\n';
-                    });
-                    textoCompleto += '\n';
-                });
-
-                textoCompleto += '\n';
-            });
-
-            textoCompleto += '================================================\n';
-            textoCompleto += 'ADS Company - Assessoria de Marketing e Performance\n';
-            textoCompleto += 'Planejamento de Trafego Pago - Barra Agro Show - Julho 2026\n';
-
-            navigator.clipboard.writeText(textoCompleto).then(function() {
-                var feedback = document.getElementById('feedbackCopiar');
-                feedback.classList.add('show');
-                setTimeout(function() {
-                    feedback.classList.remove('show');
-                }, 2500);
-            }).catch(function() {
-                var textarea = document.createElement('textarea');
-                textarea.value = textoCompleto;
-                textarea.style.position = 'fixed';
-                textarea.style.opacity = '0';
-                document.body.appendChild(textarea);
-                textarea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textarea);
-
-                var feedback = document.getElementById('feedbackCopiar');
-                feedback.classList.add('show');
-                setTimeout(function() {
-                    feedback.classList.remove('show');
-                }, 2500);
-            });
-        }
-    </script>
 </body>
 </html>
