@@ -106,31 +106,14 @@ tr.somatorio td{border-bottom:0}
 .anel-val small{display:block;font-size:.72rem;color:var(--cinza);font-weight:400}
 svg .rotulo{font-family:'IBM Plex Mono',monospace;font-size:9.5px;fill:#fff;letter-spacing:.05em}
 
-.versus{display:grid;grid-template-columns:1fr;gap:1px;background:var(--linha);border:1px solid var(--linha);margin-bottom:16px}
-.vs-cab,.vs-linha{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;background:var(--superf)}
-.vs-cab{background:var(--areia)}
-.vs-cab div{padding:13px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.09em;
-  text-transform:uppercase;font-weight:600;color:#4A5651;text-align:right}
-.vs-cab div:first-child{text-align:left}
-.vs-linha div{padding:13px;border-top:1px solid var(--linha);text-align:right;font-family:'IBM Plex Mono',monospace;font-size:.92rem}
-.vs-linha div:first-child{text-align:left;font-family:'IBM Plex Sans',sans-serif;font-size:.88rem;font-weight:500}
-.vs-linha .delta{font-weight:700}
-.delta.pos{color:var(--folha)}.delta.neg{color:var(--alerta)}.delta.neu{color:var(--cinza)}
-@media(max-width:700px){.vs-cab,.vs-linha{grid-template-columns:1fr}
-  .vs-linha div,.vs-cab div{text-align:left;padding:8px 13px}
-  .vs-linha div:first-child{font-weight:700;padding-top:14px;background:#F6F8F5}}
-
 .criativos{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));gap:18px}
 .crt{background:var(--superf);border:1px solid var(--linha);cursor:pointer;overflow:hidden;
   transition:transform .18s ease,box-shadow .18s ease;text-align:left;padding:0;font:inherit;color:inherit;display:block;width:100%}
 .crt:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(19,31,27,.13)}
 .crt:focus-visible{outline:3px solid var(--rio);outline-offset:2px}
-.crt-img{aspect-ratio:1/1;background:var(--areia);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
-.crt-img img{width:100%;height:100%;object-fit:cover;display:block}
-.crt-fallback{padding:18px;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7B857E;line-height:1.6}
-.crt-tipo{position:absolute;top:9px;left:9px;background:rgba(19,31,27,.82);color:#fff;font-family:'IBM Plex Mono',monospace;
-  font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;padding:3px 8px;border-radius:20px}
-.crt-corpo{padding:14px}
+.crt-tipo{display:inline-block;background:var(--rio);color:#fff;font-family:'IBM Plex Mono',monospace;
+  font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;padding:4px 10px;border-radius:20px;margin:14px 14px 0}
+.crt-corpo{padding:10px 14px 14px}
 .crt-nome{font-size:.88rem;font-weight:600;line-height:1.3;margin-bottom:3px}
 .crt-fonte{font-size:.74rem;color:var(--cinza);margin-bottom:11px}
 .crt-mini{display:grid;grid-template-columns:1fr 1fr;gap:7px}
@@ -142,11 +125,7 @@ svg .rotulo{font-family:'IBM Plex Mono',monospace;font-size:9.5px;fill:#fff;lett
 .modal{position:fixed;inset:0;background:rgba(19,31,27,.72);display:none;align-items:center;justify-content:center;
   padding:22px;z-index:80;backdrop-filter:blur(3px)}
 .modal.aberto{display:flex}
-.modal-cx{background:var(--superf);max-width:940px;width:100%;max-height:90vh;overflow-y:auto;position:relative;
-  display:grid;grid-template-columns:1fr 1fr}
-@media(max-width:760px){.modal-cx{grid-template-columns:1fr}}
-.modal-img{background:var(--areia);display:flex;align-items:center;justify-content:center;min-height:260px}
-.modal-img img{width:100%;height:100%;object-fit:cover;max-height:520px}
+.modal-cx{background:var(--superf);max-width:620px;width:100%;max-height:90vh;overflow-y:auto;position:relative}
 .modal-lado{padding:32px 30px}
 .modal-fechar{position:absolute;top:12px;right:12px;background:var(--tinta);color:#fff;border:0;width:34px;height:34px;
   border-radius:50%;cursor:pointer;font-size:19px;line-height:1;z-index:2}
@@ -465,35 +444,6 @@ svg .rotulo{font-family:'IBM Plex Mono',monospace;font-size:9.5px;fill:#fff;lett
   </div>
 </section>
 
-<!-- ==================== COMPARATIVO ==================== -->
-<section id="comparativo">
-  <div class="wrap">
-    <p class="marca">Os dois per&iacute;odos lado a lado</p>
-    <h2>Compara&ccedil;&atilde;o entre os per&iacute;odos</h2>
-    <p class="lede">Para uma compara&ccedil;&atilde;o justa entre per&iacute;odos com or&ccedil;amentos diferentes (R$ 44/dia vs R$ 237/dia), os n&uacute;meros abaixo mostram o resultado <strong>para cada real investido</strong>.</p>
-
-    <div class="versus">
-      <div class="vs-cab">
-        <div>Indicador (por R$ 1,00 investido)</div><div>Gest&atilde;o anterior</div><div>Gest&atilde;o atual</div><div>Varia&ccedil;&atilde;o</div>
-      </div>
-      <div class="vs-linha"><div>Exibi&ccedil;&otilde;es geradas</div><div>177,0</div><div>178,8</div><div class="delta neu">+1%</div></div>
-      <div class="vs-linha"><div>Pessoas alcançadas</div><div>99,2</div><div>70,1</div><div class="delta neg">&minus;29%</div></div>
-      <div class="vs-linha"><div>Engajamento gerado</div><div>8,9</div><div>28,7</div><div class="delta pos">+222%</div></div>
-      <div class="vs-linha"><div>Visitas ao site</div><div>0,63</div><div>1,55</div><div class="delta pos">+147%</div></div>
-      <div class="vs-linha"><div>V&iacute;deos assistidos at&eacute; o fim ou 15s+</div><div>1,01</div><div>6,75</div><div class="delta pos">+568%</div></div>
-      <div class="vs-linha"><div>Custo por mil exibi&ccedil;&otilde;es</div><div>R$ 5,65</div><div>R$ 5,59</div><div class="delta neu">&minus;1%</div></div>
-      <div class="vs-linha"><div>Custo por visita ao site</div><div>R$ 1,59</div><div>R$ 0,64</div><div class="delta pos">&minus;60%</div></div>
-      <div class="vs-linha"><div>Frequ&ecirc;ncia m&eacute;dia</div><div>1,78&times;</div><div>2,55&times;</div><div class="delta neu">+43%</div></div>
-      <div class="vs-linha"><div>Taxa de cliques</div><div>2,32%</div><div>2,29%</div><div class="delta neu">&minus;1%</div></div>
-    </div>
-    <p class="legenda">Verde indica melhora, vermelho indica redu&ccedil;&atilde;o, cinza indica estabilidade.</p>
-
-    <div class="aviso neutro">
-      <strong>O que os n&uacute;meros mostram.</strong> O custo de aparecer na tela ficou praticamente igual nos dois per&iacute;odos (R$ 5,65 vs R$ 5,59), o que indica que o preço de m&iacute;dia n&atilde;o mudou. O engajamento por real investido cresceu tr&ecirc;s vezes &mdash; cada real passou a gerar mais curtidas, coment&aacute;rios e compartilhamentos. As visitas ao site por real investido mais que dobraram, e o custo por visita caiu de R$ 1,59 para R$ 0,64. O alcance por real diminuiu 29% &mdash; resultado da concentra&ccedil;&atilde;o de verba nas cidades pr&oacute;ximas ao evento, onde o p&uacute;blico dispon&iacute;vel &eacute; naturalmente menor.
-    </div>
-  </div>
-</section>
-
 <!-- ==================== CRIATIVOS ==================== -->
 <section id="criativos">
   <div class="wrap">
@@ -533,8 +483,7 @@ svg .rotulo{font-family:'IBM Plex Mono',monospace;font-size:9.5px;fill:#fff;lett
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="m-titulo">
   <div class="modal-cx">
     <button class="modal-fechar" id="fechar" aria-label="Fechar">&times;</button>
-    <div class="modal-img" id="m-img"></div>
-    <div class="modal-lado">
+    <div class="modal-lado" style="padding:32px 30px">
       <h3 id="m-titulo"></h3>
       <p class="m-fonte" id="m-fonte"></p>
       <div class="m-metricas" id="m-metricas"></div>
@@ -550,7 +499,6 @@ svg .rotulo{font-family:'IBM Plex Mono',monospace;font-size:9.5px;fill:#fff;lett
     <strong>Nota metodol&oacute;gica</strong>
     <p>Todos os n&uacute;meros v&ecirc;m diretamente da API de Marketing do Meta, extra&iacute;dos em 31 de julho de 2026 para a conta de an&uacute;ncios Barra Agro Show. Os valores de investimento foram conferidos contra o custo por mil exibi&ccedil;&otilde;es de cada linha para descartar erros de leitura. O alcance total de cada per&iacute;odo &eacute; o n&uacute;mero real informado pelo Meta, sem repeti&ccedil;&atilde;o de pessoas &mdash; por isso &eacute; menor que a soma das linhas individuais. N&uacute;meros de alcance n&atilde;o podem ser somados entre campanhas ou localidades.</p>
     <p style="margin-top:14px">Este relat&oacute;rio cobre exclusivamente an&uacute;ncios pagos no Meta (Instagram e Facebook). O desempenho org&acirc;nico do perfil n&atilde;o est&aacute; inclu&iacute;do.</p>
-    <p style="margin-top:14px;font-size:.8rem;opacity:.75">As imagens das pe&ccedil;as s&atilde;o carregadas dos servidores do Meta e podem deixar de aparecer ap&oacute;s alguns dias, quando os links expiram. Os n&uacute;meros do relat&oacute;rio n&atilde;o dependem delas.</p>
   </div>
 </footer>
 
@@ -616,25 +564,12 @@ const PECAS = [
 const ICONES={video:"▶",carrossel:"❯❯",imagem:"■"};
 const galeria=document.getElementById("galeria");
 
-function semPrevia(img){
-  const cx=img.closest(".crt-img")||img.parentNode;
-  img.remove();
-  const d=document.createElement("div");
-  d.className="crt-fallback";
-  d.innerHTML='<div style="font-size:26px;color:#14555C;margin-bottom:9px">■</div>PRÉVIA EXPIRADA<br><span style="color:#9AA49E">os números permanecem válidos</span>';
-  cx.appendChild(d);
-}
-
 PECAS.forEach((p,i)=>{
   const b=document.createElement("button");
   b.className="crt"; b.type="button";
   b.setAttribute("aria-label","Ver detalhes de "+p.n);
-  const semImagem = '<div class="crt-fallback"><div style="font-size:26px;color:#14555C;margin-bottom:9px">'+ICONES[p.t]+'</div>'+p.t.toUpperCase()+'<br><span style="color:#9AA49E">prévia não disponível</span></div>';
-  const visual = p.img
-    ? '<img src="'+p.img+'" alt="" loading="lazy" onerror="semPrevia(this)">'
-    : semImagem;
   b.innerHTML=
-    '<div class="crt-img"><span class="crt-tipo">'+p.t+'</span>'+visual+'</div>'+
+    '<span class="crt-tipo">'+p.t+'</span>'+
     '<div class="crt-corpo">'+
       '<p class="crt-nome">'+p.n+'</p>'+
       '<p class="crt-fonte">'+p.f+'</p>'+
@@ -658,9 +593,6 @@ function abrir(i){
   ultimoFoco=document.activeElement;
   document.getElementById("m-titulo").textContent=p.n;
   document.getElementById("m-fonte").textContent=p.f;
-  document.getElementById("m-img").innerHTML = p.img
-    ? '<img src="'+p.img+'" alt="Peça publicitária: '+p.n+'">'
-    : '<div class="crt-fallback" style="font-size:13px"><div style="font-size:44px;color:#14555C;margin-bottom:12px">'+ICONES[p.t]+'</div>'+p.t.toUpperCase()+'<br><span style="color:#9AA49E">prévia não disponível</span></div>';
   document.getElementById("m-metricas").innerHTML=
     '<div><b>'+p.inv+'</b><span>Investido</span></div>'+
     '<div><b>'+p.exib+'</b><span>Exibições</span></div>'+
