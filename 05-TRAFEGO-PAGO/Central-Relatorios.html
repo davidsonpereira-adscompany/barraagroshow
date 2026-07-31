@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Central de Relat&oacute;rios &mdash; Barra AgroShow 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --papel:#EFF2ED; --superf:#FFFFFF; --areia:#E2DCCC;
+  --tinta:#131F1B; --cinza:#6A766F; --linha:#D3D9D1;
+  --rio:#14555C; --rio-claro:#3E8B90; --terra:#A25E17; --folha:#4E7F2C;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--papel); color:var(--tinta);
+  font-family:'IBM Plex Sans',system-ui,-apple-system,sans-serif;
+  font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased;
+  min-height:100vh; display:flex; flex-direction:column;
+}
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+h1,h2,h3,h4{font-family:'Bricolage Grotesque','IBM Plex Sans',sans-serif;line-height:1.1;letter-spacing:-.02em}
+.mono{font-family:'IBM Plex Mono',monospace;font-variant-numeric:tabular-nums}
+
+/* ===== HEADER / TOPO ===== */
+.topo{background:var(--rio);color:#F2F6F3;padding:52px 0 44px;position:relative;overflow:hidden}
+.topo::after{content:"";position:absolute;inset:auto 0 0 0;height:5px;
+  background:linear-gradient(90deg,var(--terra) 0 22%,var(--folha) 22% 46%,var(--rio-claro) 46% 100%)}
+
+.voltar{
+  display:inline-flex;align-items:center;gap:7px;
+  font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  color:#9FC6C4;text-decoration:none;margin-bottom:28px;
+  transition:color .2s ease;
+}
+.voltar:hover{color:#fff}
+.voltar svg{width:16px;height:16px;stroke:currentColor;stroke-width:2;fill:none}
+
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#9FC6C4}
+.topo h1{font-size:clamp(2.2rem,5.4vw,3.9rem);font-weight:800;margin:14px 0 8px}
+.topo .sub{font-size:1.05rem;color:#C6DBD8;max-width:60ch}
+
+/* ===== CARDS ===== */
+.cards-area{flex:1;padding:56px 0 72px}
+.cards-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:24px;
+  max-width:860px;
+  margin:0 auto;
+}
+
+.card{
+  display:flex;flex-direction:column;
+  background:var(--superf);
+  border:1px solid var(--linha);
+  text-decoration:none;color:inherit;
+  padding:32px 30px 28px;
+  min-height:280px;
+  transition:transform .22s ease, box-shadow .22s ease;
+  position:relative;
+}
+.card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 12px 32px rgba(19,31,27,.12);
+}
+.card:focus-visible{outline:3px solid var(--rio);outline-offset:2px}
+
+.card-icon{
+  width:52px;height:52px;
+  background:var(--areia);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:20px;
+}
+.card-icon svg{width:26px;height:26px;stroke-width:1.6;fill:none}
+
+.card-tag{
+  display:inline-block;
+  font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  font-weight:600;padding:3px 10px;border-radius:20px;
+  margin-bottom:12px;width:fit-content;
+}
+.card-tag.meta{background:rgba(162,94,23,.1);color:var(--terra);border:1px solid rgba(162,94,23,.18)}
+.card-tag.organico{background:rgba(78,127,44,.1);color:var(--folha);border:1px solid rgba(78,127,44,.18)}
+
+.card h2{
+  font-size:1.45rem;font-weight:800;margin-bottom:10px;
+  letter-spacing:-.01em;
+}
+
+.card .descricao{
+  font-size:.9rem;color:#3C4A45;line-height:1.6;
+  flex:1;margin-bottom:18px;
+}
+
+.card-rodape{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-top:16px;border-top:1px solid var(--linha);
+  margin-top:auto;
+}
+
+.card-numeros{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.78rem;color:var(--cinza);
+  font-variant-numeric:tabular-nums;
+  line-height:1.4;
+}
+
+.card-seta{
+  width:34px;height:34px;
+  background:var(--areia);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+  transition:background .2s ease;
+}
+.card:hover .card-seta{background:var(--rio)}
+.card-seta svg{width:14px;height:14px;stroke:var(--tinta);stroke-width:2;fill:none;transition:stroke .2s ease}
+.card:hover .card-seta svg{stroke:#fff}
+
+/* ===== FOOTER ===== */
+.rodape{
+  background:var(--tinta);color:#A9B5AE;
+  padding:36px 0;text-align:center;
+  font-size:.84rem;line-height:1.75;
+}
+.rodape strong{
+  color:#EFF2ED;display:block;
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-size:1.02rem;margin-bottom:6px;
+}
+.rodape .data{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.72rem;letter-spacing:.08em;
+  color:#7A8B83;margin-top:4px;
+}
+
+/* ===== RESPONSIVO ===== */
+@media(max-width:740px){
+  .cards-grid{grid-template-columns:1fr;gap:18px}
+  .topo{padding:40px 0 36px}
+  .cards-area{padding:36px 0 52px}
+}
+@media(max-width:480px){
+  .wrap{padding:0 18px}
+  .card{padding:24px 22px 22px;min-height:auto}
+  .card h2{font-size:1.3rem}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+@media print{.card:hover{transform:none;box-shadow:none}}
+</style>
+</head>
+<body>
+
+<!-- ==================== HEADER ==================== -->
+<header class="topo">
+  <div class="wrap">
+    <a href="../index.html" class="voltar">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      Central de Documentos
+    </a>
+    <p class="eyebrow">Central de relat&oacute;rios</p>
+    <h1>Barra AgroShow 2026</h1>
+    <p class="sub">Escolha o relat&oacute;rio que deseja consultar. Cada um cobre o per&iacute;odo de 1&ordm; de maio a 31 de julho de 2026.</p>
+  </div>
+</header>
+
+<!-- ==================== CARDS ==================== -->
+<main class="cards-area">
+  <div class="wrap">
+    <div class="cards-grid">
+
+      <!-- Card 1: Anuncios Pagos -->
+      <a href="Relatorio-Meta-Ads-Barra-AgroShow.html" class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" stroke="var(--terra)"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <span class="card-tag meta">Meta Ads</span>
+        <h2>An&uacute;ncios Pagos</h2>
+        <p class="descricao">R$&nbsp;8.097 investidos em Instagram e Facebook. Resultados por localidade, desempenho das pe&ccedil;as e detalhamento dos dois per&iacute;odos de gest&atilde;o.</p>
+        <div class="card-rodape">
+          <span class="card-numeros">621 mil alcance &middot; 171 mil engajamento</span>
+          <div class="card-seta"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
+        </div>
+      </a>
+
+      <!-- Card 2: Desempenho Organico -->
+      <a href="Relatorio-Organico-Barra-AgroShow.html" class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" stroke="var(--folha)"><path d="M12 22c0 0 0-4-2-8s-6-6-6-10a6 6 0 0 1 12 0c0 0 0 2-2 5"/><path d="M14 18c0 0 4-3 6-7a4 4 0 0 0-8 0c0 2 1 4 2 7"/><line x1="12" y1="22" x2="12" y2="16"/></svg>
+        </div>
+        <span class="card-tag organico">Instagram</span>
+        <h2>Desempenho Org&acirc;nico</h2>
+        <p class="descricao">Crescimento do perfil, visualiza&ccedil;&otilde;es, intera&ccedil;&otilde;es, p&uacute;blico e conte&uacute;do publicado. Dados extra&iacute;dos do Meta Business Suite.</p>
+        <div class="card-rodape">
+          <span class="card-numeros">1,1 mi visualiza&ccedil;&otilde;es &middot; 1.572 novos seguidores</span>
+          <div class="card-seta"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</main>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="rodape">
+  <div class="wrap">
+    <strong>ADS Company &mdash; Assessoria de Marketing e Performance</strong>
+    <p class="data">Julho 2026</p>
+  </div>
+</footer>
+
+</body>
+</html>
