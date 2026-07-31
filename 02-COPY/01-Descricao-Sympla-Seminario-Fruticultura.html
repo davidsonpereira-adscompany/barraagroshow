@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Descri&ccedil;&atilde;o Sympla &mdash; Semin&aacute;rio de Fruticultura Irrigada</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --preto: #0A0A0A;
+    --surface: #111111;
+    --card: #161616;
+    --borda: #222222;
+    --borda-hover: #333333;
+    --laranja: #FF5C00;
+    --laranja-dim: rgba(255, 92, 0, 0.10);
+    --branco: #F0F0F0;
+    --branco-puro: #FFFFFF;
+    --cinza: #999999;
+    --cinza-claro: #666666;
+    --amarelo: #FFCC00;
+    --amarelo-dim: rgba(255, 204, 0, 0.08);
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'Inter', -apple-system, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--preto);
+    color: var(--branco);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Back button */
+  .back-fixed {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 99999;
+  }
+  .back-fixed a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: rgba(255, 92, 0, 0.12);
+    border: 1px solid rgba(255, 92, 0, 0.25);
+    border-radius: 6px;
+    color: var(--laranja);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  .back-fixed a:hover {
+    background: rgba(255, 92, 0, 0.22);
+    border-color: var(--laranja);
+  }
+
+  .wrap {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 80px 24px 60px;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 56px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--borda);
+  }
+  .header-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--laranja);
+    margin-bottom: 16px;
+  }
+  .header h1 {
+    font-family: var(--serif);
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: 12px;
+  }
+  .header-sub {
+    font-size: 15px;
+    color: var(--cinza);
+    max-width: 540px;
+    margin: 0 auto;
+    line-height: 1.55;
+  }
+  .header-meta {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    font-size: 12px;
+    color: var(--cinza-claro);
+  }
+  .header-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  /* Instruction box */
+  .instruction {
+    background: var(--amarelo-dim);
+    border: 1px solid rgba(255, 204, 0, 0.18);
+    border-radius: 8px;
+    padding: 18px 22px;
+    margin-bottom: 48px;
+    font-size: 13px;
+    color: var(--amarelo);
+    line-height: 1.6;
+  }
+  .instruction strong {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  /* Sections */
+  .section {
+    margin-bottom: 44px;
+  }
+  .section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--cinza-claro);
+    margin-bottom: 8px;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--borda);
+    line-height: 1.3;
+  }
+
+  /* Copy block */
+  .copy-block {
+    background: var(--card);
+    border: 1px solid var(--borda);
+    border-radius: 10px;
+    padding: 28px 28px;
+    position: relative;
+    transition: border-color 0.2s;
+  }
+  .copy-block:hover {
+    border-color: var(--borda-hover);
+  }
+  .copy-block p {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--branco);
+    margin-bottom: 12px;
+  }
+  .copy-block p:last-child {
+    margin-bottom: 0;
+  }
+  .copy-block .highlight {
+    color: var(--laranja);
+    font-weight: 600;
+  }
+  .copy-block .fill {
+    background: rgba(255, 204, 0, 0.10);
+    border: 1px dashed rgba(255, 204, 0, 0.35);
+    border-radius: 4px;
+    padding: 2px 8px;
+    color: var(--amarelo);
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  /* Programação */
+  .prog-card {
+    background: var(--card);
+    border: 1px solid var(--borda);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 12px;
+    transition: border-color 0.2s;
+  }
+  .prog-card:hover {
+    border-color: var(--borda-hover);
+  }
+  .prog-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--borda);
+  }
+  .prog-badge {
+    flex-shrink: 0;
+    padding: 4px 10px;
+    background: var(--laranja-dim);
+    border: 1px solid rgba(255, 92, 0, 0.2);
+    border-radius: 5px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--laranja);
+  }
+  .prog-title {
+    font-weight: 600;
+    font-size: 15px;
+  }
+  .prog-body {
+    padding: 20px 24px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(240, 240, 240, 0.85);
+  }
+  .prog-body .fill {
+    display: inline;
+  }
+
+  /* Palestrantes */
+  .speaker {
+    background: var(--card);
+    border: 1px solid var(--borda);
+    border-radius: 10px;
+    padding: 22px 24px;
+    margin-bottom: 10px;
+    transition: border-color 0.2s;
+  }
+  .speaker:hover {
+    border-color: var(--borda-hover);
+  }
+  .speaker-name {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: var(--laranja);
+  }
+  .speaker-role {
+    font-size: 13px;
+    color: var(--cinza);
+    margin-bottom: 8px;
+    line-height: 1.5;
+  }
+  .speaker-tema {
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--branco);
+  }
+  .speaker-tema span {
+    font-weight: 700;
+    color: var(--cinza);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-right: 6px;
+  }
+
+  /* Benefits */
+  .benefit-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .benefit-list li {
+    background: var(--card);
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    padding: 14px 20px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: border-color 0.2s;
+  }
+  .benefit-list li:hover {
+    border-color: var(--borda-hover);
+  }
+  .benefit-check {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--laranja-dim);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .benefit-check svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  /* Público */
+  .pub-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .pub-item {
+    background: var(--card);
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 13.5px;
+    transition: border-color 0.2s;
+  }
+  .pub-item:hover {
+    border-color: var(--borda-hover);
+  }
+
+  /* Info grid */
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .info-card {
+    background: var(--card);
+    border: 1px solid var(--borda);
+    border-radius: 10px;
+    padding: 20px 22px;
+    transition: border-color 0.2s;
+  }
+  .info-card:hover {
+    border-color: var(--borda-hover);
+  }
+  .info-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--cinza-claro);
+    margin-bottom: 6px;
+  }
+  .info-value {
+    font-size: 14.5px;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  /* Urgency box */
+  .urgency {
+    background: var(--laranja-dim);
+    border: 1px solid rgba(255, 92, 0, 0.2);
+    border-radius: 10px;
+    padding: 24px 28px;
+    text-align: center;
+  }
+  .urgency-title {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--laranja);
+  }
+  .urgency-text {
+    font-size: 14px;
+    color: rgba(240, 240, 240, 0.8);
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* Org */
+  .org {
+    text-align: center;
+    padding: 24px;
+    background: var(--card);
+    border: 1px solid var(--borda);
+    border-radius: 10px;
+  }
+  .org-name {
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 4px;
+  }
+  .org-contact {
+    font-size: 13px;
+    color: var(--cinza);
+  }
+
+  /* Compare table */
+  .compare {
+    margin-top: 56px;
+    padding-top: 40px;
+    border-top: 1px solid var(--borda);
+  }
+  .compare-title {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .compare-table th {
+    text-align: left;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--cinza-claro);
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--borda);
+  }
+  .compare-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--borda);
+    vertical-align: top;
+    line-height: 1.55;
+  }
+  .compare-table tr:last-child td {
+    border-bottom: none;
+  }
+  .compare-table .col-before {
+    color: var(--cinza);
+    width: 45%;
+  }
+  .compare-table .col-after {
+    color: var(--branco);
+    width: 45%;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--borda);
+  }
+  .footer p {
+    font-size: 12px;
+    color: var(--cinza-claro);
+  }
+  .footer em {
+    color: var(--laranja);
+    font-style: italic;
+  }
+
+  @media (max-width: 600px) {
+    .wrap { padding: 70px 16px 40px; }
+    .header h1 { font-size: 25px; }
+    .section-title { font-size: 19px; }
+    .copy-block { padding: 20px 18px; }
+    .pub-grid { grid-template-columns: 1fr; }
+    .info-grid { grid-template-columns: 1fr; }
+    .prog-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .compare-table { font-size: 12px; }
+    .compare-table td, .compare-table th { padding: 10px 12px; }
+    .header-meta { gap: 12px; }
+  }
+
+  @media print {
+    body { background: #fff; color: #111; }
+    .back-fixed { display: none !important; }
+    .copy-block, .prog-card, .speaker, .benefit-list li,
+    .pub-item, .info-card, .org, .urgency {
+      background: #f8f8f8;
+      border-color: #ddd;
+    }
+    .header { border-color: #ddd; }
+    .section-title { border-color: #ddd; color: #111; }
+    .speaker-name { color: #c44800; }
+    .highlight { color: #c44800; }
+    .laranja { color: #c44800; }
+  }
+</style>
+</head>
+<body>
+
+<div class="back-fixed">
+  <a href="index.html">&larr; Central</a>
+</div>
+
+<div class="wrap">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-eyebrow">Copy &mdash; Descri&ccedil;&atilde;o Sympla</div>
+    <h1>III Semin&aacute;rio da Fruticultura Irrigada</h1>
+    <p class="header-sub">Texto otimizado para a p&aacute;gina do evento no Sympla. Substitua os campos destacados em amarelo antes de publicar.</p>
+    <div class="header-meta">
+      <span>Barra Agro Show 2026</span>
+      <span>21 de agosto</span>
+      <span>Plataforma: Sympla</span>
+    </div>
+  </header>
+
+  <!-- INSTRUÇÃO -->
+  <div class="instruction">
+    <strong>Como usar este documento</strong>
+    Os campos em <span class="fill" style="color:var(--amarelo); background:rgba(255,204,0,0.10); border:1px dashed rgba(255,204,0,0.35); border-radius:4px; padding:2px 8px; font-size:12px;">amarelo</span> precisam ser preenchidos com as informa&ccedil;&otilde;es reais antes de colar no Sympla. Copie o texto de cada se&ccedil;&atilde;o e cole no campo &ldquo;Descri&ccedil;&atilde;o do evento&rdquo; do painel do organizador.
+  </div>
+
+  <!-- ABERTURA -->
+  <div class="section">
+    <div class="section-label">Abertura</div>
+    <div class="section-title">Gancho principal</div>
+    <div class="copy-block">
+      <p><span class="highlight">O conhecimento que separa quem planta de quem colhe resultados.</span></p>
+      <p>O III Semin&aacute;rio da Fruticultura Irrigada re&uacute;ne os maiores especialistas do Brasil em um &uacute;nico dia de imers&atilde;o pr&aacute;tica dentro do Barra Agro Show 2026. N&atilde;o &eacute; palestra gen&eacute;rica &mdash; &eacute; conte&uacute;do aplic&aacute;vel que voc&ecirc; leva para a sua propriedade no dia seguinte.</p>
+      <p>Na edi&ccedil;&atilde;o anterior, <span class="fill">ex: &ldquo;180 produtores de 12 cidades&rdquo;</span> participaram e sa&iacute;ram com estrat&eacute;gias concretas para aumentar produtividade e reduzir desperd&iacute;cio na irriga&ccedil;&atilde;o.</p>
+    </div>
+  </div>
+
+  <!-- PROGRAMAÇÃO -->
+  <div class="section">
+    <div class="section-label">Programa&ccedil;&atilde;o</div>
+    <div class="section-title">O que voc&ecirc; vai viver nesse dia</div>
+
+    <div class="prog-card">
+      <div class="prog-header">
+        <span class="prog-badge">Manh&atilde;</span>
+        <span class="prog-title">Visita t&eacute;cnica no campo</span>
+      </div>
+      <div class="prog-body">
+        De <span class="fill">hor&aacute;rio in&iacute;cio</span> &agrave;s <span class="fill">hor&aacute;rio fim</span>, visita guiada a <span class="fill">local/propriedade da visita t&eacute;cnica</span>, com demonstra&ccedil;&atilde;o pr&aacute;tica de <span class="fill">ex: &ldquo;sistemas de irriga&ccedil;&atilde;o por gotejamento em fruticultura tropical&rdquo;</span>. Voc&ecirc; v&ecirc; funcionando, pergunta, tira foto e entende como adaptar para a sua realidade.
+      </div>
+    </div>
+
+    <div class="prog-card">
+      <div class="prog-header">
+        <span class="prog-badge">Tarde</span>
+        <span class="prog-title">Ciclo de palestras com especialistas</span>
+      </div>
+      <div class="prog-body">
+        De <span class="fill">hor&aacute;rio in&iacute;cio</span> &agrave;s <span class="fill">hor&aacute;rio fim</span>, no Audit&oacute;rio do Complexo Barra AgroShow. Ambiente climatizado, estrutura completa.
+      </div>
+    </div>
+  </div>
+
+  <!-- PALESTRANTES -->
+  <div class="section">
+    <div class="section-label">Palestrantes</div>
+    <div class="section-title">Quem vai palestrar</div>
+
+    <div class="speaker">
+      <div class="speaker-name"><span class="fill">Nome do Palestrante 1</span></div>
+      <div class="speaker-role"><span class="fill">Cargo/institui&ccedil;&atilde;o &mdash; ex: &ldquo;Pesquisador da Embrapa Semi&aacute;rido, refer&ecirc;ncia nacional em manejo de irriga&ccedil;&atilde;o para fruticultura&rdquo;</span></div>
+      <div class="speaker-tema"><span>Tema</span> <span class="fill">T&iacute;tulo da palestra</span></div>
+    </div>
+
+    <div class="speaker">
+      <div class="speaker-name"><span class="fill">Nome do Palestrante 2</span></div>
+      <div class="speaker-role"><span class="fill">Cargo/institui&ccedil;&atilde;o</span></div>
+      <div class="speaker-tema"><span>Tema</span> <span class="fill">T&iacute;tulo da palestra</span></div>
+    </div>
+
+    <div class="speaker">
+      <div class="speaker-name"><span class="fill">Nome do Palestrante 3</span></div>
+      <div class="speaker-role"><span class="fill">Cargo/institui&ccedil;&atilde;o</span></div>
+      <div class="speaker-tema"><span>Tema</span> <span class="fill">T&iacute;tulo da palestra</span></div>
+    </div>
+
+    <div class="speaker">
+      <div class="speaker-name"><span class="fill">Nome do Palestrante 4</span></div>
+      <div class="speaker-role"><span class="fill">Cargo/institui&ccedil;&atilde;o</span></div>
+      <div class="speaker-tema"><span>Tema</span> <span class="fill">T&iacute;tulo da palestra</span></div>
+    </div>
+  </div>
+
+  <!-- O QUE LEVA -->
+  <div class="section">
+    <div class="section-label">Benef&iacute;cios</div>
+    <div class="section-title">O que voc&ecirc; leva pra casa</div>
+
+    <ul class="benefit-list">
+      <li>
+        <span class="benefit-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.5L4.5 9L10 3" stroke="#FF5C00" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        Certificado de participa&ccedil;&atilde;o
+      </li>
+      <li>
+        <span class="benefit-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.5L4.5 9L10 3" stroke="#FF5C00" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="fill">ex: &ldquo;Material t&eacute;cnico exclusivo com as apresenta&ccedil;&otilde;es dos palestrantes&rdquo;</span>
+      </li>
+      <li>
+        <span class="benefit-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.5L4.5 9L10 3" stroke="#FF5C00" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        Acesso &agrave; visita t&eacute;cnica guiada com especialistas
+      </li>
+      <li>
+        <span class="benefit-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.5L4.5 9L10 3" stroke="#FF5C00" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        Networking direto com produtores, pesquisadores e fornecedores do setor
+      </li>
+      <li>
+        <span class="benefit-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.5L4.5 9L10 3" stroke="#FF5C00" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="fill">coffee break? almo&ccedil;o? kit do participante? incluir aqui</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- PRA QUEM -->
+  <div class="section">
+    <div class="section-label">P&uacute;blico</div>
+    <div class="section-title">Pra quem &eacute; esse semin&aacute;rio</div>
+
+    <div class="pub-grid">
+      <div class="pub-item">Produtores rurais que trabalham ou querem trabalhar com fruticultura irrigada</div>
+      <div class="pub-item">Fruticultores que buscam aumentar produtividade e reduzir custos com &aacute;gua</div>
+      <div class="pub-item">T&eacute;cnicos agr&iacute;colas e agr&ocirc;nomos</div>
+      <div class="pub-item">Estudantes de agronomia e ci&ecirc;ncias agr&aacute;rias (meia-entrada)</div>
+      <div class="pub-item" style="grid-column: 1 / -1;">Pesquisadores e consultores da cadeia produtiva</div>
+    </div>
+  </div>
+
+  <!-- POR QUE PARTICIPAR -->
+  <div class="section">
+    <div class="section-label">Argumento de valor</div>
+    <div class="section-title">Por que participar da terceira edi&ccedil;&atilde;o</div>
+    <div class="copy-block">
+      <p>A regi&atilde;o de Barra tem <span class="fill">ex: &ldquo;105 mil hectares com potencial irrig&aacute;vel&rdquo;</span> e est&aacute; no centro da expans&atilde;o da fruticultura no Oeste da Bahia. Quem domina as t&eacute;cnicas de irriga&ccedil;&atilde;o agora est&aacute; se posicionando para os pr&oacute;ximos 10 anos de crescimento do setor.</p>
+      <p>Nas duas edi&ccedil;&otilde;es anteriores, produtores que aplicaram o que aprenderam no semin&aacute;rio <span class="fill">resultado concreto &mdash; ex: &ldquo;reportaram aumento m&eacute;dio de 20% na produtividade&rdquo; ou &ldquo;fecharam parcerias com fornecedores apresentados no evento&rdquo;</span>.</p>
+    </div>
+  </div>
+
+  <!-- INFORMAÇÕES PRÁTICAS -->
+  <div class="section">
+    <div class="section-label">Log&iacute;stica</div>
+    <div class="section-title">Informa&ccedil;&otilde;es pr&aacute;ticas</div>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-label">Data</div>
+        <div class="info-value">21 de agosto de 2026 (quinta-feira)<br>Das 08h &agrave;s 18h</div>
+      </div>
+      <div class="info-card">
+        <div class="info-label">Local</div>
+        <div class="info-value">Audit&oacute;rio &mdash; Complexo Barra AgroShow<br>Barra, BA</div>
+      </div>
+      <div class="info-card">
+        <div class="info-label">Ingresso inteiro</div>
+        <div class="info-value" style="color:var(--laranja); font-size:18px; font-weight:700;">R$300,00</div>
+      </div>
+      <div class="info-card">
+        <div class="info-label">Meia-entrada (estudantes)</div>
+        <div class="info-value" style="color:var(--laranja); font-size:18px; font-weight:700;">R$150,00</div>
+      </div>
+      <div class="info-card" style="grid-column: 1 / -1;">
+        <div class="info-label">Estrutura</div>
+        <div class="info-value">Estacionamento gratuito &bull; Ambiente climatizado &bull; Parcelamento em at&eacute; 12x no cart&atilde;o</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VAGAS LIMITADAS -->
+  <div class="section">
+    <div class="urgency">
+      <div class="urgency-title">Vagas limitadas</div>
+      <div class="urgency-text">A capacidade do audit&oacute;rio &eacute; de <span class="fill">n&uacute;mero</span> lugares. Quando esgotarem, n&atilde;o haver&aacute; venda na porta. Garanta sua vaga antecipadamente.</div>
+    </div>
+  </div>
+
+  <!-- REALIZAÇÃO -->
+  <div class="section">
+    <div class="section-label">Realiza&ccedil;&atilde;o</div>
+    <div class="section-title">Organizador</div>
+    <div class="org">
+      <div class="org-name">SPRBARRA &mdash; Sindicato dos Produtores Rurais de Barra</div>
+      <div class="org-contact">D&uacute;vidas: <span class="fill">WhatsApp ou e-mail de contato</span></div>
+    </div>
+  </div>
+
+  <!-- COMPARATIVO -->
+  <div class="compare">
+    <div class="compare-title">Antes vs. Depois &mdash; o que muda</div>
+    <div style="overflow-x:auto; border:1px solid var(--borda); border-radius:10px;">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th style="width:10%">#</th>
+            <th class="col-before">Texto atual (Sympla)</th>
+            <th class="col-after">Texto otimizado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="color:var(--cinza-claro); font-weight:600;">1</td>
+            <td class="col-before">Bloco de texto corrido sem estrutura</td>
+            <td class="col-after">Se&ccedil;&otilde;es claras com hierarquia visual</td>
+          </tr>
+          <tr>
+            <td style="color:var(--cinza-claro); font-weight:600;">2</td>
+            <td class="col-before">&ldquo;A grade de palestrantes ser&aacute; divulgada em breve&rdquo;</td>
+            <td class="col-after">Nomes, cargos e temas de cada palestrante</td>
+          </tr>
+          <tr>
+            <td style="color:var(--cinza-claro); font-weight:600;">3</td>
+            <td class="col-before">N&atilde;o diz o que o participante ganha</td>
+            <td class="col-after">Lista concreta: certificado, material, networking, visita</td>
+          </tr>
+          <tr>
+            <td style="color:var(--cinza-claro); font-weight:600;">4</td>
+            <td class="col-before">Zero prova social</td>
+            <td class="col-after">N&uacute;meros das edi&ccedil;&otilde;es anteriores + resultados</td>
+          </tr>
+          <tr>
+            <td style="color:var(--cinza-claro); font-weight:600;">5</td>
+            <td class="col-before">Sem urg&ecirc;ncia</td>
+            <td class="col-after">&ldquo;Vagas limitadas, n&atilde;o haver&aacute; venda na porta&rdquo;</td>
+          </tr>
+          <tr>
+            <td style="color:var(--cinza-claro); font-weight:600;">6</td>
+            <td class="col-before">Pre&ccedil;o sem justificativa</td>
+            <td class="col-after">Valor justificado antes de chegar no pre&ccedil;o</td>
+          </tr>
+          <tr>
+            <td style="color:var(--cinza-claro); font-weight:600;">7</td>
+            <td class="col-before">Descri&ccedil;&atilde;o gen&eacute;rica (&ldquo;compartilhar conhecimento&rdquo;)</td>
+            <td class="col-after">Linguagem de resultado (&ldquo;voc&ecirc; leva pra sua propriedade no dia seguinte&rdquo;)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p style="font-family:var(--serif); font-size:14px; color:var(--branco); margin-bottom:4px;">ADS Company &mdash; <em>Assessoria de Marketing e Performance</em></p>
+    <p>Copy &mdash; Descri&ccedil;&atilde;o Sympla &mdash; Semin&aacute;rio de Fruticultura Irrigada &mdash; Julho 2026</p>
+  </footer>
+
+</div>
+
+</body>
+</html>

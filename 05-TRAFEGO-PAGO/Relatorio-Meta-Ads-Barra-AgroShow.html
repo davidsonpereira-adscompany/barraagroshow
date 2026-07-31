@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Barra AgroShow 2026 — Relat&oacute;rio Meta Ads</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --papel:#EFF2ED; --superf:#FFFFFF; --areia:#E2DCCC;
+  --tinta:#131F1B; --cinza:#6A766F; --linha:#D3D9D1;
+  --rio:#14555C; --rio-claro:#3E8B90; --terra:#A25E17; --folha:#4E7F2C; --alerta:#B3411E;
+  --r:3px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--papel); color:var(--tinta);
+  font-family:'IBM Plex Sans',system-ui,-apple-system,sans-serif;
+  font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+h1,h2,h3,h4{font-family:'Bricolage Grotesque','IBM Plex Sans',sans-serif;line-height:1.1;letter-spacing:-.02em}
+.mono{font-family:'IBM Plex Mono',monospace;font-variant-numeric:tabular-nums}
+
+.topo{background:var(--rio);color:#F2F6F3;padding:52px 0 44px;position:relative;overflow:hidden}
+.topo::after{content:"";position:absolute;inset:auto 0 0 0;height:5px;
+  background:linear-gradient(90deg,var(--terra) 0 22%,var(--folha) 22% 46%,var(--rio-claro) 46% 100%)}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#9FC6C4}
+.topo h1{font-size:clamp(2.2rem,5.4vw,3.9rem);font-weight:800;margin:14px 0 8px}
+.topo .sub{font-size:1.05rem;color:#C6DBD8;max-width:60ch}
+.periodo{display:flex;flex-wrap:wrap;gap:26px;margin-top:28px;padding-top:22px;border-top:1px solid rgba(255,255,255,.18)}
+.periodo div{min-width:130px}
+.periodo dt{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#8FBAB8;margin-bottom:4px}
+.periodo dd{font-size:1.05rem;font-weight:600}
+
+section{padding:64px 0;border-bottom:1px solid var(--linha)}
+section:last-of-type{border-bottom:0}
+.marca{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--terra);display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.marca::before{content:"";width:26px;height:2px;background:var(--terra)}
+h2{font-size:clamp(1.7rem,3.6vw,2.5rem);font-weight:800;margin-bottom:10px}
+.lede{font-size:1.08rem;color:#3C4A45;max-width:70ch;margin-bottom:34px}
+
+.destaques{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:1px;background:var(--linha);
+  border:1px solid var(--linha);margin-bottom:16px}
+.destaque{background:var(--superf);padding:26px 24px}
+.destaque .n{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(2rem,4.4vw,2.9rem);font-weight:800;
+  line-height:1;color:var(--rio);letter-spacing:-.03em}
+.destaque .rot{font-size:.9rem;font-weight:600;margin-top:10px}
+.destaque .exp{font-size:.82rem;color:var(--cinza);margin-top:3px;line-height:1.45}
+
+.tabbox{overflow-x:auto;border:1px solid var(--linha);background:var(--superf);margin-bottom:14px}
+table{width:100%;border-collapse:collapse;font-size:.88rem;min-width:720px}
+th,td{padding:11px 13px;text-align:right;border-bottom:1px solid var(--linha);white-space:nowrap}
+th{background:var(--areia);font-size:10.5px;font-family:'IBM Plex Mono',monospace;letter-spacing:.09em;
+  text-transform:uppercase;font-weight:600;color:#4A5651;position:sticky;top:0}
+th:first-child,td:first-child{text-align:left;white-space:normal;min-width:190px}
+tbody tr:hover{background:#F6F8F5}
+td.num{font-family:'IBM Plex Mono',monospace;font-variant-numeric:tabular-nums}
+tr.somatorio{background:var(--areia);font-weight:700}
+tr.somatorio td{border-bottom:0}
+.tag{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 7px;border-radius:20px;
+  letter-spacing:.05em;text-transform:uppercase;vertical-align:middle;margin-left:7px}
+.tag.on{background:#E4F0DC;color:#3B6621}.tag.off{background:#E9E6DE;color:#6A766F}
+.legenda{font-size:.82rem;color:var(--cinza);margin-bottom:34px;max-width:78ch}
+
+.grafico{background:var(--superf);border:1px solid var(--linha);padding:28px 26px;margin-bottom:34px}
+.grafico h4{font-size:1.02rem;margin-bottom:4px}
+.grafico .nota{font-size:.83rem;color:var(--cinza);margin-bottom:22px}
+.barra-linha{display:grid;grid-template-columns:180px 1fr 100px;gap:14px;align-items:center;margin-bottom:11px}
+.barra-linha .nome{font-size:.85rem;font-weight:500;line-height:1.25}
+.trilho{background:#EDF0EC;height:26px;position:relative;overflow:hidden}
+.preenche{height:100%;background:var(--rio);display:block;transition:width .8s cubic-bezier(.2,.7,.3,1)}
+.preenche.v2{background:var(--rio-claro)}.preenche.v3{background:var(--folha)}.preenche.v4{background:var(--terra)}
+.barra-linha .val{font-family:'IBM Plex Mono',monospace;font-size:.85rem;text-align:right;font-weight:600}
+@media(max-width:640px){.barra-linha{grid-template-columns:1fr;gap:4px;margin-bottom:16px}
+  .barra-linha .val{text-align:left}}
+
+.especificos{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:16px;margin-bottom:34px}
+.esp{background:var(--superf);border:1px solid var(--linha);border-top:3px solid var(--rio);padding:22px}
+.esp.b{border-top-color:var(--folha)}.esp.c{border-top-color:var(--terra)}
+.esp .origem{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--cinza);margin-bottom:14px;line-height:1.5}
+.esp .par{display:flex;justify-content:space-between;align-items:baseline;padding:7px 0;border-bottom:1px solid #EDF0EC;gap:12px}
+.esp .par:last-child{border-bottom:0}
+.esp .par span:first-child{font-size:.86rem;color:#40504A}
+.esp .par span:last-child{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:1rem}
+
+.aviso{background:#FBF3E6;border-left:3px solid var(--terra);padding:16px 20px;margin-bottom:30px;font-size:.9rem;line-height:1.6}
+.aviso strong{color:var(--terra)}
+.aviso.neutro{background:#EAF1F1;border-left-color:var(--rio)}
+.aviso.neutro strong{color:var(--rio)}
+
+.aneis{background:var(--superf);border:1px solid var(--linha);padding:32px 26px;margin-bottom:34px}
+.aneis-grid{display:grid;grid-template-columns:minmax(280px,420px) 1fr;gap:38px;align-items:center}
+@media(max-width:820px){.aneis-grid{grid-template-columns:1fr;gap:26px}}
+.anel-item{display:grid;grid-template-columns:14px 1fr auto;gap:12px;align-items:start;padding:11px 0;border-bottom:1px solid #EDF0EC;cursor:default}
+.anel-item:last-child{border-bottom:0}
+.anel-cor{width:14px;height:14px;border-radius:50%;margin-top:4px}
+.anel-nome{font-size:.9rem;font-weight:600;line-height:1.3}
+.anel-desc{font-size:.79rem;color:var(--cinza);line-height:1.45;margin-top:2px}
+.anel-val{font-family:'IBM Plex Mono',monospace;font-size:.9rem;font-weight:600;text-align:right;white-space:nowrap}
+.anel-val small{display:block;font-size:.72rem;color:var(--cinza);font-weight:400}
+svg .rotulo{font-family:'IBM Plex Mono',monospace;font-size:9.5px;fill:#fff;letter-spacing:.05em}
+
+.versus{display:grid;grid-template-columns:1fr;gap:1px;background:var(--linha);border:1px solid var(--linha);margin-bottom:16px}
+.vs-cab,.vs-linha{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;background:var(--superf)}
+.vs-cab{background:var(--areia)}
+.vs-cab div{padding:13px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.09em;
+  text-transform:uppercase;font-weight:600;color:#4A5651;text-align:right}
+.vs-cab div:first-child{text-align:left}
+.vs-linha div{padding:13px;border-top:1px solid var(--linha);text-align:right;font-family:'IBM Plex Mono',monospace;font-size:.92rem}
+.vs-linha div:first-child{text-align:left;font-family:'IBM Plex Sans',sans-serif;font-size:.88rem;font-weight:500}
+.vs-linha .delta{font-weight:700}
+.delta.pos{color:var(--folha)}.delta.neg{color:var(--alerta)}.delta.neu{color:var(--cinza)}
+@media(max-width:700px){.vs-cab,.vs-linha{grid-template-columns:1fr}
+  .vs-linha div,.vs-cab div{text-align:left;padding:8px 13px}
+  .vs-linha div:first-child{font-weight:700;padding-top:14px;background:#F6F8F5}}
+
+.criativos{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));gap:18px}
+.crt{background:var(--superf);border:1px solid var(--linha);cursor:pointer;overflow:hidden;
+  transition:transform .18s ease,box-shadow .18s ease;text-align:left;padding:0;font:inherit;color:inherit;display:block;width:100%}
+.crt:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(19,31,27,.13)}
+.crt:focus-visible{outline:3px solid var(--rio);outline-offset:2px}
+.crt-img{aspect-ratio:1/1;background:var(--areia);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.crt-img img{width:100%;height:100%;object-fit:cover;display:block}
+.crt-fallback{padding:18px;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7B857E;line-height:1.6}
+.crt-tipo{position:absolute;top:9px;left:9px;background:rgba(19,31,27,.82);color:#fff;font-family:'IBM Plex Mono',monospace;
+  font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;padding:3px 8px;border-radius:20px}
+.crt-corpo{padding:14px}
+.crt-nome{font-size:.88rem;font-weight:600;line-height:1.3;margin-bottom:3px}
+.crt-fonte{font-size:.74rem;color:var(--cinza);margin-bottom:11px}
+.crt-mini{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.crt-mini div{font-family:'IBM Plex Mono',monospace;font-size:.76rem}
+.crt-mini span{display:block;font-size:9.5px;color:var(--cinza);letter-spacing:.05em;text-transform:uppercase}
+.crt-abrir{margin-top:11px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--rio);font-weight:600}
+
+.modal{position:fixed;inset:0;background:rgba(19,31,27,.72);display:none;align-items:center;justify-content:center;
+  padding:22px;z-index:80;backdrop-filter:blur(3px)}
+.modal.aberto{display:flex}
+.modal-cx{background:var(--superf);max-width:940px;width:100%;max-height:90vh;overflow-y:auto;position:relative;
+  display:grid;grid-template-columns:1fr 1fr}
+@media(max-width:760px){.modal-cx{grid-template-columns:1fr}}
+.modal-img{background:var(--areia);display:flex;align-items:center;justify-content:center;min-height:260px}
+.modal-img img{width:100%;height:100%;object-fit:cover;max-height:520px}
+.modal-lado{padding:32px 30px}
+.modal-fechar{position:absolute;top:12px;right:12px;background:var(--tinta);color:#fff;border:0;width:34px;height:34px;
+  border-radius:50%;cursor:pointer;font-size:19px;line-height:1;z-index:2}
+.modal-fechar:focus-visible{outline:3px solid var(--rio-claro);outline-offset:2px}
+.modal h3{font-size:1.25rem;margin-bottom:5px;padding-right:34px}
+.modal .m-fonte{font-size:.83rem;color:var(--cinza);margin-bottom:20px}
+.modal .m-metricas{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--linha);border:1px solid var(--linha);margin-bottom:20px}
+.modal .m-metricas div{background:var(--superf);padding:13px}
+.modal .m-metricas b{display:block;font-family:'IBM Plex Mono',monospace;font-size:1.15rem;color:var(--rio)}
+.modal .m-metricas span{font-size:10px;font-family:'IBM Plex Mono',monospace;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--cinza)}
+.modal .m-texto{font-size:.85rem;line-height:1.65;color:#3C4A45;max-height:190px;overflow-y:auto;
+  padding:14px;background:#F6F8F5;border:1px solid var(--linha);white-space:pre-wrap}
+
+.glossario{display:grid;grid-template-columns:repeat(auto-fit,minmax(258px,1fr));gap:1px;background:var(--linha);border:1px solid var(--linha)}
+.gl{background:var(--superf);padding:19px 21px}
+.gl dt{font-weight:700;font-size:.93rem;margin-bottom:5px}
+.gl dt em{font-family:'IBM Plex Mono',monospace;font-style:normal;font-size:.76rem;color:var(--terra);
+  letter-spacing:.05em;margin-left:6px;text-transform:uppercase}
+.gl dd{font-size:.85rem;color:#40504A;line-height:1.55}
+.rodape{background:var(--tinta);color:#A9B5AE;padding:44px 0;font-size:.84rem;line-height:1.75}
+.rodape strong{color:#EFF2ED;display:block;font-family:'Bricolage Grotesque',sans-serif;font-size:1.08rem;margin-bottom:12px}
+@media print{.crt:hover{transform:none;box-shadow:none}.modal{display:none!important}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="topo">
+  <div class="wrap">
+    <p class="eyebrow">Relat&oacute;rio de desempenho &middot; Meta Ads</p>
+    <h1>Barra AgroShow 2026</h1>
+    <p class="sub">Resultados dos an&uacute;ncios pagos no Instagram e Facebook ao longo dos &uacute;ltimos tr&ecirc;s meses, com a vis&atilde;o detalhada de cada regi&atilde;o alcançada.</p>
+    <dl class="periodo">
+      <div><dt>Per&iacute;odo</dt><dd>1 mai &mdash; 31 jul 2026</dd></div>
+      <div><dt>Investimento total</dt><dd>R$ 8.097,49</dd></div>
+      <div><dt>Pessoas alcançadas</dt><dd>621.063</dd></div>
+      <div><dt>Data do evento</dt><dd>19 a 22 ago 2026</dd></div>
+      <div><dt>Emitido em</dt><dd>31 jul 2026</dd></div>
+    </dl>
+  </div>
+</header>
+
+<!-- ==================== VIS&Atilde;O GERAL ==================== -->
+<section id="resumo">
+  <div class="wrap">
+    <p class="marca">Vis&atilde;o geral</p>
+    <h2>Resultados do per&iacute;odo</h2>
+    <p class="lede">N&uacute;meros consolidados de todos os an&uacute;ncios veiculados entre 1&ordm; de maio e 31 de julho. O gloss&aacute;rio no fim do relat&oacute;rio explica cada termo t&eacute;cnico.</p>
+
+    <div class="destaques">
+      <div class="destaque">
+        <p class="n">R$ 8.097</p>
+        <p class="rot">Investimento total</p>
+        <p class="exp">Valor gasto com an&uacute;ncios nos tr&ecirc;s meses.</p>
+      </div>
+      <div class="destaque">
+        <p class="n">621.063</p>
+        <p class="rot">Pessoas alcançadas</p>
+        <p class="exp">Pessoas diferentes que viram o evento pelo menos uma vez.</p>
+      </div>
+      <div class="destaque">
+        <p class="n">1.442.190</p>
+        <p class="rot">Exibi&ccedil;&otilde;es</p>
+        <p class="exp">Quantas vezes o evento apareceu na tela das pessoas.</p>
+      </div>
+      <div class="destaque">
+        <p class="n">171.032</p>
+        <p class="rot">Engajamento total</p>
+        <p class="exp">Curtidas, coment&aacute;rios, compartilhamentos, salvamentos e cliques.</p>
+      </div>
+    </div>
+
+    <div class="destaques">
+      <div class="destaque">
+        <p class="n" style="color:var(--terra)">396.276</p>
+        <p class="rot">Reprodu&ccedil;&otilde;es de v&iacute;deo</p>
+        <p class="exp">Vezes que um v&iacute;deo do evento começou a ser assistido.</p>
+      </div>
+      <div class="destaque">
+        <p class="n" style="color:var(--terra)">9.704</p>
+        <p class="rot">Visitas ao site</p>
+        <p class="exp">Pessoas que clicaram e abriram o site do evento.</p>
+      </div>
+      <div class="destaque">
+        <p class="n" style="color:var(--terra)">2,3&times;</p>
+        <p class="rot">Frequ&ecirc;ncia m&eacute;dia</p>
+        <p class="exp">Cada pessoa viu o an&uacute;ncio 2,3 vezes, em m&eacute;dia.</p>
+      </div>
+      <div class="destaque">
+        <p class="n" style="color:var(--terra)">R$ 5,61</p>
+        <p class="rot">Custo por mil exibi&ccedil;&otilde;es</p>
+        <p class="exp">Quanto custou aparecer mil vezes na tela.</p>
+      </div>
+    </div>
+
+    <div class="aviso neutro">
+      <strong>Como ler este relat&oacute;rio.</strong> Ele est&aacute; dividido em dois per&iacute;odos porque a gest&atilde;o dos an&uacute;ncios mudou de m&atilde;os no dia 11 de julho. Os n&uacute;meros de cada per&iacute;odo s&atilde;o apresentados separadamente e depois comparados lado a lado. Este relat&oacute;rio cobre apenas o tr&aacute;fego pago no Meta (Instagram e Facebook) &mdash; o desempenho org&acirc;nico do perfil ser&aacute; apresentado &agrave; parte.
+    </div>
+  </div>
+</section>
+
+<!-- ==================== GEOGRAFIA ==================== -->
+<section id="geografia">
+  <div class="wrap">
+    <p class="marca">Estrat&eacute;gia geogr&aacute;fica</p>
+    <h2>Do centro do evento para o Brasil</h2>
+    <p class="lede">A partir de 11 de julho, os an&uacute;ncios passaram a ser organizados em camadas geogr&aacute;ficas: quanto mais perto de Barra, maior o investimento por pessoa.</p>
+
+    <div class="aneis">
+      <div class="aneis-grid">
+        <div>
+          <svg viewBox="0 0 400 400" role="img" aria-label="An&eacute;is conc&ecirc;ntricos representando as camadas geogr&aacute;ficas dos an&uacute;ncios">
+            <circle cx="200" cy="200" r="196" fill="#DCE4E0"/>
+            <circle cx="200" cy="200" r="168" fill="#C3D3D0"/>
+            <circle cx="200" cy="200" r="140" fill="#93B8B6"/>
+            <circle cx="200" cy="200" r="112" fill="#5E9A9B"/>
+            <circle cx="200" cy="200" r="84"  fill="#2E7B7F"/>
+            <circle cx="200" cy="200" r="56"  fill="#14555C"/>
+            <circle cx="200" cy="200" r="26"  fill="#A25E17"/>
+            <text class="rotulo" x="200" y="203" text-anchor="middle" style="font-size:8.5px">BARRA</text>
+            <text class="rotulo" x="200" y="76"  text-anchor="middle">JUAZEIRO &middot; PETROLINA</text>
+            <text class="rotulo" x="200" y="48"  text-anchor="middle" fill="#2F3D38">OESTE BAIANO</text>
+            <text class="rotulo" x="200" y="20"  text-anchor="middle" fill="#2F3D38">BAHIA &middot; MATOPI &middot; NORDESTE &middot; BRASIL</text>
+            <text class="rotulo" x="200" y="132" text-anchor="middle">ENTORNO</text>
+          </svg>
+        </div>
+        <div>
+          <div class="anel-item"><div class="anel-cor" style="background:#A25E17"></div>
+            <div><p class="anel-nome">Barra, Xique-Xique e Irec&ecirc;</p><p class="anel-desc">Cidade-sede e vizinhas</p></div>
+            <div class="anel-val">R$ 1.315,59<small>239.730 exibi&ccedil;&otilde;es</small></div></div>
+          <div class="anel-item"><div class="anel-cor" style="background:#14555C"></div>
+            <div><p class="anel-nome">Juazeiro e Petrolina</p><p class="anel-desc">Polo irrigado do Vale do S&atilde;o Francisco</p></div>
+            <div class="anel-val">R$ 1.039,34<small>159.036 exibi&ccedil;&otilde;es</small></div></div>
+          <div class="anel-item"><div class="anel-cor" style="background:#2E7B7F"></div>
+            <div><p class="anel-nome">Oeste Baiano</p><p class="anel-desc">Barreiras, Lu&iacute;s Eduardo, Bom Jesus da Lapa e regi&atilde;o</p></div>
+            <div class="anel-val">R$ 889,55<small>138.250 exibi&ccedil;&otilde;es</small></div></div>
+          <div class="anel-item"><div class="anel-cor" style="background:#5E9A9B"></div>
+            <div><p class="anel-nome">Bahia</p><p class="anel-desc">Todo o estado</p></div>
+            <div class="anel-val">R$ 539,73<small>86.351 exibi&ccedil;&otilde;es</small></div></div>
+          <div class="anel-item"><div class="anel-cor" style="background:#93B8B6"></div>
+            <div><p class="anel-nome">Bahia + Brasil (v&iacute;deo)</p><p class="anel-desc">Camada ampla das campanhas de v&iacute;deo</p></div>
+            <div class="anel-val">R$ 420,98<small>126.607 exibi&ccedil;&otilde;es</small></div></div>
+          <div class="anel-item"><div class="anel-cor" style="background:#C3D3D0"></div>
+            <div><p class="anel-nome">Maranh&atilde;o, Tocantins e Piau&iacute;</p><p class="anel-desc">Os tr&ecirc;s estados segmentados juntos</p></div>
+            <div class="anel-val">R$ 206,08<small>43.925 exibi&ccedil;&otilde;es</small></div></div>
+          <div class="anel-item"><div class="anel-cor" style="background:#CFDCD8"></div>
+            <div><p class="anel-nome">Nordeste</p><p class="anel-desc">Os nove estados da regi&atilde;o</p></div>
+            <div class="anel-val">R$ 187,88<small>42.065 exibi&ccedil;&otilde;es</small></div></div>
+          <div class="anel-item"><div class="anel-cor" style="background:#DCE4E0"></div>
+            <div><p class="anel-nome">Brasil</p><p class="anel-desc">Territ&oacute;rio nacional</p></div>
+            <div class="anel-val">R$ 376,26<small>52.565 exibi&ccedil;&otilde;es</small></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="aviso neutro">
+      <strong>Nota sobre Maranh&atilde;o, Tocantins e Piau&iacute;.</strong> Os tr&ecirc;s estados foram configurados dentro de um mesmo grupo de an&uacute;ncios, ent&atilde;o os n&uacute;meros apresentados s&atilde;o o resultado somado dos tr&ecirc;s. N&atilde;o &eacute; poss&iacute;vel separar o resultado individual de cada estado nesta configura&ccedil;&atilde;o.
+    </div>
+  </div>
+</section>
+
+<!-- ==================== GEST&Atilde;O ATUAL ==================== -->
+<section id="atual">
+  <div class="wrap">
+    <p class="marca">Bloco A &middot; 11 a 31 de julho</p>
+    <h2>Gest&atilde;o atual</h2>
+    <p class="lede">Vinte e um dias de campanha, com quatro campanhas organizadas por localidade. Esta estrutura permite identificar o resultado exato de cada cidade e regi&atilde;o.</p>
+
+    <div class="destaques">
+      <div class="destaque"><p class="n">R$ 4.986</p><p class="rot">Investido</p><p class="exp">Em 21 dias de veicula&ccedil;&atilde;o</p></div>
+      <div class="destaque"><p class="n">349.439</p><p class="rot">Pessoas alcançadas</p><p class="exp">N&uacute;mero real, sem repeti&ccedil;&atilde;o</p></div>
+      <div class="destaque"><p class="n">891.456</p><p class="rot">Exibi&ccedil;&otilde;es</p><p class="exp">Apari&ccedil;&otilde;es na tela</p></div>
+      <div class="destaque"><p class="n">143.307</p><p class="rot">Engajamento total</p><p class="exp">Curtidas, coment&aacute;rios, compartilhamentos, salvamentos e cliques</p></div>
+    </div>
+
+    <h3 style="font-size:1.2rem;margin:38px 0 6px">Resultado por localidade</h3>
+    <p class="legenda" style="margin-bottom:14px">Cada linha soma todos os an&uacute;ncios direcionados &agrave;quela localidade.</p>
+    <div class="tabbox">
+      <table>
+        <thead><tr>
+          <th>Localidade</th><th>Investido</th><th>Exibi&ccedil;&otilde;es</th><th>Alcance</th>
+          <th>Cliques</th><th>Engajamento</th><th>Custo/mil</th><th>Frequ&ecirc;ncia</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>Barra, Xique-Xique e Irec&ecirc;</td><td class="num">R$ 1.315,59</td><td class="num">239.730</td><td class="num">58.876</td><td class="num">4.509</td><td class="num">25.957</td><td class="num">R$ 5,49</td><td class="num">4,07&times;</td></tr>
+          <tr><td>Juazeiro e Petrolina</td><td class="num">R$ 1.039,34</td><td class="num">159.036</td><td class="num">53.314</td><td class="num">2.747</td><td class="num">15.780</td><td class="num">R$ 6,54</td><td class="num">2,98&times;</td></tr>
+          <tr><td>Oeste Baiano</td><td class="num">R$ 889,55</td><td class="num">138.250</td><td class="num">52.706</td><td class="num">3.050</td><td class="num">23.161</td><td class="num">R$ 6,43</td><td class="num">2,62&times;</td></tr>
+          <tr><td>Bahia + Brasil <span class="tag on">v&iacute;deo</span></td><td class="num">R$ 420,98</td><td class="num">126.607</td><td class="num">95.058</td><td class="num">4.725</td><td class="num">72.400</td><td class="num">R$ 3,33</td><td class="num">1,33&times;</td></tr>
+          <tr><td>Bahia (estado)</td><td class="num">R$ 539,73</td><td class="num">86.351</td><td class="num">40.072</td><td class="num">1.906</td><td class="num">1.823</td><td class="num">R$ 6,25</td><td class="num">2,15&times;</td></tr>
+          <tr><td>Brasil</td><td class="num">R$ 376,26</td><td class="num">52.565</td><td class="num">32.876</td><td class="num">1.472</td><td class="num">2.268</td><td class="num">R$ 7,16</td><td class="num">1,60&times;</td></tr>
+          <tr><td>Maranh&atilde;o, Tocantins e Piau&iacute;</td><td class="num">R$ 206,08</td><td class="num">43.925</td><td class="num">27.750</td><td class="num">978</td><td class="num">916</td><td class="num">R$ 4,69</td><td class="num">1,58&times;</td></tr>
+          <tr><td>Nordeste</td><td class="num">R$ 187,88</td><td class="num">42.065</td><td class="num">32.738</td><td class="num">975</td><td class="num">883</td><td class="num">R$ 4,47</td><td class="num">1,28&times;</td></tr>
+          <tr class="somatorio"><td>Total do per&iacute;odo</td><td class="num">R$ 4.986,62</td><td class="num">891.456</td><td class="num">349.439</td><td class="num">20.458</td><td class="num">143.307</td><td class="num">R$ 5,59</td><td class="num">2,55&times;</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="legenda">O alcance total (349.439) &eacute; menor que a soma das linhas porque a mesma pessoa pode ter sido atingida em mais de uma localidade &mdash; por exemplo, quem mora em Barra tamb&eacute;m est&aacute; dentro da segmenta&ccedil;&atilde;o &ldquo;Bahia&rdquo;. O total &eacute; o n&uacute;mero real de pessoas distintas informado pelo Meta.</p>
+
+    <div class="grafico">
+      <h4>Pessoas alcançadas por real investido</h4>
+      <p class="nota">Para cada R$ 1,00 gasto, quantas pessoas diferentes foram atingidas em cada localidade.</p>
+      <div class="barra-linha"><span class="nome">Bahia + Brasil (v&iacute;deo)</span><span class="trilho"><b class="preenche v3" style="width:100%"></b></span><span class="val">226 pessoas</span></div>
+      <div class="barra-linha"><span class="nome">Nordeste</span><span class="trilho"><b class="preenche v2" style="width:77%"></b></span><span class="val">174 pessoas</span></div>
+      <div class="barra-linha"><span class="nome">Maranh&atilde;o, Tocantins e Piau&iacute;</span><span class="trilho"><b class="preenche v2" style="width:60%"></b></span><span class="val">135 pessoas</span></div>
+      <div class="barra-linha"><span class="nome">Brasil</span><span class="trilho"><b class="preenche v2" style="width:39%"></b></span><span class="val">87 pessoas</span></div>
+      <div class="barra-linha"><span class="nome">Bahia (estado)</span><span class="trilho"><b class="preenche" style="width:33%"></b></span><span class="val">74 pessoas</span></div>
+      <div class="barra-linha"><span class="nome">Oeste Baiano</span><span class="trilho"><b class="preenche" style="width:26%"></b></span><span class="val">59 pessoas</span></div>
+      <div class="barra-linha"><span class="nome">Juazeiro e Petrolina</span><span class="trilho"><b class="preenche v4" style="width:23%"></b></span><span class="val">51 pessoas</span></div>
+      <div class="barra-linha"><span class="nome">Barra, Xique-Xique e Irec&ecirc;</span><span class="trilho"><b class="preenche v4" style="width:20%"></b></span><span class="val">45 pessoas</span></div>
+    </div>
+
+    <h3 style="font-size:1.2rem;margin:38px 0 6px">Detalhamento por tipo de resultado</h3>
+    <p class="legenda" style="margin-bottom:18px">Resultados espec&iacute;ficos por formato de an&uacute;ncio.</p>
+    <div class="especificos">
+      <div class="esp">
+        <p class="origem">V&iacute;deos</p>
+        <div class="par"><span>Reprodu&ccedil;&otilde;es iniciadas</span><span>272.704</span></div>
+        <div class="par"><span>Assistiram at&eacute; 25%</span><span>15.877</span></div>
+        <div class="par"><span>Assistiram at&eacute; 50%</span><span>8.692</span></div>
+        <div class="par"><span>Assistiram at&eacute; 75%</span><span>5.702</span></div>
+        <div class="par"><span>Assistiram at&eacute; o fim</span><span>3.430</span></div>
+        <div class="par"><span>Reprodu&ccedil;&otilde;es completas ou 15s+</span><span>33.673</span></div>
+      </div>
+      <div class="esp b">
+        <p class="origem">Tr&aacute;fego para o site</p>
+        <div class="par"><span>Cliques no link</span><span>12.060</span></div>
+        <div class="par"><span>Visitas ao site confirmadas</span><span>7.745</span></div>
+        <div class="par"><span>Custo por visita</span><span>R$ 0,64</span></div>
+        <div class="par"><span>Cliques que viraram visita</span><span>64%</span></div>
+      </div>
+      <div class="esp c">
+        <p class="origem">Engajamento geral</p>
+        <div class="par"><span>Curtidas e rea&ccedil;&otilde;es</span><span>4.150</span></div>
+        <div class="par"><span>Coment&aacute;rios</span><span>37</span></div>
+        <div class="par"><span>Compartilhamentos</span><span>331</span></div>
+        <div class="par"><span>Salvamentos</span><span>117</span></div>
+        <div class="par"><span>Cliques totais</span><span>20.458</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== GEST&Atilde;O ANTERIOR ==================== -->
+<section id="anterior">
+  <div class="wrap">
+    <p class="marca">Bloco B &middot; 1 de maio a 10 de julho</p>
+    <h2>Gest&atilde;o anterior</h2>
+    <p class="lede">Setenta e um dias de campanha. Neste per&iacute;odo, a segmenta&ccedil;&atilde;o utilizava listas amplas de cidades e estados, o que n&atilde;o permite um recorte individual por cidade.</p>
+
+    <div class="destaques">
+      <div class="destaque"><p class="n">R$ 3.110</p><p class="rot">Investido</p><p class="exp">Em 71 dias de veicula&ccedil;&atilde;o</p></div>
+      <div class="destaque"><p class="n">308.581</p><p class="rot">Pessoas alcançadas</p><p class="exp">N&uacute;mero real, sem repeti&ccedil;&atilde;o</p></div>
+      <div class="destaque"><p class="n">550.734</p><p class="rot">Exibi&ccedil;&otilde;es</p><p class="exp">Apari&ccedil;&otilde;es na tela</p></div>
+      <div class="destaque"><p class="n">27.726</p><p class="rot">Engajamento total</p><p class="exp">Curtidas, coment&aacute;rios, compartilhamentos, salvamentos e cliques</p></div>
+    </div>
+
+    <h3 style="font-size:1.2rem;margin:38px 0 6px">Resultado por campanha</h3>
+    <p class="legenda" style="margin-bottom:14px">Quatro campanhas veiculadas no per&iacute;odo, todas encerradas antes de 11 de julho.</p>
+    <div class="tabbox">
+      <table>
+        <thead><tr>
+          <th>Campanha e segmenta&ccedil;&atilde;o</th><th>Investido</th><th>Exibi&ccedil;&otilde;es</th><th>Alcance</th>
+          <th>Cliques</th><th>Engajamento</th><th>Custo/mil</th><th>Frequ&ecirc;ncia</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>Comercial &mdash; v&iacute;deos de depoimento<br><small style="color:var(--cinza)">20 cidades da BA, PE, PI e GO</small></td><td class="num">R$ 697,46</td><td class="num">125.031</td><td class="num">89.682</td><td class="num">1.970</td><td class="num">16.662</td><td class="num">R$ 5,58</td><td class="num">1,39&times;</td></tr>
+          <tr><td>Divulgar patrocinadores &mdash; feed<br><small style="color:var(--cinza)">20 cidades da BA, PE, PI e GO</small></td><td class="num">R$ 533,79</td><td class="num">122.575</td><td class="num">71.171</td><td class="num">2.067</td><td class="num">2.507</td><td class="num">R$ 4,35</td><td class="num">1,72&times;</td></tr>
+          <tr><td>Capta&ccedil;&atilde;o de expositores<br><small style="color:var(--cinza)">7 estados: BA, MA, MT, PA, PI, GO, TO</small></td><td class="num">R$ 475,18</td><td class="num">122.059</td><td class="num">69.041</td><td class="num">2.495</td><td class="num">2.413</td><td class="num">R$ 3,89</td><td class="num">1,77&times;</td></tr>
+          <tr><td>Capta&ccedil;&atilde;o de patrocinadores<br><small style="color:var(--cinza)">7 estados: BA, MA, MT, PA, PI, GO, TO</small></td><td class="num">R$ 477,73</td><td class="num">108.578</td><td class="num">66.541</td><td class="num">2.710</td><td class="num">2.642</td><td class="num">R$ 4,40</td><td class="num">1,63&times;</td></tr>
+          <tr><td>Divulgar patrocinadores &mdash; stories<br><small style="color:var(--cinza)">20 cidades da BA, PE, PI e GO</small></td><td class="num">R$ 508,81</td><td class="num">55.266</td><td class="num">48.714</td><td class="num">3.068</td><td class="num">3.219</td><td class="num">R$ 9,21</td><td class="num">1,13&times;</td></tr>
+          <tr><td>Comercial no WhatsApp<br><small style="color:var(--cinza)">Brasil inteiro</small></td><td class="num">R$ 417,90</td><td class="num">17.225</td><td class="num">6.355</td><td class="num">468</td><td class="num">283</td><td class="num">R$ 24,26</td><td class="num">2,71&times;</td></tr>
+          <tr class="somatorio"><td>Total do per&iacute;odo</td><td class="num">R$ 3.110,87</td><td class="num">550.734</td><td class="num">308.581</td><td class="num">12.778</td><td class="num">27.726</td><td class="num">R$ 5,65</td><td class="num">1,78&times;</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="font-size:1.2rem;margin:38px 0 6px">Cobertura geogr&aacute;fica</h3>
+    <p class="legenda" style="margin-bottom:14px">Como as campanhas usavam listas amplas, o recorte poss&iacute;vel &eacute; por configura&ccedil;&atilde;o, n&atilde;o por cidade individual.</p>
+    <div class="tabbox">
+      <table>
+        <thead><tr><th>Configura&ccedil;&atilde;o usada</th><th>Investido</th><th>Exibi&ccedil;&otilde;es</th><th>Participa&ccedil;&atilde;o</th></tr></thead>
+        <tbody>
+          <tr><td>20 cidades da Bahia, Pernambuco, Piau&iacute; e Goi&aacute;s<br><small style="color:var(--cinza)">Barreiras, Salvador, Petrolina, Irec&ecirc;, Xique-Xique, Lu&iacute;s Eduardo e outras</small></td><td class="num">R$ 1.740,06</td><td class="num">302.872</td><td class="num">55,0%</td></tr>
+          <tr><td>7 estados inteiros<br><small style="color:var(--cinza)">Bahia, Maranh&atilde;o, Mato Grosso, Par&aacute;, Piau&iacute;, Goi&aacute;s, Tocantins</small></td><td class="num">R$ 952,91</td><td class="num">230.637</td><td class="num">41,9%</td></tr>
+          <tr><td>Brasil, sem recorte</td><td class="num">R$ 417,90</td><td class="num">17.225</td><td class="num">3,1%</td></tr>
+          <tr class="somatorio"><td>Total</td><td class="num">R$ 3.110,87</td><td class="num">550.734</td><td class="num">100%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="legenda">Barra do Rio Grande, cidade-sede do evento, n&atilde;o aparecia isolada em nenhuma campanha deste per&iacute;odo &mdash; estava dentro das listas amplas. Por isso n&atilde;o &eacute; poss&iacute;vel informar quantas pessoas de Barra especificamente foram alcançadas antes de 11 de julho.</p>
+
+    <div class="especificos">
+      <div class="esp">
+        <p class="origem">V&iacute;deos</p>
+        <div class="par"><span>Reprodu&ccedil;&otilde;es iniciadas</span><span>123.572</span></div>
+        <div class="par"><span>Assistiram at&eacute; o fim</span><span>945</span></div>
+        <div class="par"><span>Reprodu&ccedil;&otilde;es completas ou 15s+</span><span>3.145</span></div>
+      </div>
+      <div class="esp b">
+        <p class="origem">Tr&aacute;fego para o site</p>
+        <div class="par"><span>Cliques no link</span><span>10.946</span></div>
+        <div class="par"><span>Visitas ao site confirmadas</span><span>1.959</span></div>
+        <div class="par"><span>Custo por visita</span><span>R$ 1,59</span></div>
+        <div class="par"><span>Cliques que viraram visita</span><span>18%</span></div>
+      </div>
+      <div class="esp c">
+        <p class="origem">Engajamento geral</p>
+        <div class="par"><span>Curtidas e rea&ccedil;&otilde;es</span><span>1.503</span></div>
+        <div class="par"><span>Coment&aacute;rios</span><span>20</span></div>
+        <div class="par"><span>Compartilhamentos</span><span>66</span></div>
+        <div class="par"><span>Salvamentos</span><span>80</span></div>
+        <div class="par"><span>Cliques totais</span><span>12.778</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== COMPARATIVO ==================== -->
+<section id="comparativo">
+  <div class="wrap">
+    <p class="marca">Os dois per&iacute;odos lado a lado</p>
+    <h2>Compara&ccedil;&atilde;o entre os per&iacute;odos</h2>
+    <p class="lede">Para uma compara&ccedil;&atilde;o justa entre per&iacute;odos com or&ccedil;amentos diferentes (R$ 44/dia vs R$ 237/dia), os n&uacute;meros abaixo mostram o resultado <strong>para cada real investido</strong>.</p>
+
+    <div class="versus">
+      <div class="vs-cab">
+        <div>Indicador (por R$ 1,00 investido)</div><div>Gest&atilde;o anterior</div><div>Gest&atilde;o atual</div><div>Varia&ccedil;&atilde;o</div>
+      </div>
+      <div class="vs-linha"><div>Exibi&ccedil;&otilde;es geradas</div><div>177,0</div><div>178,8</div><div class="delta neu">+1%</div></div>
+      <div class="vs-linha"><div>Pessoas alcançadas</div><div>99,2</div><div>70,1</div><div class="delta neg">&minus;29%</div></div>
+      <div class="vs-linha"><div>Engajamento gerado</div><div>8,9</div><div>28,7</div><div class="delta pos">+222%</div></div>
+      <div class="vs-linha"><div>Visitas ao site</div><div>0,63</div><div>1,55</div><div class="delta pos">+147%</div></div>
+      <div class="vs-linha"><div>V&iacute;deos assistidos at&eacute; o fim ou 15s+</div><div>1,01</div><div>6,75</div><div class="delta pos">+568%</div></div>
+      <div class="vs-linha"><div>Custo por mil exibi&ccedil;&otilde;es</div><div>R$ 5,65</div><div>R$ 5,59</div><div class="delta neu">&minus;1%</div></div>
+      <div class="vs-linha"><div>Custo por visita ao site</div><div>R$ 1,59</div><div>R$ 0,64</div><div class="delta pos">&minus;60%</div></div>
+      <div class="vs-linha"><div>Frequ&ecirc;ncia m&eacute;dia</div><div>1,78&times;</div><div>2,55&times;</div><div class="delta neu">+43%</div></div>
+      <div class="vs-linha"><div>Taxa de cliques</div><div>2,32%</div><div>2,29%</div><div class="delta neu">&minus;1%</div></div>
+    </div>
+    <p class="legenda">Verde indica melhora, vermelho indica redu&ccedil;&atilde;o, cinza indica estabilidade.</p>
+
+    <div class="aviso neutro">
+      <strong>O que os n&uacute;meros mostram.</strong> O custo de aparecer na tela ficou praticamente igual nos dois per&iacute;odos (R$ 5,65 vs R$ 5,59), o que indica que o preço de m&iacute;dia n&atilde;o mudou. O engajamento por real investido cresceu tr&ecirc;s vezes &mdash; cada real passou a gerar mais curtidas, coment&aacute;rios e compartilhamentos. As visitas ao site por real investido mais que dobraram, e o custo por visita caiu de R$ 1,59 para R$ 0,64. O alcance por real diminuiu 29% &mdash; resultado da concentra&ccedil;&atilde;o de verba nas cidades pr&oacute;ximas ao evento, onde o p&uacute;blico dispon&iacute;vel &eacute; naturalmente menor.
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CRIATIVOS ==================== -->
+<section id="criativos">
+  <div class="wrap">
+    <p class="marca">Pe&ccedil;as publicit&aacute;rias</p>
+    <h2>Desempenho dos an&uacute;ncios</h2>
+    <p class="lede">As doze pe&ccedil;as com maior exibi&ccedil;&atilde;o no per&iacute;odo. Clique em qualquer uma para ver o texto completo e os n&uacute;meros detalhados.</p>
+
+    <div class="criativos" id="galeria"></div>
+
+    <div class="aviso neutro" style="margin-top:34px">
+      <strong>Pe&ccedil;a de maior desempenho.</strong> O v&iacute;deo institucional &agrave;s margens do Rio S&atilde;o Francisco foi a pe&ccedil;a com melhor rela&ccedil;&atilde;o custo-resultado: R$ 2,88 por mil exibi&ccedil;&otilde;es (contra a m&eacute;dia de R$ 5,61), taxa de cliques de 2,88% e 81.745 intera&ccedil;&otilde;es. Representou 4,9% do investimento total e gerou quase metade de todo o engajamento do per&iacute;odo.
+    </div>
+  </div>
+</section>
+
+<!-- ==================== GLOSS&Aacute;RIO ==================== -->
+<section id="glossario">
+  <div class="wrap">
+    <p class="marca">Para entender os termos</p>
+    <h2>Gloss&aacute;rio</h2>
+    <p class="lede">Os termos t&eacute;cnicos que aparecem neste relat&oacute;rio, explicados em linguagem comum.</p>
+    <dl class="glossario">
+      <div class="gl"><dt>Exibi&ccedil;&otilde;es <em>impress&otilde;es</em></dt><dd>Quantas vezes o an&uacute;ncio apareceu na tela de algu&eacute;m. A mesma pessoa pode gerar v&aacute;rias exibi&ccedil;&otilde;es.</dd></div>
+      <div class="gl"><dt>Alcance</dt><dd>Quantas pessoas diferentes viram o an&uacute;ncio pelo menos uma vez. &Eacute; sempre menor que o n&uacute;mero de exibi&ccedil;&otilde;es.</dd></div>
+      <div class="gl"><dt>Frequ&ecirc;ncia</dt><dd>Quantas vezes cada pessoa viu o an&uacute;ncio, em m&eacute;dia. Acima de 4 ou 5 costuma indicar repeti&ccedil;&atilde;o excessiva.</dd></div>
+      <div class="gl"><dt>Custo por mil exibi&ccedil;&otilde;es <em>CPM</em></dt><dd>Quanto custa aparecer mil vezes na tela. &Eacute; a principal medida de preço de m&iacute;dia.</dd></div>
+      <div class="gl"><dt>Taxa de cliques <em>CTR</em></dt><dd>De cada 100 pessoas que viram o an&uacute;ncio, quantas clicaram nele.</dd></div>
+      <div class="gl"><dt>Engajamento</dt><dd>Soma de curtidas, coment&aacute;rios, compartilhamentos, salvamentos, cliques e visualiza&ccedil;&otilde;es de v&iacute;deo.</dd></div>
+      <div class="gl"><dt>Visitas ao site</dt><dd>Pessoas que clicaram e realmente carregaram a p&aacute;gina de destino. Sempre menor que o n&uacute;mero de cliques.</dd></div>
+      <div class="gl"><dt>Reprodu&ccedil;&atilde;o completa ou 15s+ <em>ThruPlay</em></dt><dd>V&iacute;deos assistidos at&eacute; o fim, ou por pelo menos 15 segundos quando o v&iacute;deo &eacute; mais longo.</dd></div>
+      <div class="gl"><dt>Campanha, grupo e an&uacute;ncio</dt><dd>Campanha &eacute; o objetivo geral. Dentro dela, cada grupo define para quem anunciar &mdash; aqui, cada localidade. Dentro do grupo ficam os an&uacute;ncios, que s&atilde;o as pe&ccedil;as em si.</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- ==================== MODAL ==================== -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="m-titulo">
+  <div class="modal-cx">
+    <button class="modal-fechar" id="fechar" aria-label="Fechar">&times;</button>
+    <div class="modal-img" id="m-img"></div>
+    <div class="modal-lado">
+      <h3 id="m-titulo"></h3>
+      <p class="m-fonte" id="m-fonte"></p>
+      <div class="m-metricas" id="m-metricas"></div>
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--cinza);margin-bottom:8px">Texto do an&uacute;ncio</p>
+      <div class="m-texto" id="m-texto"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== RODAP&Eacute; ==================== -->
+<footer class="rodape">
+  <div class="wrap">
+    <strong>Nota metodol&oacute;gica</strong>
+    <p>Todos os n&uacute;meros v&ecirc;m diretamente da API de Marketing do Meta, extra&iacute;dos em 31 de julho de 2026 para a conta de an&uacute;ncios Barra Agro Show. Os valores de investimento foram conferidos contra o custo por mil exibi&ccedil;&otilde;es de cada linha para descartar erros de leitura. O alcance total de cada per&iacute;odo &eacute; o n&uacute;mero real informado pelo Meta, sem repeti&ccedil;&atilde;o de pessoas &mdash; por isso &eacute; menor que a soma das linhas individuais. N&uacute;meros de alcance n&atilde;o podem ser somados entre campanhas ou localidades.</p>
+    <p style="margin-top:14px">Este relat&oacute;rio cobre exclusivamente an&uacute;ncios pagos no Meta (Instagram e Facebook). O desempenho org&acirc;nico do perfil n&atilde;o est&aacute; inclu&iacute;do.</p>
+    <p style="margin-top:14px;font-size:.8rem;opacity:.75">As imagens das pe&ccedil;as s&atilde;o carregadas dos servidores do Meta e podem deixar de aparecer ap&oacute;s alguns dias, quando os links expiram. Os n&uacute;meros do relat&oacute;rio n&atilde;o dependem delas.</p>
+  </div>
+</footer>
+
+<script>
+const PECAS = [
+ {n:"Vídeo institucional — Rio São Francisco",f:"Gestão atual · 3 variações · campanhas de vídeo",t:"video",
+  img:"", inv:"R$ 394,45",exib:"137.103",ctr:"2,88%",cpm:"R$ 2,88",eng:"81.745",extra:["Reproduções","131.674"],extra2:["Assistidos até o fim ou 15s+","23.211"],
+  txt:"Realizada às margens do Rio São Francisco, a Barra AgroShow 2026 se consolida como um dos principais encontros do agro no semiárido brasileiro, reunindo produtores, empresas e instituições em um ambiente voltado à geração de negócios, difusão de tecnologias e fortalecimento das cadeias produtivas.\n\nCom foco na integração entre fruticultura, produção de grãos e pecuária de alta performance, a feira evidencia o potencial do Médio São Francisco como nova fronteira agrícola.\n\nA ampliação da estrutura e a diversificação da programação reforçam o papel do evento como plataforma estratégica para o desenvolvimento regional."},
+
+ {n:"Senar Bahia — patrocinador confirmado",f:"Gestão anterior · feed · divulgação de patrocinadores",t:"imagem",
+  img:"https://scontent-lga3-1.xx.fbcdn.net/v/t45.1600-4/677620722_3463986150443310_4699021883705265647_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=d5bd00&_nc_ohc=Eq2yamZaWfgQ7kNvwGMl9cC&_nc_oc=AdpvsvclKfLF1mOM2klOrZ-xlnikbi8SKSc6eVyI0MWEUzReRyezKBrBL_GCSnjnG9I&_nc_zt=1&_nc_ht=scontent-lga3-1.xx&edm=AEZPnVgEAAAA&oh=00_AQF4sA3-XlCLzt-tfQ4qfkst8d84lyOd0xr7lpkLPbWPMA&oe=6A72D86C",
+  inv:"R$ 532,32",exib:"122.266",ctr:"1,69%",cpm:"R$ 4,35",eng:"2.500",extra:["Reações","523"],extra2:["Salvamentos","21"],
+  txt:"O Senar Bahia está confirmado como patrocinador da Barra AgroShow 2026. A instituição fortalece a qualificação profissional no campo e contribui diretamente para o desenvolvimento sustentável do agronegócio baiano, ampliando o acesso ao conhecimento e à inovação no meio rural.\n\n#barraagroshow #senarbahia #agronegocio #capacitacao #agro"},
+
+ {n:"Garanta sua presença como expositor",f:"Gestão anterior · captação de expositores",t:"imagem",
+  img:"https://scontent-lga3-1.xx.fbcdn.net/v/t45.1600-4/686508767_122201959478514274_5715395277578716829_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=d5bd00&_nc_ohc=Es2uWXU0H38Q7kNvwFqVebJ&_nc_oc=AdrmEIppkFgd8f3zHzKh7f0bJ4wZ93_C_RCQLDykgKJANXCAgX4alHc-JWIs6-tmKmo&_nc_zt=1&_nc_ht=scontent-lga3-1.xx&edm=AEZPnVgEAAAA&oh=00_AQF8Es1pUkISj31-9FtepBmioQqty9sr6nvrJKXmU-kbhw&oe=6A72C2B6",
+  inv:"R$ 475,18",exib:"122.059",ctr:"2,04%",cpm:"R$ 3,89",eng:"2.413",extra:["Visitas ao site","938"],extra2:["Salvamentos","24"],
+  txt:"Garanta sua presença na Barra AgroShow 2026 como expositor e coloque sua marca no centro das decisões do agronegócio.\n\nA feira reúne um público qualificado, pronto para conhecer soluções, fechar negócios e gerar novas parcerias.\n\nExpor é ampliar alcance, fortalecer posicionamento e transformar visibilidade em resultados concretos."},
+
+ {n:"Depoimento — Josival Barbosa, SPR Juazeiro",f:"Gestão anterior · vídeo de depoimento",t:"video",img:"",
+  inv:"R$ 593,47",exib:"109.134",ctr:"1,54%",cpm:"R$ 5,44",eng:"14.164",extra:["Reproduções","104.716"],extra2:["Assistidos até o fim ou 15s+","2.619"],
+  txt:"O presidente do SPR Juazeiro, Josival Barbosa, marcou presença no lançamento da Barra AgroShow em Juazeiro - BA e destacou a importância do evento para a evolução dos produtores.\n\nParabenizou Marco Caviola e o SPR Barra pela iniciativa e confirmou: o Vale do São Francisco estará em peso na feira para \"beber da fonte\" do conhecimento técnico e das novas tecnologias."},
+
+ {n:"Associe sua marca ao evento",f:"Gestão anterior · captação de patrocinadores",t:"imagem",
+  img:"https://scontent-lga3-2.xx.fbcdn.net/v/t45.1600-4/680309217_122201959352514274_943152668904039150_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=d5bd00&_nc_ohc=aTVr3nly6vsQ7kNvwHlQ6wJ&_nc_oc=Ado-DKpT9oDw8sKSFSJap4KJvvPytLDzEQ_o4-ZeJ29bzkQJ-xzqGcYfh3HHwMhKqgI&_nc_zt=1&_nc_ht=scontent-lga3-2.xx&edm=AEZPnVgEAAAA&oh=00_AQEBv1ZYQvTafvZvauURoU3l0nts9HJkIic_hquNEZIvIg&oe=6A72C428",
+  inv:"R$ 477,73",exib:"108.578",ctr:"2,50%",cpm:"R$ 4,40",eng:"2.642",extra:["Visitas ao site","1.005"],extra2:["Reações","236"],
+  txt:"Associe sua marca à Barra AgroShow 2026 e conecte-se diretamente com quem decide no agronegócio.\n\nO evento oferece visibilidade qualificada, presença estratégica e oportunidades reais de geração de negócios com produtores, investidores e lideranças do setor.\n\nSeja patrocinador e fortaleça seu posicionamento em um dos principais encontros do agro regional."},
+
+ {n:"A fruticultura irrigada do Médio São Francisco",f:"Gestão atual · 2 variações · tráfego para o site",t:"imagem",
+  img:"https://scontent-lga3-2.xx.fbcdn.net/v/t45.1600-4/675699204_122043063655753862_3522826972137604192_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=d5bd00&_nc_ohc=is-n6QftuZUQ7kNvwEpfO81&_nc_oc=Adq9DkY_afo8sL5pwjpxbScuWqlgc1y1I-_o3T7DyS0u6gQa_QQiiIbISTPR74uMkTc&_nc_zt=1&_nc_ht=scontent-lga3-2.xx&edm=AEZPnVgEAAAA&oh=00_AQHsyIJW1wBnGjjlhadefskAUWrIITMpR-VWjMnxnKX5bg&oe=6A72C1AE",
+  inv:"R$ 344,75",exib:"83.203",ctr:"2,01%",cpm:"R$ 4,14",eng:"1.605",extra:["Visitas ao site","888"],extra2:["Reações","317"],
+  txt:"A fruticultura é uma das grandes forças da Barra Agro Show 2026!\n\nImpulsionado pela irrigação e pelas condições climáticas favoráveis, o Médio São Francisco se destaca como uma das regiões mais promissoras do Brasil para a produção de frutas tropicais durante todo o ano.\n\nNa região de Barra e entorno, culturas como coco e cacau ganham cada vez mais espaço com o uso de manejo tecnificado. Já os polos irrigados do Vale do São Francisco consolidam a produção de manga, uva, banana, limão e tangerina.\n\n19 a 22 de agosto de 2026 · Barra – Bahia"},
+
+ {n:"Senar Bahia — versão stories",f:"Gestão anterior · stories · divulgação de patrocinadores",t:"imagem",
+  img:"https://scontent-lga3-1.xx.fbcdn.net/v/t45.1600-4/677620722_3463986150443310_4699021883705265647_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=d5bd00&_nc_ohc=Eq2yamZaWfgQ7kNvwGMl9cC&_nc_oc=AdpvsvclKfLF1mOM2klOrZ-xlnikbi8SKSc6eVyI0MWEUzReRyezKBrBL_GCSnjnG9I&_nc_zt=1&_nc_ht=scontent-lga3-1.xx&edm=AEZPnVgEAAAA&oh=00_AQF4sA3-XlCLzt-tfQ4qfkst8d84lyOd0xr7lpkLPbWPMA&oe=6A72D86C",
+  inv:"R$ 491,69",exib:"53.186",ctr:"5,57%",cpm:"R$ 9,24",eng:"3.103",extra:["Cliques","2.965"],extra2:["Frequência","1,14×"],
+  txt:"O Senar Bahia está confirmado como patrocinador da Barra AgroShow 2026. A instituição fortalece a qualificação profissional no campo e contribui diretamente para o desenvolvimento sustentável do agronegócio baiano.\n\n#barraagroshow #senarbahia #agronegocio #capacitacao #agro"},
+
+ {n:"Data confirmada — 19 a 22 de agosto",f:"Gestão atual · Juazeiro e Petrolina",t:"imagem",
+  img:"https://scontent-lga3-1.xx.fbcdn.net/v/t45.1600-4/676222620_122043063655753853_4332519061489805965_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=d5bd00&_nc_ohc=U068Z_lSmr0Q7kNvwGPaMIP&_nc_oc=AdqWiiSyG-evjw6s32unIu7yeNiTD0E9lGSR3oqfXXq1w_w2RN2ltxLauu1_QNGfhu8&_nc_zt=1&_nc_ht=scontent-lga3-1.xx&edm=AEZPnVgEAAAA&oh=00_AQFW9mGE3M8UJ4GSQ9nlFOOHJlMOlYFwSYZYLrx-vWT58A&oe=6A72A779",
+  inv:"R$ 231,85",exib:"46.509",ctr:"1,97%",cpm:"R$ 4,99",eng:"886",extra:["Visitas ao site","530"],extra2:["Salvamentos","11"],
+  txt:"A Barra Agro Show 2026 já tem data confirmada!\n\nDe 19 a 22 de agosto, Barra (BA) será o ponto de encontro de quem acredita na força do agronegócio e no futuro da produção agrícola brasileira.\n\nA feira reforça o protagonismo do Médio São Francisco como uma das regiões mais promissoras do país, reunindo produtores, empresas, especialistas e grandes oportunidades de negócios.\n\nFruticultura irrigada · Agricultura familiar · Mecanização agrícola · Insumos de alta performance · Tecnologias para o campo"},
+
+ {n:"Carrossel — 3º Seminário da Fruticultura",f:"Gestão atual · Barra e entorno · campanha do seminário",t:"carrossel",img:"",
+  inv:"R$ 389,21",exib:"45.461",ctr:"1,20%",cpm:"R$ 8,56",eng:"2.895",extra:["Frequência","11,91×"],extra2:["Alcance","3.817"],
+  txt:"A fruticultura irrigada ganha protagonismo na Barra Agro Show 2026!\n\nVem aí o 3º Seminário da Fruticultura Irrigada, um encontro pensado para quem quer evoluir no campo, conhecer novas tecnologias e acompanhar as tendências que estão impulsionando a produção agrícola.\n\nVoltado para produtores rurais, técnicos e consultores, estudantes, empresas do setor e profissionais apaixonados pela fruticultura irrigada.\n\n21 de agosto de 2026 · Auditório Complexo Barra Agro Show – Barra (BA)\n\nVagas limitadas."},
+
+ {n:"Lançamento oficial em Luís Eduardo Magalhães",f:"Gestão atual · vídeo · Oeste Baiano",t:"video",img:"",
+  inv:"R$ 191,18",exib:"33.449",ctr:"3,19%",cpm:"R$ 5,72",eng:"8.680",extra:["Reproduções","23.496"],extra2:["Assistidos até o fim ou 15s+","1.294"],
+  txt:"Luís Eduardo Magalhães recebe o lançamento oficial da 2ª edição da Barra Agro Show!\n\nNesta quinta-feira, 23 de julho, às 8h, no Sindicato dos Produtores Rurais de Luís Eduardo Magalhães, será realizada a apresentação oficial da Barra Agro Show 2026.\n\nCom o tema \"Fronteira Agrícola do Brasil\", a edição de 2026 reforça a conexão entre Luís Eduardo Magalhães, Irecê, Barra e toda a região do Médio São Francisco."},
+
+ {n:"A agricultura familiar fortalece o campo",f:"Gestão atual · 2 variações · tráfego para o site",t:"imagem",
+  img:"https://scontent-lga3-3.xx.fbcdn.net/v/t45.1600-4/747290060_27589817427379223_1119579975545201669_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=d5bd00&_nc_ohc=g6AFggGi8vEQ7kNvwHWD4zm&_nc_oc=Adq9chsSw9sXDHQBB3ao9bK5G_6ubJ7njVbBo_aOdnmakS6eyBZCFrRnNAA5NS3GNJk&_nc_zt=1&_nc_ht=scontent-lga3-3.xx&edm=AEZPnVgEAAAA&oh=00_AQGBGQdGu6KT2KZmRbBr8w7uO56oPrB3KkEF1J9twz7_Ew&oe=6A72C169",
+  inv:"R$ 170,80",exib:"36.545",ctr:"1,77%",cpm:"R$ 4,67",eng:"610",extra:["Visitas ao site","326"],extra2:["Reações","92"],
+  txt:"A agricultura familiar é a raiz que fortalece o campo na Barra Agro Show 2026!\n\nNo Médio São Francisco, a agricultura familiar desempenha um papel essencial no desenvolvimento da região. Da produção de hortaliças ao cultivo de alimentos, da criação de aves, caprinos e ovinos à apicultura, são milhares de pequenos produtores que movimentam a economia local.\n\nMais do que produzir alimentos, a agricultura familiar gera renda, fortalece as comunidades rurais e contribui diretamente para a segurança alimentar e o desenvolvimento sustentável do semiárido baiano."},
+
+ {n:"3º Seminário da Fruticultura Irrigada",f:"Gestão atual · Bahia · campanha do seminário",t:"imagem",
+  img:"https://scontent-lga3-1.xx.fbcdn.net/v/t45.1600-4/746400124_27590160564011576_8258460558974006830_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=d5bd00&_nc_ohc=LrbU4I_yQG0Q7kNvwGFK54I&_nc_oc=AdrDNCBPOgsjI38dSg-j6eTGATrLPLH7J67YGKOlUKr-yCQ-6tfYXbr1lDP-gHYOlQc&_nc_zt=1&_nc_ht=scontent-lga3-1.xx&edm=AEZPnVgEAAAA&oh=00_AQHL7yuxr0-TLI-LbwkhCGxhHZuz2IS1CMjJMqaAPzsynA&oe=6A72BD4A",
+  inv:"R$ 264,54",exib:"29.947",ctr:"1,57%",cpm:"R$ 8,83",eng:"528",extra:["Frequência","4,10×"],extra2:["Alcance","7.306"],
+  txt:"O 3º Seminário da Fruticultura Irrigada já tem data marcada!\n\nChegou a oportunidade de aprender com quem é referência no setor e conhecer, na prática, as soluções que estão transformando a fruticultura irrigada no Brasil.\n\nAo longo de um dia de imersão, você terá acesso a visitas técnicas em campo, palestras com grandes especialistas, conteúdo prático e estratégico e networking com produtores, técnicos e empresas do setor.\n\n21 de agosto de 2026 · Auditório Complexo Barra AgroShow – Barra (BA)"}
+];
+
+const ICONES={video:"▶",carrossel:"❯❯",imagem:"■"};
+const galeria=document.getElementById("galeria");
+
+function semPrevia(img){
+  const cx=img.closest(".crt-img")||img.parentNode;
+  img.remove();
+  const d=document.createElement("div");
+  d.className="crt-fallback";
+  d.innerHTML='<div style="font-size:26px;color:#14555C;margin-bottom:9px">■</div>PRÉVIA EXPIRADA<br><span style="color:#9AA49E">os números permanecem válidos</span>';
+  cx.appendChild(d);
+}
+
+PECAS.forEach((p,i)=>{
+  const b=document.createElement("button");
+  b.className="crt"; b.type="button";
+  b.setAttribute("aria-label","Ver detalhes de "+p.n);
+  const semImagem = '<div class="crt-fallback"><div style="font-size:26px;color:#14555C;margin-bottom:9px">'+ICONES[p.t]+'</div>'+p.t.toUpperCase()+'<br><span style="color:#9AA49E">prévia não disponível</span></div>';
+  const visual = p.img
+    ? '<img src="'+p.img+'" alt="" loading="lazy" onerror="semPrevia(this)">'
+    : semImagem;
+  b.innerHTML=
+    '<div class="crt-img"><span class="crt-tipo">'+p.t+'</span>'+visual+'</div>'+
+    '<div class="crt-corpo">'+
+      '<p class="crt-nome">'+p.n+'</p>'+
+      '<p class="crt-fonte">'+p.f+'</p>'+
+      '<div class="crt-mini">'+
+        '<div><span>Exibições</span>'+p.exib+'</div>'+
+        '<div><span>Custo/mil</span>'+p.cpm+'</div>'+
+        '<div><span>Cliques</span>'+p.ctr+'</div>'+
+        '<div><span>Engajamento</span>'+p.eng+'</div>'+
+      '</div>'+
+      '<p class="crt-abrir">Ver detalhes →</p>'+
+    '</div>';
+  b.addEventListener("click",function(){abrir(i)});
+  galeria.appendChild(b);
+});
+
+var modal=document.getElementById("modal");
+var ultimoFoco=null;
+
+function abrir(i){
+  var p=PECAS[i];
+  ultimoFoco=document.activeElement;
+  document.getElementById("m-titulo").textContent=p.n;
+  document.getElementById("m-fonte").textContent=p.f;
+  document.getElementById("m-img").innerHTML = p.img
+    ? '<img src="'+p.img+'" alt="Peça publicitária: '+p.n+'">'
+    : '<div class="crt-fallback" style="font-size:13px"><div style="font-size:44px;color:#14555C;margin-bottom:12px">'+ICONES[p.t]+'</div>'+p.t.toUpperCase()+'<br><span style="color:#9AA49E">prévia não disponível</span></div>';
+  document.getElementById("m-metricas").innerHTML=
+    '<div><b>'+p.inv+'</b><span>Investido</span></div>'+
+    '<div><b>'+p.exib+'</b><span>Exibições</span></div>'+
+    '<div><b>'+p.cpm+'</b><span>Custo por mil</span></div>'+
+    '<div><b>'+p.ctr+'</b><span>Taxa de cliques</span></div>'+
+    '<div><b>'+p.eng+'</b><span>Engajamento</span></div>'+
+    '<div><b>'+p.extra[1]+'</b><span>'+p.extra[0]+'</span></div>'+
+    '<div style="grid-column:1/-1"><b>'+p.extra2[1]+'</b><span>'+p.extra2[0]+'</span></div>';
+  document.getElementById("m-texto").textContent=p.txt;
+  modal.classList.add("aberto");
+  document.body.style.overflow="hidden";
+  document.getElementById("fechar").focus();
+}
+function fechar(){
+  modal.classList.remove("aberto");
+  document.body.style.overflow="";
+  if(ultimoFoco) ultimoFoco.focus();
+}
+document.getElementById("fechar").addEventListener("click",fechar);
+modal.addEventListener("click",function(e){if(e.target===modal)fechar()});
+document.addEventListener("keydown",function(e){if(e.key==="Escape"&&modal.classList.contains("aberto"))fechar()});
+</script>
+</body>
+</html>
