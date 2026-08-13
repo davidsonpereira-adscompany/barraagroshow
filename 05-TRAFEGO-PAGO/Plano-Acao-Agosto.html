@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Barra AgroShow 2026 &mdash; Plano de A&ccedil;&atilde;o &mdash; Agosto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --papel:#EFF2ED; --superf:#FFFFFF; --areia:#E2DCCC;
+  --tinta:#131F1B; --cinza:#6A766F; --linha:#D3D9D1;
+  --rio:#14555C; --rio-claro:#3E8B90; --terra:#A25E17; --folha:#4E7F2C; --alerta:#B3411E;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--papel); color:var(--tinta);
+  font-family:'IBM Plex Sans',system-ui,-apple-system,sans-serif;
+  font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+h1,h2,h3,h4{font-family:'Bricolage Grotesque','IBM Plex Sans',sans-serif;line-height:1.1;letter-spacing:-.02em}
+.mono{font-family:'IBM Plex Mono',monospace;font-variant-numeric:tabular-nums}
+
+.voltar{position:fixed;top:16px;left:16px;z-index:90;background:var(--rio);color:#fff;text-decoration:none;
+  font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  padding:7px 16px;border-radius:20px;display:flex;align-items:center;gap:6px;
+  box-shadow:0 2px 10px rgba(19,31,27,.25);transition:background .2s}
+.voltar:hover{background:var(--rio-claro)}
+.voltar svg{width:14px;height:14px;stroke:currentColor;stroke-width:2;fill:none}
+.topo{background:var(--rio);color:#F2F6F3;padding:52px 0 44px;position:relative;overflow:hidden}
+.topo::after{content:"";position:absolute;inset:auto 0 0 0;height:5px;
+  background:linear-gradient(90deg,var(--terra) 0 22%,var(--folha) 22% 46%,var(--rio-claro) 46% 100%)}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#9FC6C4}
+.topo h1{font-size:clamp(2.2rem,5.4vw,3.9rem);font-weight:800;margin:14px 0 8px}
+.topo .sub{font-size:1.05rem;color:#C6DBD8;max-width:62ch}
+.periodo{display:flex;flex-wrap:wrap;gap:26px;margin-top:28px;padding-top:22px;border-top:1px solid rgba(255,255,255,.18)}
+.periodo div{min-width:130px}
+.periodo dt{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#8FBAB8;margin-bottom:4px}
+.periodo dd{font-size:1.05rem;font-weight:600}
+
+section{padding:64px 0;border-bottom:1px solid var(--linha)}
+section:last-of-type{border-bottom:0}
+.marca{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--terra);display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.marca::before{content:"";width:26px;height:2px;background:var(--terra)}
+h2{font-size:clamp(1.7rem,3.6vw,2.5rem);font-weight:800;margin-bottom:10px}
+.lede{font-size:1.08rem;color:#3C4A45;max-width:70ch;margin-bottom:34px}
+
+.pilares{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-bottom:10px}
+.pilar{background:var(--superf);border:1px solid var(--linha);border-top:3px solid var(--rio);padding:24px 22px}
+.pilar.b{border-top-color:var(--folha)}.pilar.c{border-top-color:var(--terra)}
+.pilar .num{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--cinza);margin-bottom:10px}
+.pilar h3{font-size:1.12rem;margin-bottom:8px}
+.pilar p{font-size:.89rem;color:#3C4A45;line-height:1.6}
+
+.destaques{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:1px;background:var(--linha);
+  border:1px solid var(--linha);margin-bottom:16px}
+.destaque{background:var(--superf);padding:26px 24px}
+.destaque .n{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;
+  line-height:1;color:var(--rio);letter-spacing:-.03em}
+.destaque .rot{font-size:.9rem;font-weight:600;margin-top:10px}
+.destaque .exp{font-size:.82rem;color:var(--cinza);margin-top:3px;line-height:1.45}
+
+.tabbox{overflow-x:auto;border:1px solid var(--linha);background:var(--superf);margin-bottom:14px}
+table{width:100%;border-collapse:collapse;font-size:.88rem;min-width:680px}
+th,td{padding:11px 13px;text-align:right;border-bottom:1px solid var(--linha);white-space:nowrap}
+th{background:var(--areia);font-size:10.5px;font-family:'IBM Plex Mono',monospace;letter-spacing:.09em;
+  text-transform:uppercase;font-weight:600;color:#4A5651}
+th:first-child,td:first-child{text-align:left;white-space:normal;min-width:220px}
+tbody tr:hover{background:#F6F8F5}
+td.num{font-family:'IBM Plex Mono',monospace;font-variant-numeric:tabular-nums}
+tr.somatorio{background:var(--areia);font-weight:700}
+tr.somatorio td{border-bottom:0}
+tr.grupo td{background:#F1F4F0;font-weight:700;font-size:.84rem;color:var(--rio);text-transform:uppercase;
+  font-family:'IBM Plex Mono',monospace;letter-spacing:.06em}
+.legenda{font-size:.82rem;color:var(--cinza);margin-bottom:34px;max-width:78ch}
+
+.frentes{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-bottom:10px}
+.frente{background:var(--superf);border:1px solid var(--linha);padding:26px 24px}
+.frente .tag{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:3px 10px;border-radius:20px;
+  letter-spacing:.08em;text-transform:uppercase;font-weight:600;margin-bottom:14px}
+.frente .tag.a{background:rgba(20,85,92,.08);color:var(--rio);border:1px solid rgba(20,85,92,.18)}
+.frente .tag.b{background:rgba(78,127,44,.1);color:var(--folha);border:1px solid rgba(78,127,44,.2)}
+.frente .tag.c{background:rgba(162,94,23,.1);color:var(--terra);border:1px solid rgba(162,94,23,.2)}
+.frente h3{font-size:1.18rem;margin-bottom:10px}
+.frente p{font-size:.89rem;color:#3C4A45;line-height:1.65}
+
+.aviso{background:#FBF3E6;border-left:3px solid var(--terra);padding:16px 20px;margin-bottom:30px;font-size:.9rem;line-height:1.6}
+.aviso strong{color:var(--terra)}
+.aviso.neutro{background:#EAF1F1;border-left-color:var(--rio)}
+.aviso.neutro strong{color:var(--rio)}
+.aviso.sucesso{background:#EDF4E6;border-left-color:var(--folha)}
+.aviso.sucesso strong{color:var(--folha)}
+
+.cronograma{background:var(--superf);border:1px solid var(--linha);padding:28px 26px;margin-bottom:34px}
+.cronograma h4{font-size:1.02rem;margin-bottom:4px}
+.cronograma .nota{font-size:.83rem;color:var(--cinza);margin-bottom:22px}
+.dia-linha{display:grid;grid-template-columns:150px 1fr;gap:14px;align-items:center;padding:10px 0;border-bottom:1px solid #EDF0EC}
+.dia-linha:last-child{border-bottom:0}
+.dia-linha .qdo{font-family:'IBM Plex Mono',monospace;font-size:.82rem;font-weight:600;color:var(--rio)}
+.dia-linha .oq{font-size:.88rem;color:#3C4A45}
+@media(max-width:560px){.dia-linha{grid-template-columns:1fr;gap:2px;padding:12px 0}}
+
+.checklist{list-style:none;margin-bottom:30px}
+.checklist li{position:relative;padding-left:30px;margin-bottom:12px;font-size:.95rem;color:#2E3B36;line-height:1.6}
+.checklist li::before{content:"";position:absolute;left:0;top:6px;width:16px;height:16px;border-radius:50%;
+  background:var(--folha);opacity:.15}
+.checklist li::after{content:"";position:absolute;left:4px;top:11px;width:8px;height:5px;
+  border-left:2px solid var(--folha);border-bottom:2px solid var(--folha);transform:rotate(-45deg)}
+
+.rodape{background:var(--tinta);color:#A9B5AE;padding:44px 0;font-size:.84rem;line-height:1.75}
+.rodape strong{color:#EFF2ED;display:block;font-family:'Bricolage Grotesque',sans-serif;font-size:1.08rem;margin-bottom:12px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<a href="Central-Relatorios.html" class="voltar"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>Relat&oacute;rios</a>
+
+<header class="topo">
+  <div class="wrap">
+    <p class="eyebrow">Tr&aacute;fego pago &middot; Plano de a&ccedil;&atilde;o</p>
+    <h1>Agosto 2026 &mdash; O m&ecirc;s do evento</h1>
+    <p class="sub">A estrat&eacute;gia de intensifica&ccedil;&atilde;o, otimiza&ccedil;&atilde;o e escala das campanhas na reta final da Barra AgroShow 2026.</p>
+    <dl class="periodo">
+      <div><dt>Per&iacute;odo</dt><dd>Agosto de 2026</dd></div>
+      <div><dt>Data do evento</dt><dd>19 a 22 de agosto</dd></div>
+      <div><dt>Frentes ativas</dt><dd>7 campanhas</dd></div>
+      <div><dt>Pico de investimento</dt><dd>~R$ 700/dia</dd></div>
+    </dl>
+  </div>
+</header>
+
+<!-- ==================== O MOMENTO ==================== -->
+<section id="momento">
+  <div class="wrap">
+    <p class="marca">O momento da campanha</p>
+    <h2>De visibilidade a presen&ccedil;a de p&uacute;blico</h2>
+    <p class="lede">Agosto &eacute; o m&ecirc;s decisivo: depois de tr&ecirc;s meses construindo reconhecimento e alcan&ccedil;ando mais de 620 mil pessoas, a miss&atilde;o agora &eacute; uma s&oacute; &mdash; converter visibilidade em presen&ccedil;a de p&uacute;blico nos dias 19 a 22 de agosto, e projetar o evento para al&eacute;m da regi&atilde;o.</p>
+
+    <div class="pilares">
+      <div class="pilar">
+        <p class="num">Pilar 01</p>
+        <h3>Intensifica&ccedil;&atilde;o</h3>
+        <p>Mais verba nas frentes que comprovaram resultado nos meses anteriores, mantendo a estrat&eacute;gia geogr&aacute;fica em camadas.</p>
+      </div>
+      <div class="pilar b">
+        <p class="num">Pilar 02</p>
+        <h3>Novas frentes</h3>
+        <p>Mensagens espec&iacute;ficas da reta final: convite direto, valoriza&ccedil;&atilde;o dos expositores e proje&ccedil;&atilde;o nacional para investidores.</p>
+      </div>
+      <div class="pilar c">
+        <p class="num">Pilar 03</p>
+        <h3>Automa&ccedil;&atilde;o</h3>
+        <p>Veicula&ccedil;&atilde;o programada: cada mensagem no ar exatamente no dia certo, com troca autom&aacute;tica &agrave; meia-noite.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== INTENSIFICACAO ==================== -->
+<section id="intensificacao">
+  <div class="wrap">
+    <p class="marca">Pilar 01 &middot; Intensifica&ccedil;&atilde;o</p>
+    <h2>Escala do que j&aacute; funciona</h2>
+    <p class="lede">As campanhas com melhor desempenho tiveram os investimentos ampliados, mantendo o princ&iacute;pio que orienta toda a estrat&eacute;gia: quanto mais perto de Barra, maior o investimento por pessoa.</p>
+
+    <div class="destaques">
+      <div class="destaque">
+        <p class="n">2&times;</p>
+        <p class="rot">Tr&aacute;fego para o site</p>
+        <p class="exp">Or&ccedil;amento dobrado nas sete localidades da campanha.</p>
+      </div>
+      <div class="destaque">
+        <p class="n">2&times;</p>
+        <p class="rot">V&iacute;deo institucional</p>
+        <p class="exp">A pe&ccedil;a com melhor custo por exibi&ccedil;&atilde;o de toda a campanha.</p>
+      </div>
+      <div class="destaque">
+        <p class="n">+50%</p>
+        <p class="rot">Tr&aacute;fego para o perfil</p>
+        <p class="exp">Fortalecendo a audi&ecirc;ncia do @barraagroshow.</p>
+      </div>
+      <div class="destaque">
+        <p class="n">R$ 700</p>
+        <p class="rot">Pico de investimento di&aacute;rio</p>
+        <p class="exp">Curva crescente e controlada at&eacute; a semana do evento.</p>
+      </div>
+    </div>
+
+    <p class="legenda">Verbas de frentes sem entrega foram realocadas para as localidades priorit&aacute;rias. O ritmo de investimento saiu de aproximadamente R$ 240 por dia no fim de julho para cerca de R$ 700 por dia no pico da semana do evento &mdash; com reserva t&eacute;cnica preservada para a cobertura p&oacute;s-evento.</p>
+
+    <div class="aviso sucesso">
+      <strong>Semin&aacute;rios: meta cumprida antes do prazo.</strong> As campanhas de venda de ingressos do Semin&aacute;rio da Fruticultura Irrigada e do Semin&aacute;rio de Pecu&aacute;ria foram encerradas por esgotamento total dos ingressos &mdash; o lote completo foi adquirido por uma &uacute;nica empresa, antecipando a meta de vendas. O investimento foi integralmente redirecionado para a divulga&ccedil;&atilde;o do evento.
+    </div>
+  </div>
+</section>
+
+<!-- ==================== NOVAS FRENTES ==================== -->
+<section id="frentes">
+  <div class="wrap">
+    <p class="marca">Pilar 02 &middot; Novas frentes</p>
+    <h2>Tr&ecirc;s campanhas criadas para a reta final</h2>
+    <p class="lede">Cada nova frente tem um papel espec&iacute;fico no m&ecirc;s do evento &mdash; do convite direto a quem pode ir at&eacute; a proje&ccedil;&atilde;o nacional da regi&atilde;o.</p>
+
+    <div class="frentes">
+      <div class="frente">
+        <span class="tag a">Alcance regional</span>
+        <h3>Convite Final</h3>
+        <p>Campanha de alcance para o p&uacute;blico das regi&otilde;es com maior potencial de presen&ccedil;a, com as mensagens mais decisivas: <strong>entrada gratuita todos os dias</strong>, bastidores da estrutura sendo montada e o convite direto para os quatro dias de feira.</p>
+      </div>
+      <div class="frente">
+        <span class="tag b">Prova social</span>
+        <h3>Expositores em destaque</h3>
+        <p>Campanha dedicada &agrave;s marcas confirmadas: carross&eacute;is reunindo os expositores por segmento &mdash; m&aacute;quinas, insumos, nutri&ccedil;&atilde;o animal, tecnologia, servi&ccedil;os e startups &mdash; e os v&iacute;deos-convite gravados pelas pr&oacute;prias empresas. Al&eacute;m de refor&ccedil;ar a feira, entrega m&iacute;dia e visibilidade a quem acreditou no evento: um ativo comercial para as pr&oacute;ximas edi&ccedil;&otilde;es.</p>
+      </div>
+      <div class="frente">
+        <span class="tag c">Proje&ccedil;&atilde;o nacional</span>
+        <h3>Investidores</h3>
+        <p>Campanha nacional levando as hist&oacute;rias reais de quem investiu na regi&atilde;o e colheu resultados: casos de produtores que transformaram Barra em polo de fruticultura irrigada, gr&atilde;os e pecu&aacute;ria. &Eacute; a vitrine do potencial econ&ocirc;mico do M&eacute;dio S&atilde;o Francisco para capital de fora.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CONTAGEM REGRESSIVA ==================== -->
+<section id="contagem">
+  <div class="wrap">
+    <p class="marca">Pilar 03 &middot; Automa&ccedil;&atilde;o</p>
+    <h2>Contagem regressiva programada</h2>
+    <p class="lede">A semana final ganhou uma programa&ccedil;&atilde;o especial: seis pe&ccedil;as de contagem regressiva, cada uma no ar exatamente nas 24 horas do seu dia, com troca autom&aacute;tica &agrave; meia-noite &mdash; sem depender de nenhuma a&ccedil;&atilde;o manual.</p>
+
+    <div class="cronograma">
+      <h4>Programa&ccedil;&atilde;o da semana do evento</h4>
+      <p class="nota">Veicula&ccedil;&atilde;o separada por regi&atilde;o &mdash; Barra e entorno, Oeste Baiano, Juazeiro e Petrolina &mdash; com verba pr&oacute;pria para cada pra&ccedil;a, garantindo que todas as cidades recebam a mensagem na intensidade planejada.</p>
+      <div class="dia-linha"><span class="qdo">Sexta, 14/08</span><span class="oq">&ldquo;Faltam 5 dias&rdquo; &mdash; a ansiedade come&ccedil;a a subir</span></div>
+      <div class="dia-linha"><span class="qdo">S&aacute;bado, 15/08</span><span class="oq">&ldquo;Faltam 4 dias&rdquo; &mdash; o maior encontro do setor na regi&atilde;o</span></div>
+      <div class="dia-linha"><span class="qdo">Domingo, 16/08</span><span class="oq">&ldquo;Faltam 3 dias&rdquo; &mdash; reta final dos preparativos</span></div>
+      <div class="dia-linha"><span class="qdo">Segunda, 17/08</span><span class="oq">&ldquo;Faltam 2 dias&rdquo; &mdash; Barra ser&aacute; o centro do agroneg&oacute;cio regional</span></div>
+      <div class="dia-linha"><span class="qdo">Ter&ccedil;a, 18/08</span><span class="oq">&ldquo;&Eacute; amanh&atilde;!&rdquo; &mdash; chegou a hora</span></div>
+      <div class="dia-linha"><span class="qdo">Quarta, 19/08</span><span class="oq">&ldquo;&Eacute; HOJE!&rdquo; &mdash; a Barra AgroShow 2026 come&ccedil;a agora</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== DURANTE O EVENTO ==================== -->
+<section id="evento">
+  <div class="wrap">
+    <p class="marca">19 a 22 de agosto</p>
+    <h2>Durante o evento</h2>
+    <p class="lede">Nos quatro dias de feira, a estrat&eacute;gia muda de &ldquo;venha&rdquo; para &ldquo;est&aacute; acontecendo agora&rdquo;.</p>
+
+    <ul class="checklist">
+      <li>Campanhas de alcance concentradas em Barra e regi&atilde;o, no momento em que a decis&atilde;o de ir &eacute; tomada</li>
+      <li>Camada nacional mantida no ar &mdash; a cobertura do evento &eacute; a melhor vitrine para o p&uacute;blico de fora</li>
+      <li>Impulsionamento di&aacute;rio do melhor conte&uacute;do gravado na feira, com a mensagem &ldquo;est&aacute; acontecendo agora&rdquo;</li>
+    </ul>
+
+    <div class="aviso neutro">
+      <strong>Medi&ccedil;&atilde;o e rastreamento.</strong> Todos os an&uacute;ncios do m&ecirc;s foram configurados com rastreamento completo de eventos do site, alimentando a base de dados da conta a cada visita. Isso qualifica os relat&oacute;rios do evento e constr&oacute;i o p&uacute;blico para as a&ccedil;&otilde;es futuras &mdash; incluindo a capta&ccedil;&atilde;o de expositores e patrocinadores para 2027.
+    </div>
+  </div>
+</section>
+
+<!-- ==================== INVESTIMENTO ==================== -->
+<section id="investimento">
+  <div class="wrap">
+    <p class="marca">Aloca&ccedil;&atilde;o de verba</p>
+    <h2>Investimento detalhado</h2>
+    <p class="lede">Distribui&ccedil;&atilde;o di&aacute;ria do investimento por campanha e localidade durante a reta final. A prioridade segue a l&oacute;gica das camadas: Barra e entorno recebem o maior investimento por pessoa.</p>
+
+    <div class="tabbox">
+      <table>
+        <thead><tr>
+          <th>Campanha e localidade</th><th>Investimento di&aacute;rio</th><th>Papel</th>
+        </tr></thead>
+        <tbody>
+          <tr class="grupo"><td colspan="3">Tr&aacute;fego para o site &mdash; R$ 230/dia</td></tr>
+          <tr><td>Barra, Xique-Xique e Irec&ecirc;</td><td class="num">R$ 60</td><td>Cidade-sede e vizinhas</td></tr>
+          <tr><td>Juazeiro e Petrolina</td><td class="num">R$ 44</td><td>Polo irrigado do Vale</td></tr>
+          <tr><td>Oeste Baiano</td><td class="num">R$ 38</td><td>Barreiras, LEM e regi&atilde;o</td></tr>
+          <tr><td>Bahia (estado)</td><td class="num">R$ 28</td><td>Cobertura estadual</td></tr>
+          <tr><td>Maranh&atilde;o, Tocantins e Piau&iacute;</td><td class="num">R$ 22</td><td>Estados vizinhos</td></tr>
+          <tr><td>Nordeste</td><td class="num">R$ 20</td><td>Cobertura regional</td></tr>
+          <tr><td>Brasil</td><td class="num">R$ 18</td><td>Cobertura nacional</td></tr>
+          <tr class="grupo"><td colspan="3">V&iacute;deo institucional &mdash; R$ 108/dia</td></tr>
+          <tr><td>Barra, Xique-Xique e Irec&ecirc;</td><td class="num">R$ 28</td><td>Hist&oacute;ria do evento para quem vai</td></tr>
+          <tr><td>Oeste Baiano</td><td class="num">R$ 20</td><td>Narrativa regional</td></tr>
+          <tr><td>Juazeiro e Petrolina</td><td class="num">R$ 22</td><td>Narrativa regional</td></tr>
+          <tr><td>Bahia + Brasil</td><td class="num">R$ 38</td><td>Camada ampla de v&iacute;deo</td></tr>
+          <tr class="grupo"><td colspan="3">Tr&aacute;fego para o perfil &mdash; R$ 105/dia</td></tr>
+          <tr><td>Sete localidades (R$ 15 cada)</td><td class="num">R$ 105</td><td>Audi&ecirc;ncia do @barraagroshow</td></tr>
+          <tr class="grupo"><td colspan="3">Convite Final &mdash; R$ 100/dia</td></tr>
+          <tr><td>Barra, Xique-Xique e Irec&ecirc;</td><td class="num">R$ 50</td><td>Entrada gratuita + bastidores</td></tr>
+          <tr><td>Oeste Baiano</td><td class="num">R$ 25</td><td>Entrada gratuita + bastidores</td></tr>
+          <tr><td>Juazeiro e Petrolina</td><td class="num">R$ 25</td><td>Entrada gratuita + bastidores</td></tr>
+          <tr class="grupo"><td colspan="3">Expositores em destaque &mdash; R$ 60/dia</td></tr>
+          <tr><td>Barra, Xique-Xique e Irec&ecirc;</td><td class="num">R$ 30</td><td>Carross&eacute;is + v&iacute;deos das marcas</td></tr>
+          <tr><td>Oeste Baiano</td><td class="num">R$ 30</td><td>Carross&eacute;is + v&iacute;deos das marcas</td></tr>
+          <tr class="grupo"><td colspan="3">Investidores &mdash; R$ 50/dia</td></tr>
+          <tr><td>Brasil (p&uacute;blico de investimento)</td><td class="num">R$ 50</td><td>Hist&oacute;rias de quem investiu na regi&atilde;o</td></tr>
+          <tr class="grupo"><td colspan="3">Contagem regressiva &mdash; R$ 70/dia (14 a 19/08)</td></tr>
+          <tr><td>Barra, Xique-Xique e Irec&ecirc;</td><td class="num">R$ 34</td><td>Pe&ccedil;a do dia, troca autom&aacute;tica</td></tr>
+          <tr><td>Oeste Baiano</td><td class="num">R$ 18</td><td>Pe&ccedil;a do dia, troca autom&aacute;tica</td></tr>
+          <tr><td>Juazeiro e Petrolina</td><td class="num">R$ 18</td><td>Pe&ccedil;a do dia, troca autom&aacute;tica</td></tr>
+          <tr class="somatorio"><td>Total di&aacute;rio &mdash; base</td><td class="num">R$ 653</td><td></td></tr>
+          <tr class="somatorio"><td>Total di&aacute;rio &mdash; pico (semana do evento)</td><td class="num">R$ 723</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="legenda">Valores de or&ccedil;amento configurados no gerenciador de an&uacute;ncios. A entrega efetiva pode variar levemente conforme o leil&atilde;o de cada dia. A reserva t&eacute;cnica para a cobertura p&oacute;s-evento n&atilde;o est&aacute; inclu&iacute;da nos totais acima.</p>
+  </div>
+</section>
+
+<!-- ==================== RESUMO ==================== -->
+<section id="resumo">
+  <div class="wrap">
+    <p class="marca">Vis&atilde;o geral</p>
+    <h2>Resumo executivo</h2>
+    <p class="lede">O papel de cada frente no m&ecirc;s do evento.</p>
+
+    <div class="tabbox">
+      <table>
+        <thead><tr><th>Frente</th><th style="text-align:left">Papel no m&ecirc;s</th></tr></thead>
+        <tbody>
+          <tr><td>Tr&aacute;fego site, v&iacute;deo e perfil (escaladas)</td><td style="text-align:left">Manter a m&aacute;quina de visibilidade no ritmo m&aacute;ximo</td></tr>
+          <tr><td>Convite Final</td><td style="text-align:left">Entrada gratuita + reta final para quem pode ir</td></tr>
+          <tr><td>Expositores em destaque</td><td style="text-align:left">Valorizar as marcas confirmadas e gerar prova social</td></tr>
+          <tr><td>Investidores</td><td style="text-align:left">Projetar a regi&atilde;o para capital de fora (Brasil)</td></tr>
+          <tr><td>Contagem regressiva</td><td style="text-align:left">Urg&ecirc;ncia di&aacute;ria e autom&aacute;tica, regi&atilde;o por regi&atilde;o</td></tr>
+          <tr><td>Cobertura do evento</td><td style="text-align:left">Transformar os 4 dias de feira em conte&uacute;do vivo</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== RODAP&Eacute; ==================== -->
+<footer class="rodape">
+  <div class="wrap">
+    <strong>ADS Company &mdash; Assessoria de Marketing e Performance</strong>
+    <p>Plano de a&ccedil;&atilde;o de tr&aacute;fego pago para o m&ecirc;s de agosto de 2026, elaborado para a Barra AgroShow. Os resultados das campanhas ser&atilde;o consolidados nos relat&oacute;rios de desempenho dispon&iacute;veis na Central de Relat&oacute;rios.</p>
+  </div>
+</footer>
+
+</body>
+</html>
