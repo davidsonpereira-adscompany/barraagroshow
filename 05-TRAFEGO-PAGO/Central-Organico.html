@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Org&acirc;nico &mdash; Selecione o per&iacute;odo &mdash; Barra AgroShow 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --papel:#EFF2ED; --superf:#FFFFFF; --areia:#E2DCCC;
+  --tinta:#131F1B; --cinza:#6A766F; --linha:#D3D9D1;
+  --rio:#14555C; --rio-claro:#3E8B90; --terra:#A25E17; --folha:#4E7F2C;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--papel); color:var(--tinta);
+  font-family:'IBM Plex Sans',system-ui,-apple-system,sans-serif;
+  font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased;
+  min-height:100vh; display:flex; flex-direction:column;
+}
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+h1,h2,h3{font-family:'Bricolage Grotesque','IBM Plex Sans',sans-serif;line-height:1.1;letter-spacing:-.02em}
+
+/* ===== HEADER ===== */
+.topo{background:var(--rio);color:#F2F6F3;padding:52px 0 44px;position:relative;overflow:hidden}
+.topo::after{content:"";position:absolute;inset:auto 0 0 0;height:5px;
+  background:linear-gradient(90deg,var(--terra) 0 22%,var(--folha) 22% 46%,var(--rio-claro) 46% 100%)}
+.voltar{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;
+  font-weight:600;color:#fff;text-decoration:none;margin-bottom:28px;
+  background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.38);
+  padding:10px 20px;border-radius:24px;
+  transition:background .2s ease,border-color .2s ease,transform .2s ease;
+}
+.voltar:hover{background:#fff;border-color:#fff;color:var(--rio);transform:translateX(-3px)}
+.voltar svg{width:15px;height:15px;stroke:currentColor;stroke-width:2.4;fill:none}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#9FC6C4}
+.topo h1{font-size:clamp(2.1rem,5vw,3.4rem);font-weight:800;margin:14px 0 8px}
+.topo .sub{font-size:1.05rem;color:#C6DBD8;max-width:62ch}
+
+/* ===== CARDS ===== */
+.cards-area{flex:1;padding:56px 0 72px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:960px;margin:0 auto}
+.card{
+  display:flex;flex-direction:column;
+  background:var(--superf);border:1px solid var(--linha);
+  text-decoration:none;color:inherit;
+  padding:30px 28px 26px;position:relative;
+  transition:transform .22s ease, box-shadow .22s ease;
+}
+.card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(19,31,27,.12)}
+.card:focus-visible{outline:3px solid var(--rio);outline-offset:2px}
+.card.largo{grid-column:1/-1}
+
+.card-icon{width:48px;height:48px;background:var(--areia);
+  display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+.card-icon svg{width:24px;height:24px;stroke-width:1.6;fill:none}
+
+.card-tag{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  font-weight:600;margin-bottom:10px;
+}
+.card-tag.fechado{color:var(--rio)}
+.card-tag.andamento{color:var(--terra)}
+.card-tag.total{color:var(--folha)}
+
+.card h2{font-size:1.4rem;font-weight:800;margin-bottom:10px;letter-spacing:-.01em}
+.card .descricao{font-size:.9rem;color:#3C4A45;line-height:1.6;margin-bottom:20px;max-width:78ch}
+
+.stats{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px}
+.stat{
+  border:1px solid var(--linha);padding:12px 16px;min-width:118px;flex:1;
+  text-align:center;background:#FBFCFA;
+}
+.stat b{
+  display:block;font-family:'Bricolage Grotesque',sans-serif;font-size:1.3rem;
+  font-weight:800;color:var(--rio);letter-spacing:-.02em;line-height:1.15;
+}
+.stat span{
+  font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--cinza);
+}
+.card.largo .stat b{color:var(--folha)}
+
+.card-rodape{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-top:16px;border-top:1px solid var(--linha);margin-top:auto;gap:12px;
+}
+.selo{
+  font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  font-weight:600;padding:4px 12px;border-radius:20px;
+}
+.selo.verde{background:rgba(78,127,44,.1);color:var(--folha);border:1px solid rgba(78,127,44,.2)}
+.selo.azul{background:rgba(20,85,92,.08);color:var(--rio);border:1px solid rgba(20,85,92,.18)}
+.selo.laranja{background:rgba(162,94,23,.1);color:var(--terra);border:1px solid rgba(162,94,23,.2)}
+.card-seta{
+  width:34px;height:34px;background:var(--areia);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  transition:background .2s ease;
+}
+.card:hover .card-seta{background:var(--rio)}
+.card-seta svg{width:14px;height:14px;stroke:var(--tinta);stroke-width:2;fill:none;transition:stroke .2s ease}
+.card:hover .card-seta svg{stroke:#fff}
+
+/* ===== FOOTER ===== */
+.rodape{background:var(--tinta);color:#A9B5AE;padding:36px 0;text-align:center;font-size:.84rem;line-height:1.75}
+.rodape strong{color:#EFF2ED;display:block;font-family:'Bricolage Grotesque',sans-serif;font-size:1.02rem;margin-bottom:6px}
+.rodape .data{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.08em;color:#7A8B83;margin-top:4px}
+
+/* ===== RESPONSIVO ===== */
+@media(max-width:740px){
+  .grid{grid-template-columns:1fr;gap:18px}
+  .topo{padding:40px 0 36px}
+  .cards-area{padding:36px 0 52px}
+  .stat{min-width:96px}
+}
+@media(max-width:480px){
+  .wrap{padding:0 18px}
+  .card{padding:24px 20px 20px}
+  .card h2{font-size:1.25rem}
+  .stat b{font-size:1.12rem}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+@media print{.card:hover{transform:none;box-shadow:none}}
+</style>
+</head>
+<body>
+
+<!-- ==================== HEADER ==================== -->
+<header class="topo">
+  <div class="wrap">
+    <a href="Central-Relatorios.html" class="voltar">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      Central de Relat&oacute;rios
+    </a>
+    <p class="eyebrow">Desempenho org&acirc;nico &middot; Instagram</p>
+    <h1>Selecione o per&iacute;odo</h1>
+    <p class="sub">O desempenho org&acirc;nico do perfil @barraagroshow est&aacute; dividido em dois per&iacute;odos de an&aacute;lise, mais a vis&atilde;o consolidada desde 1&ordm; de maio.</p>
+  </div>
+</header>
+
+<!-- ==================== CARDS ==================== -->
+<main class="cards-area">
+  <div class="wrap">
+    <div class="grid">
+
+      <!-- Card 1: Maio a Julho -->
+      <a href="Relatorio-Organico-Barra-AgroShow.html" class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" stroke="var(--rio)"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <p class="card-tag fechado">Conclu&iacute;do &middot; 1/mai a 31/jul</p>
+        <h2>Maio a Julho</h2>
+        <p class="descricao">Os tr&ecirc;s primeiros meses da presen&ccedil;a digital: crescimento do perfil, evolu&ccedil;&atilde;o mensal, demografia dos seguidores e os conte&uacute;dos de maior destaque.</p>
+        <div class="stats">
+          <div class="stat"><b>1,11 mi</b><span>Visualiza&ccedil;&otilde;es</span></div>
+          <div class="stat"><b>319,5 mil</b><span>Alcan&ccedil;ados</span></div>
+          <div class="stat"><b>+1.572</b><span>Seguidores</span></div>
+        </div>
+        <div class="card-rodape">
+          <span class="selo azul">Per&iacute;odo encerrado</span>
+          <div class="card-seta"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
+        </div>
+      </a>
+
+      <!-- Card 2: Agosto -->
+      <a href="Relatorio-Organico-Agosto.html" class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" stroke="var(--terra)"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <p class="card-tag andamento">Em andamento &middot; 1 a 13/ago</p>
+        <h2>Agosto</h2>
+        <p class="descricao">A reta final rumo ao evento: recordes de visualiza&ccedil;&otilde;es org&acirc;nicas, explos&atilde;o de visitas ao perfil e o maior ritmo de crescimento de seguidores da campanha.</p>
+        <div class="stats">
+          <div class="stat"><b>596 mil</b><span>Visualiza&ccedil;&otilde;es</span></div>
+          <div class="stat"><b>160,8 mil</b><span>Alcan&ccedil;ados</span></div>
+          <div class="stat"><b>+823</b><span>Seguidores</span></div>
+        </div>
+        <div class="card-rodape">
+          <span class="selo laranja">Atualizado em 13/08</span>
+          <div class="card-seta"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
+        </div>
+      </a>
+
+      <!-- Card 3: Consolidado -->
+      <a href="Relatorio-Organico-Consolidado.html" class="card largo">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" stroke="var(--folha)"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+        </div>
+        <p class="card-tag total">Consolidado geral &middot; 1/mai a 13/ago</p>
+        <h2>Toda a presen&ccedil;a digital em n&uacute;meros</h2>
+        <p class="descricao">A soma de todo o per&iacute;odo desde 1&ordm; de maio, mais o retrato completo do p&uacute;blico do perfil: seguidores, demografia, principais cidades e potencial de audi&ecirc;ncia.</p>
+        <div class="stats">
+          <div class="stat"><b>1,7 mi</b><span>Visualiza&ccedil;&otilde;es</span></div>
+          <div class="stat"><b>439,5 mil</b><span>Alcan&ccedil;ados</span></div>
+          <div class="stat"><b>+2,4 mil</b><span>Seguidores</span></div>
+          <div class="stat"><b>26,4 mil</b><span>Intera&ccedil;&otilde;es</span></div>
+          <div class="stat"><b>21,5 mil</b><span>Visitas</span></div>
+          <div class="stat"><b>14.844</b><span>Seguidores totais</span></div>
+        </div>
+        <div class="card-rodape">
+          <span class="selo verde">Vis&atilde;o completa + p&uacute;blico</span>
+          <div class="card-seta"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</main>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="rodape">
+  <div class="wrap">
+    <strong>ADS Company &mdash; Assessoria de Marketing e Performance</strong>
+    <p class="data">Atualizado em 13 de agosto de 2026</p>
+  </div>
+</footer>
+
+</body>
+</html>

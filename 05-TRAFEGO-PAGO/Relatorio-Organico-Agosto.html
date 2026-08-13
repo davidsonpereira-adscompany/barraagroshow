@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Barra AgroShow 2026 &mdash; Desempenho Org&acirc;nico &mdash; Agosto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --papel:#EFF2ED; --superf:#FFFFFF; --areia:#E2DCCC;
+  --tinta:#131F1B; --cinza:#6A766F; --linha:#D3D9D1;
+  --rio:#14555C; --rio-claro:#3E8B90; --terra:#A25E17; --folha:#4E7F2C; --alerta:#B3411E;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--papel); color:var(--tinta);
+  font-family:'IBM Plex Sans',system-ui,-apple-system,sans-serif;
+  font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+h1,h2,h3,h4{font-family:'Bricolage Grotesque','IBM Plex Sans',sans-serif;line-height:1.1;letter-spacing:-.02em}
+.mono{font-family:'IBM Plex Mono',monospace;font-variant-numeric:tabular-nums}
+
+.voltar{position:fixed;top:16px;left:16px;z-index:90;background:var(--rio);color:#fff;text-decoration:none;
+  font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  padding:7px 16px;border-radius:20px;display:flex;align-items:center;gap:6px;font-weight:600;
+  box-shadow:0 2px 10px rgba(19,31,27,.25);transition:background .2s}
+.voltar:hover{background:var(--rio-claro)}
+.voltar svg{width:14px;height:14px;stroke:currentColor;stroke-width:2;fill:none}
+.topo{background:var(--rio);color:#F2F6F3;padding:52px 0 44px;position:relative;overflow:hidden}
+.topo::after{content:"";position:absolute;inset:auto 0 0 0;height:5px;
+  background:linear-gradient(90deg,var(--terra) 0 22%,var(--folha) 22% 46%,var(--rio-claro) 46% 100%)}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#9FC6C4}
+.topo h1{font-size:clamp(2.2rem,5.4vw,3.9rem);font-weight:800;margin:14px 0 8px}
+.topo .sub{font-size:1.05rem;color:#C6DBD8;max-width:60ch}
+.periodo{display:flex;flex-wrap:wrap;gap:26px;margin-top:28px;padding-top:22px;border-top:1px solid rgba(255,255,255,.18)}
+.periodo div{min-width:130px}
+.periodo dt{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#8FBAB8;margin-bottom:4px}
+.periodo dd{font-size:1.05rem;font-weight:600}
+
+section{padding:64px 0;border-bottom:1px solid var(--linha)}
+section:last-of-type{border-bottom:0}
+.marca{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--terra);display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.marca::before{content:"";width:26px;height:2px;background:var(--terra)}
+h2{font-size:clamp(1.7rem,3.6vw,2.5rem);font-weight:800;margin-bottom:10px}
+.lede{font-size:1.08rem;color:#3C4A45;max-width:70ch;margin-bottom:34px}
+
+.destaques{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:1px;background:var(--linha);
+  border:1px solid var(--linha);margin-bottom:16px}
+.destaque{background:var(--superf);padding:26px 24px}
+.destaque .n{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(2rem,4.4vw,2.9rem);font-weight:800;
+  line-height:1;color:var(--rio);letter-spacing:-.03em}
+.destaque .rot{font-size:.9rem;font-weight:600;margin-top:10px}
+.destaque .exp{font-size:.82rem;color:var(--cinza);margin-top:3px;line-height:1.45}
+.destaque .delta{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:.72rem;
+  color:var(--folha);font-weight:600;margin-top:5px;letter-spacing:.02em}
+
+.criativos{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;margin-bottom:34px}
+.crt{background:var(--superf);border:1px solid var(--linha);overflow:hidden;text-align:left;padding:0;
+  transition:transform .18s ease,box-shadow .18s ease}
+.crt:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(19,31,27,.13)}
+.crt-tipo{display:inline-block;background:var(--rio);color:#fff;font-family:'IBM Plex Mono',monospace;
+  font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;padding:4px 10px;border-radius:20px;margin:14px 14px 0}
+.crt-corpo{padding:10px 14px 16px}
+.crt-nome{font-size:.88rem;font-weight:600;line-height:1.3;margin-bottom:3px}
+.crt-fonte{font-size:.74rem;color:var(--cinza);margin-bottom:11px}
+.crt-mini{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.crt-mini div{font-family:'IBM Plex Mono',monospace;font-size:.76rem}
+.crt-mini span{display:block;font-size:9.5px;color:var(--cinza);letter-spacing:.05em;text-transform:uppercase}
+
+.especificos{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:16px;margin-bottom:34px}
+.esp{background:var(--superf);border:1px solid var(--linha);border-top:3px solid var(--rio);padding:22px}
+.esp.b{border-top-color:var(--folha)}.esp.c{border-top-color:var(--terra)}
+.esp .origem{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--cinza);margin-bottom:14px;line-height:1.5}
+.esp .par{display:flex;justify-content:space-between;align-items:baseline;padding:7px 0;border-bottom:1px solid #EDF0EC;gap:12px}
+.esp .par:last-child{border-bottom:0}
+.esp .par span:first-child{font-size:.86rem;color:#40504A}
+.esp .par span:last-child{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:1rem}
+
+.aviso{background:#FBF3E6;border-left:3px solid var(--terra);padding:16px 20px;margin-bottom:30px;font-size:.9rem;line-height:1.6}
+.aviso strong{color:var(--terra)}
+.aviso.neutro{background:#EAF1F1;border-left-color:var(--rio)}
+.aviso.neutro strong{color:var(--rio)}
+.aviso.sucesso{background:#EDF4E6;border-left-color:var(--folha)}
+.aviso.sucesso strong{color:var(--folha)}
+
+.glossario{display:grid;grid-template-columns:repeat(auto-fit,minmax(258px,1fr));gap:1px;background:var(--linha);border:1px solid var(--linha)}
+.gl{background:var(--superf);padding:19px 21px}
+.gl dt{font-weight:700;font-size:.93rem;margin-bottom:5px}
+.gl dd{font-size:.85rem;color:#40504A;line-height:1.55}
+.rodape{background:var(--tinta);color:#A9B5AE;padding:44px 0;font-size:.84rem;line-height:1.75}
+.rodape strong{color:#EFF2ED;display:block;font-family:'Bricolage Grotesque',sans-serif;font-size:1.08rem;margin-bottom:12px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<a href="Central-Organico.html" class="voltar"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>Org&acirc;nico</a>
+
+<header class="topo">
+  <div class="wrap">
+    <p class="eyebrow">Relat&oacute;rio de desempenho &middot; Org&acirc;nico &middot; Agosto</p>
+    <h1>Barra AgroShow 2026</h1>
+    <p class="sub">Desempenho org&acirc;nico do perfil @barraagroshow na reta final rumo ao evento, de 1&ordm; a 13 de agosto.</p>
+    <dl class="periodo">
+      <div><dt>Per&iacute;odo</dt><dd>1 &mdash; 13 ago 2026</dd></div>
+      <div><dt>Data do evento</dt><dd>19 a 22 ago 2026</dd></div>
+      <div><dt>Atualizado em</dt><dd>13 ago 2026</dd></div>
+    </dl>
+  </div>
+</header>
+
+<!-- ==================== VIS&Atilde;O GERAL ==================== -->
+<section id="resumo">
+  <div class="wrap">
+    <p class="marca">Vis&atilde;o geral</p>
+    <h2>N&uacute;meros do per&iacute;odo</h2>
+    <p class="lede">M&eacute;tricas do perfil nos treze primeiros dias de agosto. As varia&ccedil;&otilde;es percentuais comparam com o per&iacute;odo anterior equivalente (19 a 31 de julho).</p>
+
+    <div class="destaques">
+      <div class="destaque">
+        <p class="n">596.240</p>
+        <p class="rot">Visualiza&ccedil;&otilde;es totais</p>
+        <p class="exp">Soma do Instagram (592.030) e do Facebook (4.210). Inclui org&acirc;nico e an&uacute;ncios.</p>
+        <p class="delta">&uarr; +56,4%</p>
+      </div>
+      <div class="destaque">
+        <p class="n">345.053</p>
+        <p class="rot">Visualiza&ccedil;&otilde;es org&acirc;nicas</p>
+        <p class="exp">Conte&uacute;do que alcan&ccedil;ou as pessoas sem investimento em an&uacute;ncios.</p>
+        <p class="delta">&uarr; +127,3%</p>
+      </div>
+      <div class="destaque">
+        <p class="n">160,8 mil</p>
+        <p class="rot">Pessoas alcan&ccedil;adas</p>
+        <p class="exp">Perfis diferentes que viram algum conte&uacute;do da p&aacute;gina.</p>
+        <p class="delta">&uarr; +88,4%</p>
+      </div>
+      <div class="destaque">
+        <p class="n">10,4 mil</p>
+        <p class="rot">Intera&ccedil;&otilde;es com o conte&uacute;do</p>
+        <p class="exp">Curtidas, coment&aacute;rios, compartilhamentos e salvamentos.</p>
+        <p class="delta">&uarr; +110,5%</p>
+      </div>
+    </div>
+
+    <div class="destaques">
+      <div class="destaque">
+        <p class="n" style="color:var(--terra)">823</p>
+        <p class="rot">Novos seguidores</p>
+        <p class="exp">Em apenas 13 dias &mdash; o maior ritmo de crescimento da campanha.</p>
+        <p class="delta">&uarr; +114,9%</p>
+      </div>
+      <div class="destaque">
+        <p class="n" style="color:var(--terra)">7,9 mil</p>
+        <p class="rot">Visitas ao perfil</p>
+        <p class="exp">Vezes que algu&eacute;m abriu o perfil do Instagram.</p>
+        <p class="delta">&uarr; +234,2%</p>
+      </div>
+      <div class="destaque">
+        <p class="n" style="color:var(--terra)">4,6 mil</p>
+        <p class="rot">Cliques no link</p>
+        <p class="exp">Cliques no link da bio do Instagram.</p>
+        <p class="delta">&uarr; +76,7%</p>
+      </div>
+      <div class="destaque">
+        <p class="n" style="color:var(--terra)">105</p>
+        <p class="rot">Conte&uacute;dos publicados</p>
+        <p class="exp">67 stories e 38 posts em 13 dias.</p>
+        <p class="delta">&uarr; +22,1%</p>
+      </div>
+    </div>
+
+    <div class="aviso sucesso">
+      <strong>O org&acirc;nico assumiu a lideran&ccedil;a.</strong> Das 592.030 visualiza&ccedil;&otilde;es no Instagram, 345.053 (58%) vieram de forma org&acirc;nica &mdash; um salto de +127,3% &mdash; e 246.977 (42%) vieram dos an&uacute;ncios. &Eacute; a primeira fase da campanha em que o conte&uacute;do org&acirc;nico supera o tr&aacute;fego pago em volume, reflexo direto da intensifica&ccedil;&atilde;o da produ&ccedil;&atilde;o de conte&uacute;do na reta final.
+    </div>
+  </div>
+</section>
+
+<!-- ==================== TOP CONTE&Uacute;DOS ==================== -->
+<section id="conteudos">
+  <div class="wrap">
+    <p class="marca">Conte&uacute;do em destaque</p>
+    <h2>Os 5 conte&uacute;dos mais vistos</h2>
+    <p class="lede">As publica&ccedil;&otilde;es com maior n&uacute;mero de visualiza&ccedil;&otilde;es no per&iacute;odo, somando org&acirc;nico e impulsionamento.</p>
+
+    <div class="criativos">
+      <div class="crt">
+        <span class="crt-tipo">Reels</span>
+        <div class="crt-corpo">
+          <p class="crt-nome">O futuro do agro j&aacute; come&ccedil;ou em Barra &mdash; convite de lan&ccedil;amento</p>
+          <p class="crt-fonte">Sexta, 7 de agosto</p>
+          <div class="crt-mini">
+            <div><span>Visualiza&ccedil;&otilde;es</span>22,8 mil</div>
+            <div><span>Curtidas</span>262</div>
+            <div><span>Coment&aacute;rios</span>11</div>
+            <div><span>Compartilhamentos</span>88</div>
+          </div>
+        </div>
+      </div>
+      <div class="crt">
+        <span class="crt-tipo">Reels</span>
+        <div class="crt-corpo">
+          <p class="crt-nome">Vis&atilde;o do futuro e coragem para investir &mdash; L&eacute;o Miranda</p>
+          <p class="crt-fonte">Ter&ccedil;a, 11 de agosto</p>
+          <div class="crt-mini">
+            <div><span>Visualiza&ccedil;&otilde;es</span>16,7 mil</div>
+            <div><span>Curtidas</span>601</div>
+            <div><span>Coment&aacute;rios</span>20</div>
+            <div><span>Compartilhamentos</span>50</div>
+          </div>
+        </div>
+      </div>
+      <div class="crt">
+        <span class="crt-tipo">Post</span>
+        <div class="crt-corpo">
+          <p class="crt-nome">Programa&ccedil;&atilde;o oficial da feira</p>
+          <p class="crt-fonte">S&aacute;bado, 8 de agosto</p>
+          <div class="crt-mini">
+            <div><span>Visualiza&ccedil;&otilde;es</span>13,5 mil</div>
+            <div><span>Curtidas</span>101</div>
+            <div><span>Coment&aacute;rios</span>0</div>
+            <div><span>Compartilhamentos</span>88</div>
+          </div>
+        </div>
+      </div>
+      <div class="crt">
+        <span class="crt-tipo">Reels</span>
+        <div class="crt-corpo">
+          <p class="crt-nome">A Drenovale convida voc&ecirc; para a Barra AgroShow</p>
+          <p class="crt-fonte">Segunda, 10 de agosto</p>
+          <div class="crt-mini">
+            <div><span>Visualiza&ccedil;&otilde;es</span>12,7 mil</div>
+            <div><span>Curtidas</span>478</div>
+            <div><span>Coment&aacute;rios</span>48</div>
+            <div><span>Compartilhamentos</span>52</div>
+          </div>
+        </div>
+      </div>
+      <div class="crt">
+        <span class="crt-tipo">Post</span>
+        <div class="crt-corpo">
+          <p class="crt-nome">Entrada gratuita todos os dias</p>
+          <p class="crt-fonte">Segunda, 10 de agosto</p>
+          <div class="crt-mini">
+            <div><span>Visualiza&ccedil;&otilde;es</span>12,4 mil</div>
+            <div><span>Curtidas</span>207</div>
+            <div><span>Coment&aacute;rios</span>1</div>
+            <div><span>Compartilhamentos</span>62</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="aviso neutro">
+      <strong>Leitura do per&iacute;odo.</strong> Os cinco conte&uacute;dos mais vistos de agosto s&atilde;o todos da reta final: convite de lan&ccedil;amento, hist&oacute;ria de investidor, programa&ccedil;&atilde;o oficial, v&iacute;deo de expositor e entrada gratuita &mdash; exatamente os pilares da estrat&eacute;gia do m&ecirc;s, funcionando tamb&eacute;m no org&acirc;nico.
+    </div>
+  </div>
+</section>
+
+<!-- ==================== MENSAGENS ==================== -->
+<section id="mensagens">
+  <div class="wrap">
+    <p class="marca">Conversas</p>
+    <h2>Mensagens recebidas</h2>
+    <p class="lede">Pessoas que entraram em contato com o perfil pelo direct no per&iacute;odo de 1&ordm; a 13 de agosto.</p>
+
+    <div class="especificos">
+      <div class="esp">
+        <p class="origem">Contatos</p>
+        <div class="par"><span>Total de contatos</span><span>76</span></div>
+        <div class="par"><span>Novos contatos</span><span>41</span></div>
+        <div class="par"><span>Conversas iniciadas</span><span>95</span></div>
+      </div>
+      <div class="esp b">
+        <p class="origem">Origem dos contatos</p>
+        <div class="par"><span>Vindos do org&acirc;nico</span><span>34</span></div>
+        <div class="par"><span>Vindos dos an&uacute;ncios</span><span>42</span></div>
+      </div>
+      <div class="esp c">
+        <p class="origem">Atendimento</p>
+        <div class="par"><span>Taxa de resposta</span><span>39,6%</span></div>
+        <div class="par"><span>Varia&ccedil;&atilde;o</span><span>+10,1%</span></div>
+      </div>
+    </div>
+
+    <p class="legenda" style="font-size:.82rem;color:var(--cinza);max-width:78ch">O crescimento de +81% nos contatos e de +127,8% nos novos contatos mostra que a reta final est&aacute; gerando n&atilde;o s&oacute; visualiza&ccedil;&otilde;es, mas conversas reais com o p&uacute;blico &mdash; com os an&uacute;ncios respondendo pela maior parte dos novos contatos (+162,5%).</p>
+  </div>
+</section>
+
+<!-- ==================== GLOSS&Aacute;RIO ==================== -->
+<section id="glossario">
+  <div class="wrap">
+    <p class="marca">Para entender os termos</p>
+    <h2>Gloss&aacute;rio</h2>
+    <p class="lede">Os termos t&eacute;cnicos que aparecem neste relat&oacute;rio, explicados em linguagem comum.</p>
+    <dl class="glossario">
+      <div class="gl"><dt>Visualiza&ccedil;&otilde;es</dt><dd>Quantas vezes um conte&uacute;do do perfil apareceu na tela de algu&eacute;m. A mesma pessoa pode gerar v&aacute;rias visualiza&ccedil;&otilde;es.</dd></div>
+      <div class="gl"><dt>Visualiza&ccedil;&otilde;es org&acirc;nicas</dt><dd>Visualiza&ccedil;&otilde;es que aconteceram naturalmente, sem investimento em an&uacute;ncios.</dd></div>
+      <div class="gl"><dt>Alcance</dt><dd>Quantas pessoas diferentes viram algum conte&uacute;do do perfil pelo menos uma vez.</dd></div>
+      <div class="gl"><dt>Intera&ccedil;&otilde;es</dt><dd>Soma de curtidas, coment&aacute;rios, compartilhamentos e salvamentos.</dd></div>
+      <div class="gl"><dt>Visitas ao perfil</dt><dd>Vezes que algu&eacute;m abriu a p&aacute;gina do perfil no Instagram.</dd></div>
+      <div class="gl"><dt>Conversas iniciadas</dt><dd>Conversas novas abertas no direct do perfil no per&iacute;odo.</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- ==================== RODAP&Eacute; ==================== -->
+<footer class="rodape">
+  <div class="wrap">
+    <strong>Nota metodol&oacute;gica</strong>
+    <p>Dados extra&iacute;dos do Meta Business Suite em 13 de agosto de 2026, cobrindo o per&iacute;odo de 1&ordm; a 13 de agosto. As varia&ccedil;&otilde;es percentuais s&atilde;o calculadas pela pr&oacute;pria plataforma em compara&ccedil;&atilde;o com o per&iacute;odo anterior equivalente. O per&iacute;odo est&aacute; em andamento &mdash; os n&uacute;meros finais de agosto ser&atilde;o consolidados ap&oacute;s o encerramento do m&ecirc;s.</p>
+    <p style="margin-top:14px">Os dados demogr&aacute;ficos do p&uacute;blico (g&ecirc;nero, idade e cidades) est&atilde;o dispon&iacute;veis no relat&oacute;rio consolidado, pois a plataforma n&atilde;o permite recorte de per&iacute;odo para essas informa&ccedil;&otilde;es.</p>
+  </div>
+</footer>
+
+</body>
+</html>
